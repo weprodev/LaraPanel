@@ -1,0 +1,19 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Database\Seeders;
+
+use WeProDev\LaraPanel\Infrastructure\User\Seeders\Role\MasterRoleTableSeeder;
+
+final class RoleSeeder extends MasterRoleTableSeeder
+{
+    protected $roles = [
+        // [
+        //     'name'          => "Unique_Role_Name",
+        //     'title'         => "Role Title",
+        //     'guard_name'    => "web",
+        //     'description'   => "The description of the role",
+        // ],
+    ];
+}

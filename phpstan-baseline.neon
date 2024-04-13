@@ -1,0 +1,1446 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:all\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:all\\(\\) has parameter \\$columns with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:all\\(\\) has parameter \\$pluck with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:all\\(\\) has parameter \\$relations with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:delete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:find\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:find\\(\\) has parameter \\$columns with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:findBy\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:findBy\\(\\) has parameter \\$columns with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:findBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:paginate\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:paginate\\(\\) has parameter \\$columns with no type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:paginate\\(\\) has parameter \\$page with no type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:paginate\\(\\) has parameter \\$pageName with no type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:paginate\\(\\) has parameter \\$perPage with no type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:store\\(\\) has parameter \\$item with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:update\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:update\\(\\) has parameter \\$item with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:updateBy\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:updateBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\Shared\\\\Repository\\\\BaseRepositoryInterface\\:\\:updateBy\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/Shared/Repository/BaseRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Enum\\\\RolesEnum\\:\\:details\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/User/Enum/RolesEnum.php
+
+		-
+			message: "#^Access to undefined constant WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Enum\\\\TeamsEnum\\:\\:WRITER\\.$#"
+			count: 1
+			path: src/Core/User/Enum/TeamsEnum.php
+
+		-
+			message: "#^Match expression does not handle remaining value\\: WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Enum\\\\TeamsEnum\\:\\:DEFAULT$#"
+			count: 1
+			path: src/Core/User/Enum/TeamsEnum.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Enum\\\\TeamsEnum\\:\\:details\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/User/Enum/TeamsEnum.php
+
+		-
+			message: "#^Call to static method cases\\(\\) on an unknown class WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Enum\\\\UserStatus\\.$#"
+			count: 1
+			path: src/Core/User/Enum/UserStatusEnum.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Enum\\\\UserStatusEnum\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Core/User/Enum/UserStatusEnum.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\UserRepositoryInterface\\:\\:allWithTrashed\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/User/Repository/UserRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\UserRepositoryInterface\\:\\:restoreUser\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Core/User/Repository/UserRepositoryInterface.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:all\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:all\\(\\) has parameter \\$columns with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:all\\(\\) has parameter \\$pluck with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:all\\(\\) has parameter \\$relations with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:delete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:find\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:find\\(\\) has parameter \\$columns with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:findBy\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:findBy\\(\\) has parameter \\$columns with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:findBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:paginate\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:paginate\\(\\) has parameter \\$columns with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:paginate\\(\\) has parameter \\$page with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:paginate\\(\\) has parameter \\$pageName with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:paginate\\(\\) has parameter \\$perPage with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:store\\(\\) has parameter \\$item with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:update\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:update\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:updateBy\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:updateBy\\(\\) has parameter \\$criteria with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:updateBy\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\Shared\\\\Repository\\\\BaseEloquentRepository\\:\\:\\$model has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/Shared/Repository/BaseEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Model\\\\Permission\\:\\:__construct\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Model/Permission.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Model\\\\Role\\:\\:__construct\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Model/Role.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Model\\\\Team\\:\\:__construct\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Model/Team.php
+
+		-
+			message: "#^Property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable \\(array\\<int, string\\>\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Model/Team.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Model\\\\User\\:\\:__construct\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Model/User.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Model\\\\User\\:\\:setPasswordAttribute\\(\\) has parameter \\$password with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Model/User.php
+
+		-
+			message: "#^Property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable \\(array\\<int, string\\>\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Model/User.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Model\\\\User\\:\\:\\$guard_name has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Model/User.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserRouteServiceProvider\\:\\:map\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserRouteServiceProvider.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserRouteServiceProvider\\:\\:mapWebRoutes\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserRouteServiceProvider.php
+
+		-
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Method Illuminate\\\\Support\\\\ServiceProvider\\:\\:loadJsonTranslationsFrom\\(\\) invoked with 2 parameters, 1 required\\.$#"
+			count: 2
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserServiceProvider\\:\\:boot\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserServiceProvider\\:\\:getPublishableViewPaths\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserServiceProvider\\:\\:loadUserAuthenticatedOnViewPages\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserServiceProvider\\:\\:provides\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserServiceProvider\\:\\:registerTranslations\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserServiceProvider\\:\\:registerViews\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 2
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Parameter \\#3 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
+			count: 2
+			path: src/Infrastructure/User/Provider/UserServiceProvider.php
+
+		-
+			message: "#^Class App\\\\Models\\\\Permission not found\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Class App\\\\Models\\\\Role not found\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\PermissionEloquentRepository\\:\\:SyncPermToRole\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\PermissionEloquentRepository\\:\\:SyncPermToRole\\(\\) has parameter \\$permissions with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\PermissionEloquentRepository\\:\\:getPermissionsModule\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\PermissionEloquentRepository\\:\\:setPermissionToRole\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\PermissionEloquentRepository\\:\\:setPermissionToRole\\(\\) has parameter \\$give with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\PermissionEloquentRepository\\:\\:setPermissionToRole\\(\\) has parameter \\$permission with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\PermissionEloquentRepository\\:\\:\\$model has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\PermissionEloquentRepository\\:\\:\\$roleModel has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/PermissionEloquentRepository.php
+
+		-
+			message: "#^Call to method getAllPermissions\\(\\) on an unknown class App\\\\Models\\\\Role\\.$#"
+			count: 2
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Class App\\\\Models\\\\Role not found\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:getAllRolePermissions\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:getAllRolePermissions\\(\\) has parameter \\$method with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:setRoleToMember\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:setRoleToMember\\(\\) has parameter \\$assign with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:setRoleToMember\\(\\) has parameter \\$owner with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:setRoleToMember\\(\\) has parameter \\$role with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:syncRoleToUser\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:syncRoleToUser\\(\\) has parameter \\$owner with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:syncRoleToUser\\(\\) has parameter \\$roles with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Parameter \\$role of method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:getAllRolePermissions\\(\\) has invalid type App\\\\Models\\\\Role\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\RoleEloquentRepository\\:\\:\\$model has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/RoleEloquentRepository.php
+
+		-
+			message: "#^Class App\\\\Models\\\\Team not found\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/TeamEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\TeamEloquentRepository\\:\\:attachDepartment\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/TeamEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\TeamEloquentRepository\\:\\:attachDepartment\\(\\) has parameter \\$departments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/TeamEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\TeamEloquentRepository\\:\\:attachDepartment\\(\\) has parameter \\$owner with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/TeamEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\TeamEloquentRepository\\:\\:syncDepartments\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/TeamEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\TeamEloquentRepository\\:\\:syncDepartments\\(\\) has parameter \\$departments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/TeamEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\TeamEloquentRepository\\:\\:syncDepartments\\(\\) has parameter \\$owner with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/TeamEloquentRepository.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\TeamEloquentRepository\\:\\:\\$model has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/TeamEloquentRepository.php
+
+		-
+			message: "#^Class App\\\\Models\\\\User not found\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/UserEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\UserEloquentRepository\\:\\:allWithTrashed\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/UserEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\UserEloquentRepository\\:\\:getUserBaseRole\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/UserEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\UserEloquentRepository\\:\\:getUserBaseRole\\(\\) has parameter \\$roleRequest with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/UserEloquentRepository.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\UserEloquentRepository\\:\\:restoreUser\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/UserEloquentRepository.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Repository\\\\Eloquent\\\\UserEloquentRepository\\:\\:\\$model has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Repository/Eloquent/UserEloquentRepository.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$permissionRepository\\.$#"
+			count: 5
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$roleRepository\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 2
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:getPermissions\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:getRolesID\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:getRolesID\\(\\) has parameter \\$guard with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:getRolesID\\(\\) has parameter \\$roles with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:setPermissions\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:setPermissions\\(\\) has parameter \\$guard with no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:setPermissions\\(\\) has parameter \\$permission with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$guardName has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$permissions has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$repository is never read, only written\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$role is never read, only written\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\PermissionTableSeeder\\:\\:\\$permissions has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Permission/PermissionTableSeeder.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Role\\\\MasterRoleTableSeeder\\:\\:\\$roleRepository\\.$#"
+			count: 3
+			path: src/Infrastructure/User/Seeders/Role/MasterRoleTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Role\\\\MasterRoleTableSeeder\\:\\:getRoles\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Role/MasterRoleTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Role\\\\MasterRoleTableSeeder\\:\\:\\$repository is never read, only written\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Role/MasterRoleTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Role\\\\MasterRoleTableSeeder\\:\\:\\$roles has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Role/MasterRoleTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Role\\\\RoleTableSeeder\\:\\:\\$roles has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Role/RoleTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Team\\\\MasterTeamTableSeeder\\:\\:getTeams\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Team/MasterTeamTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Team\\\\MasterTeamTableSeeder\\:\\:\\$teams has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Team/MasterTeamTableSeeder.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Team\\\\TeamTableSeeder\\:\\:\\$teams has no type specified\\.$#"
+			count: 1
+			path: src/Infrastructure/User/Seeders/Team/TeamTableSeeder.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\Panel\\\\Requests\\\\RequestValidation\\:\\:__construct\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/Panel/Requests/RequestValidation.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\Panel\\\\Requests\\\\RequestValidation\\:\\:__construct\\(\\) has parameter \\$cookies with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/Panel/Requests/RequestValidation.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\Panel\\\\Requests\\\\RequestValidation\\:\\:__construct\\(\\) has parameter \\$files with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/Panel/Requests/RequestValidation.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\Panel\\\\Requests\\\\RequestValidation\\:\\:__construct\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/Panel/Requests/RequestValidation.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\Panel\\\\Requests\\\\RequestValidation\\:\\:__construct\\(\\) has parameter \\$request with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/Panel/Requests/RequestValidation.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\Panel\\\\Requests\\\\RequestValidation\\:\\:__construct\\(\\) has parameter \\$server with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/Panel/Requests/RequestValidation.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\Panel\\\\Requests\\\\RequestValidation\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/Panel/Requests/RequestValidation.php
+
+		-
+			message: "#^Access to property \\$description on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StorePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$description on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdatePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$guard_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StorePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$guard_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdatePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$module on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StorePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$module on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdatePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StorePermission\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdatePermission\\.$#"
+			count: 3
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$title on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StorePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$title on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdatePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:route\\(\\)\\.$#"
+			count: 6
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\PermissionsController\\:\\:create\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\PermissionsController\\:\\:delete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\PermissionsController\\:\\:edit\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\PermissionsController\\:\\:index\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\PermissionsController\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\PermissionsController\\:\\:update\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\PermissionsController\\:\\:store\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StorePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\PermissionsController\\:\\:update\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdatePermission\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Undefined variable\\: \\$request$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
+			message: "#^Access to property \\$description on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$description on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$guard_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$guard_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreRole\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateRole\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$permissions on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreRole\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$permissions on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$title on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$title on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:route\\(\\)\\.$#"
+			count: 6
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\PermissionRepositoryInterface\\:\\:SyncPermToRole\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\PermissionRepositoryInterface\\:\\:setPermissionToRole\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:create\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:delete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:edit\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:index\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:update\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_column expects array, mixed given\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:store\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:update\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateRole\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to property \\$parent_id on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreDepartment\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Access to property \\$parent_id on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateDepartment\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Access to property \\$title on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreDepartment\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Access to property \\$title on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateDepartment\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:route\\(\\)\\.$#"
+			count: 6
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:create\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:delete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:edit\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:index\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:update\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:store\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreDepartment\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:update\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateDepartment\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:\\$departmentRepository has no type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:\\$userRepository has no type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:\\$departmentRepository\\.$#"
+			count: 4
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$departments on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$departments on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$email on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$email on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$first_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$first_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$last_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$last_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$mobile on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$mobile on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$password on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$password on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$roles on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$roles on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$status on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$status on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:back\\(\\)\\.$#"
+			count: 4
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:route\\(\\)\\.$#"
+			count: 4
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:setRoleToMember\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:syncRoleToUser\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:create\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:delete\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:delete\\(\\) has parameter \\$ID with no type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:edit\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:edit\\(\\) has parameter \\$ID with no type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:index\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:restoreBackUser\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:update\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Parameter \\#1 \\$array of function array_column expects array, mixed given\\.$#"
+			count: 2
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:store\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:update\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateUser\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/UsersController.php
+
+		-
+			message: "#^Access to property \\$email on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Access to property \\$first_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Access to property \\$last_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Access to property \\$mobile on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Access to property \\$password on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserLogin\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Access to property \\$password on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:back\\(\\)\\.$#"
+			count: 3
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:intended\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:route\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:setRoleToMember\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Call to static method attempt\\(\\) on an unknown class Auth\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Call to static method login\\(\\) on an unknown class Auth\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Call to static method logout\\(\\) on an unknown class Auth\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Call to static method user\\(\\) on an unknown class Auth\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:login\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:loginForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:logout\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:register\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:registerForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:login\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserLogin\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:register\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Part \\$username \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/AuthController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreDepartment\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreDepartment.php
+
+		-
+			message: "#^Part \\$table \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 2
+			path: src/Presentation/User/Requests/Admin/StoreDepartment.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StorePermission\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StorePermission.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StorePermission\\:\\:\\$table \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StorePermission.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StorePermission\\:\\:\\$table type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StorePermission.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreRole\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreRole.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreRole\\:\\:\\$table \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreRole.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreRole\\:\\:\\$table type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreRole.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreUser.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:\\$departmentTable \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreUser.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:\\$permissionTable \\(array\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreUser.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:\\$permissionTable type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreUser.php
+
+		-
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:\\$userTable \\(string\\) does not accept mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/StoreUser.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdateDepartment\\:\\:\\$ID\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateDepartment.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdateDepartment\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateDepartment.php
+
+		-
+			message: "#^Part \\$table \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 2
+			path: src/Presentation/User/Requests/Admin/UpdateDepartment.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdatePermission\\:\\:\\$ID\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdatePermission.php
+
+		-
+			message: "#^Cannot access offset 'permissions' on mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdatePermission.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdatePermission\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdatePermission.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdateRole\\:\\:\\$ID\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateRole.php
+
+		-
+			message: "#^Cannot access offset 'permissions' on mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateRole.php
+
+		-
+			message: "#^Cannot access offset 'roles' on mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateRole.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdateRole\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateRole.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdateUser\\:\\:\\$ID\\.$#"
+			count: 2
+			path: src/Presentation/User/Requests/Admin/UpdateUser.php
+
+		-
+			message: "#^Cannot access offset 'roles' on mixed\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateUser.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdateUser\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateUser.php
+
+		-
+			message: "#^Part \\$departmentTable \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Admin/UpdateUser.php
+
+		-
+			message: "#^Part \\$userTable \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 2
+			path: src/Presentation/User/Requests/Admin/UpdateUser.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Auth\\\\UserLogin\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Auth/UserLogin.php
+
+		-
+			message: "#^Part \\$username \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Auth/UserLogin.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Auth\\\\UserRegistration\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Auth/UserRegistration.php
+
+		-
+			message: "#^Part \\$userTable \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 2
+			path: src/Presentation/User/Requests/Auth/UserRegistration.php
+
+		-
+			message: "#^Part \\$username \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			count: 1
+			path: src/Presentation/User/Requests/Auth/UserRegistration.php
+
+		-
+			message: "#^Parameter \\#1 \\$uri of static method Illuminate\\\\Support\\\\Facades\\\\Route\\:\\:get\\(\\) expects string, mixed given\\.$#"
+			count: 3
+			path: src/Presentation/User/Route/larapanel.admin.user.web.php
+
+		-
+			message: "#^Parameter \\#1 \\$uri of static method Illuminate\\\\Support\\\\Facades\\\\Route\\:\\:post\\(\\) expects string, mixed given\\.$#"
+			count: 2
+			path: src/Presentation/User/Route/larapanel.admin.user.web.php

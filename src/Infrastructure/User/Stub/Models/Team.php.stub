@@ -1,0 +1,15 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use WeProDev\LaraPanel\Infrastructure\User\Model\Team as LaraPanelTeam;
+
+final class Team extends LaraPanelTeam
+{
+    use HasFactory;
+
+    // here you can add more functionality
+}

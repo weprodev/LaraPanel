@@ -1,0 +1,31 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "declare_strict_types": true,
+        "simplified_null_return": true,
+        "braces": false,
+        "blank_line_after_namespace": true,
+        "blank_line_after_opening_tag": true,
+        "combine_consecutive_issets": true,
+        "combine_consecutive_unsets": true,
+        "concat_space": true,
+        "declare_parentheses": true,
+        "explicit_string_variable": true,
+        "fully_qualified_strict_types": true,
+        "align_multiline_comment": true,
+        "no_unused_imports": true,
+        "no_useless_else": true,
+        "function_declaration": true,
+        "single_quote": true,
+        "new_with_braces": {
+            "anonymous_class": false,
+            "named_class": false
+        },
+        "curly_braces_position": {
+            "classes_opening_brace": "next_line_unless_newline_at_signature_end"
+        },
+        "blank_line_before_statement": {
+            "statements": ["return"]
+        }
+    }
+}
