@@ -12,6 +12,9 @@ enum UserStatusEnum: string
 
     case BLOCKED = 'BLOCKED';
 
+    /**
+     * @method static static[] cases()
+     */
     public static function toArray(): array
     {
         return array_map(fn ($case) => $case->value, UserStatusEnum::cases());

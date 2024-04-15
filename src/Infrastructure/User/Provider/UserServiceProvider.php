@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Provider;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
@@ -29,6 +31,10 @@ final class UserServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->loadUserAuthenticatedOnViewPages();
 
+        Artisan::call('vendor:publish', [
+            '--provider' => 'Spatie\Permission\PermissionServiceProvider',
+        ]);
+
         $publishes = [
             //  User route file
             UserRouteServiceProvider::LP_USER_ROUTE => app_path('/../routes/'.UserRouteServiceProvider::LP_USER_ROUTE_FILE_NAME),
@@ -37,11 +43,6 @@ final class UserServiceProvider extends ServiceProvider
             __DIR__.'/../../../Config/larapanel.php' => config_path('larapanel.php'),
             // Overwrite permission config from laravel permission package
             __DIR__.'/../Stub/Config/permission.php.stub' => config_path('permission.php'),
-
-            // MIGRATIONS
-            __DIR__.'/../Stub/Migrations/2024_01_01_111111_create_users_table.php.stub' => database_path('migrations/2024_01_01_111111_create_users_table.php'),
-            __DIR__.'/../Stub/Migrations/2024_01_01_222222_create_teams_table.php.stub' => database_path('migrations/2024_01_01_222222_create_teams_table.php'),
-            __DIR__.'/../Stub/Migrations/2024_01_01_333333_edit_permission_tables.php.stub' => database_path('migrations/2024_01_01_333333_edit_permission_tables.php'),
 
             // Models
             __DIR__.'/../Stub/Models/Permission.php.stub' => app_path('Models/Permission.php'),
@@ -62,19 +63,9 @@ final class UserServiceProvider extends ServiceProvider
 
             // USER MODULE VIEW FILES
             __DIR__.sprintf('/../../../Presentation/%s/Stub/View', $this->moduleName) => resource_path(sprintf('views/%s/%s', self::LPanel_Path, $this->moduleName)),
-
         ];
-
-        $defaultTheme = config('larapanel.theme') ?? 'AdminLTE';
-        $publishes = array_merge($publishes, [
-            // ASSETS, PUBLIC FILES
-            __DIR__.sprintf('/../../../Presentation/Panel/Stub/Public/%s', $defaultTheme) => public_path(sprintf('/%s/%s', self::LPanel_Path, $defaultTheme)),
-
-            // THEME LAYOUTS
-            __DIR__.sprintf('/../../../Presentation/Panel/View/%s', $defaultTheme) => resource_path(sprintf('views/%s/%s', self::LPanel_Path, $defaultTheme)),
-        ]);
-
-        // EXECUTE PUBLISH FUNCTION TO MOVE STUB FILES TO THE MAIN PROJECT
+        $publishes = array_merge($publishes, $this->getMigrationFilesToPublish());
+        $publishes = array_merge($publishes, $this->getViewFilesToPublish());
         $this->publishes($publishes);
 
         //   CHECK IF ROUTE EXISTS IN BASE PROJECT, LOAD FROM THERE
@@ -128,8 +119,7 @@ final class UserServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
-        $source = sprintf('/views/%s/%s', self::LPanel_Path, $this->moduleName);
-        $sourcePath = resource_path($source);
+        $sourcePath = resource_path(sprintf('/views/%s/%s', self::LPanel_Path, $this->moduleName));
 
         $this->publishes(
             [
@@ -175,5 +165,40 @@ final class UserServiceProvider extends ServiceProvider
         }
 
         return $paths;
+    }
+
+    /**
+     * Get the migration files to be published.
+     *
+     * @return array<string, string>
+     */
+    private function getMigrationFilesToPublish(): array
+    {
+        $timeFormat = 'Y_m_d_His';
+        $now = Carbon::now();
+
+        return [
+            __DIR__.'/../Stub/Migrations/2024_01_01_111111_create_users_table.php.stub' => database_path('migrations/'.$now->addSeconds(5)->format($timeFormat).'_create_users_table.php'),
+            __DIR__.'/../Stub/Migrations/2024_01_01_222222_create_teams_table.php.stub' => database_path('migrations/'.$now->addSeconds(10)->format($timeFormat).'_create_teams_table.php'),
+            __DIR__.'/../Stub/Migrations/2024_01_01_333333_edit_permission_tables.php.stub' => database_path('migrations/'.$now->addSeconds(15)->format($timeFormat).'_edit_permission_tables.php'),
+        ];
+    }
+
+    /**
+     * Get the view files to be published.
+     *
+     * @return array<string, string>
+     */
+    private function getViewFilesToPublish(): array
+    {
+        $defaultTheme = config('larapanel.theme') ?? 'AdminLTE';
+
+        return [
+            // ASSETS, PUBLIC FILES
+            __DIR__.sprintf('/../../../Presentation/Panel/Stub/Public/%s', $defaultTheme) => public_path(sprintf('/%s/%s', self::LPanel_Path, $defaultTheme)),
+
+            // THEME LAYOUTS
+            __DIR__.sprintf('/../../../Presentation/Panel/View/%s', $defaultTheme) => resource_path(sprintf('views/%s/%s', self::LPanel_Path, $defaultTheme)),
+        ];
     }
 }

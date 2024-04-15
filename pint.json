@@ -1,5 +1,6 @@
 {
     "preset": "laravel",
+    "max_line_length": 80,
     "rules": {
         "declare_strict_types": true,
         "simplified_null_return": true,

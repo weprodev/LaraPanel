@@ -9,11 +9,9 @@ use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
 
 return new class extends Migration
 {
-
-
     public function up(): void
     {
-        $tableName = config('larapanel.table.user.name');
+        $tableName = config('larapanel.table.prefix') . config('larapanel.table.user.name');
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
@@ -32,7 +30,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        $tableName = config('larapanel.table.user.name');
+        $tableName = config('larapanel.table.prefix') . config('larapanel.table.user.name');
         Schema::dropIfExists($tableName);
     }
 };

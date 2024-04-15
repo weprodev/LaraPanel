@@ -66,7 +66,7 @@ clear:
 .PHONY: test
 test:
 	@echo "\n====>  Running phpstan ....\n\n" && \
-    ./vendor/bin/phpstan analyse
+    ./vendor/bin/phpstan analyse --memory-limit=2G
 
 	@echo "\n\n====>  Running Pint: code style testing ....\n\n" &&\
     ./vendor/bin/pint --test

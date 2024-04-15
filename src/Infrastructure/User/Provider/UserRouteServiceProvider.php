@@ -15,7 +15,7 @@ final class UserRouteServiceProvider extends ServiceProvider
 
     public const LP_USER_ROUTE_FILE_NAME = 'larapanel.admin.user.web.php';
 
-    public const LP_USER_ROUTE = __DIR__.'./../../../Presentation/User/Route/'.self::LP_USER_ROUTE_FILE_NAME;
+    public const LP_USER_ROUTE = __DIR__.'/../../../Presentation/User/Route/'.self::LP_USER_ROUTE_FILE_NAME;
 
     public function boot()
     {

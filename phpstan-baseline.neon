@@ -131,11 +131,6 @@ parameters:
 			path: src/Core/User/Enum/TeamsEnum.php
 
 		-
-			message: "#^Call to static method cases\\(\\) on an unknown class WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Enum\\\\UserStatus\\.$#"
-			count: 1
-			path: src/Core/User/Enum/UserStatusEnum.php
-
-		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Enum\\\\UserStatusEnum\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Core/User/Enum/UserStatusEnum.php
