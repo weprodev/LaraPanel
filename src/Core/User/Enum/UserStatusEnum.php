@@ -14,6 +14,6 @@ enum UserStatusEnum: string
 
     public static function toArray(): array
     {
-        return array_map(fn ($case) => $case->value, UserStatus::cases());
+        return array_map(fn ($case) => $case->value, UserStatusEnum::cases());
     }
 }

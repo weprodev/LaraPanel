@@ -85,7 +85,7 @@ final class UserServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(base_path('database/migrations'));
 
         // LOADING VIEW FILES
-        $this->loadViewsFrom(base_path('views'), self::LPanel_Path);
+        $this->loadViewsFrom(resource_path('/views'), self::LPanel_Path);
     }
 
     private function loadUserAuthenticatedOnViewPages()
@@ -128,9 +128,8 @@ final class UserServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
-        $sourcePath = base_path(
-            'src/Presentation/'.$this->moduleName.'/View'
-        );
+        $source = sprintf('/views/%s/%s', self::LPanel_Path, $this->moduleName);
+        $sourcePath = resource_path($source);
 
         $this->publishes(
             [
@@ -156,7 +155,7 @@ final class UserServiceProvider extends ServiceProvider
         }
 
         $this->loadJsonTranslationsFrom(
-            base_path('src/Presentation/'.$this->moduleName.'/Lang'),
+            base_path('/lang'),
             $this->moduleNameLower
         );
     }
@@ -169,7 +168,7 @@ final class UserServiceProvider extends ServiceProvider
     private function getPublishableViewPaths(): array
     {
         $paths = [];
-        foreach (Config::get('view.paths') as $path) {
+        foreach (config('view.paths') as $path) {
             if (is_dir($path.'/modules/'.$this->moduleNameLower)) {
                 $paths[] = $path.'/modules/'.$this->moduleNameLower;
             }
