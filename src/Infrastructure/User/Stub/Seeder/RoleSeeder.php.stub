@@ -4,16 +4,22 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use WeProDev\LaraPanel\Infrastructure\User\Seeders\Role\MasterRoleTableSeeder;
+use WeProDev\LaraPanel\Infrastructure\User\Seeders\Role\RoleTableSeeder;
 
-final class RoleSeeder extends MasterRoleTableSeeder
+final class RoleSeeder extends RoleTableSeeder
 {
-    protected $roles = [
-        // [
-        //     'name'          => "Unique_Role_Name",
-        //     'title'         => "Role Title",
-        //     'guard_name'    => "web",
-        //     'description'   => "The description of the role",
-        // ],
-    ];
+    // protected $roles = [
+    //     [
+    //         'name' => 'Admin',
+    //         'title' => 'Administrator',
+    //         'guard_name' => 'web',
+    //         'description' => 'This role will assign to Administrator',
+    //     ],
+    //     [
+    //         'name' => 'User',
+    //         'title' => 'User',
+    //         'guard_name' => 'web',
+    //         'description' => 'This role will assign to user.',
+    //     ],
+    // ];
 }

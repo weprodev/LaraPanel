@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Role;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
 
@@ -12,7 +11,7 @@ class MasterRoleTableSeeder extends Seeder
 {
     protected $roles = [];
 
-    public function __construct(private readonly RoleRepositoryInterface $repository)
+    public function __construct(private RoleRepositoryInterface $roleRepository)
     {
     }
 
@@ -21,23 +20,12 @@ class MasterRoleTableSeeder extends Seeder
         return $this->roles;
     }
 
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
-        Model::unguard();
-
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info('              USER MODULE: INSERT ROLES DATA');
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info("\n");
+        $this->command->info('=================');
+        $this->command->info('LaraPanel: Insert Roles Data');
+        $this->command->info('Add new role in "database/seeders/RoleSeeder.php"');
+        $this->command->info("=================\n");
 
         foreach ($this->getRoles() as $role) {
             $findRole = $this->roleRepository->findBy([
@@ -84,14 +72,7 @@ class MasterRoleTableSeeder extends Seeder
             ]);
         }
 
-        $this->command->info("\n");
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info('              INSERTING ROLES FINALIZED!');
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info("\n");
+        $this->command->info("\nThe roles data has been successfully updated!");
+        $this->command->info("=============================================================\n");
     }
 }

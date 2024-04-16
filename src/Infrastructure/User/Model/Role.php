@@ -11,6 +11,6 @@ class Role extends SpatieRole
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = config('larapanel.table.prefix').$this->table;
+        $this->table = $this->table;
     }
 }

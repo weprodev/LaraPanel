@@ -556,16 +556,6 @@ parameters:
 			path: src/Infrastructure/User/Repository/Eloquent/UserEloquentRepository.php
 
 		-
-			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$permissionRepository\\.$#"
-			count: 5
-			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
-
-		-
-			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$roleRepository\\.$#"
-			count: 1
-			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
-
-		-
 			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
 			count: 2
 			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
@@ -616,32 +606,12 @@ parameters:
 			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
 
 		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$repository is never read, only written\\.$#"
-			count: 1
-			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
-
-		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\MasterPermissionTableSeeder\\:\\:\\$role is never read, only written\\.$#"
-			count: 1
-			path: src/Infrastructure/User/Seeders/Permission/MasterPermissionTableSeeder.php
-
-		-
 			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Permission\\\\PermissionTableSeeder\\:\\:\\$permissions has no type specified\\.$#"
 			count: 1
 			path: src/Infrastructure/User/Seeders/Permission/PermissionTableSeeder.php
 
 		-
-			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Role\\\\MasterRoleTableSeeder\\:\\:\\$roleRepository\\.$#"
-			count: 3
-			path: src/Infrastructure/User/Seeders/Role/MasterRoleTableSeeder.php
-
-		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Role\\\\MasterRoleTableSeeder\\:\\:getRoles\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Infrastructure/User/Seeders/Role/MasterRoleTableSeeder.php
-
-		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Seeders\\\\Role\\\\MasterRoleTableSeeder\\:\\:\\$repository is never read, only written\\.$#"
 			count: 1
 			path: src/Infrastructure/User/Seeders/Role/MasterRoleTableSeeder.php
 

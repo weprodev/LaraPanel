@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Permission;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
@@ -16,8 +15,8 @@ class MasterPermissionTableSeeder extends Seeder
     protected $guardName = 'web';
 
     public function __construct(
-        private readonly PermissionRepositoryInterface $repository,
-        private readonly RoleRepositoryInterface $role
+        private PermissionRepositoryInterface $permissionRepository,
+        private RoleRepositoryInterface $roleRepository
     ) {
     }
 
@@ -26,32 +25,17 @@ class MasterPermissionTableSeeder extends Seeder
         return $this->permissions;
     }
 
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
-        Model::unguard();
-
-        $this->command->info(
-            '=========================================================================='
-        );
-        $this->command->info(
-            'USER MANAGEMENT PACKAGE: INSERT PERMISSIONS DATA'
-        );
-        $this->command->info(
-            'YOU CAN ADD NEW PERMISSION IN "database/seeds/PermissionTableSeeder.php"'
-        );
-        $this->command->info(
-            '=========================================================================='
-        );
-        $this->command->info("\n");
+        $this->command->info('=================');
+        $this->command->info('LaraPanel: Insert Permission Data');
+        $this->command->info('Add new permission in "database/seeders/PermissionSeeder.php"');
+        $this->command->info("=================\n");
 
         $rolePermissions = [];
 
         foreach ($this->getPermissions() as $permission) {
+
             /// WHEN WE NEED A PERMISSION FOR DIFFERENT GUARD NAMES
             //////////////////////////////////////////////////////////
             if (is_array($permission['guard_name'])) {
@@ -142,15 +126,8 @@ class MasterPermissionTableSeeder extends Seeder
             }
         }
 
-        $this->command->info("\n");
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info('      INSERTING PERMISSIONS FINALIZED!');
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info("\n");
+        $this->command->info("\nThe permissions data has been successfully updated!");
+        $this->command->info("=============================================================\n");
     }
 
     private function setPermissions(array $permission, $guard = null)

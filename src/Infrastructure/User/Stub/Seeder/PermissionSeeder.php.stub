@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use WeProDev\LaraPanel\Infrastructure\User\Seeders\Permission\MasterPermissionTableSeeder;
+use WeProDev\LaraPanel\Infrastructure\User\Seeders\Permission\PermissionTableSeeder;
 
-final class PermissionSeeder extends MasterPermissionTableSeeder
+final class PermissionSeeder extends PermissionTableSeeder
 {
-    protected $permissions = [
-        // [
-        //     'name'          => 'unique.permission.name', // usually we use the route name for it
-        //     'title'         => 'Permission Title',
-        //     'guard_name'    => 'web',
-        //     'description'   => 'The description of the permission',
-        //     'module'        => 'Module Name',
-        //     'roles'         => [
-        //         'Role_Name', // The role which has access to this permission
-        //     ],
-        // ],
-    ];
+    // protected $permissions = [
+    //     [
+    //         'name' => 'admin.manager',
+    //         'title' => 'Admin Panel',
+    //         'guard_name' => 'web',
+    //         'description' => 'This permission is for access to admin panel.',
+    //         'module' => 'User',
+    //         'roles' => ['Admin'],
+    //     ],
+    // ];
 }

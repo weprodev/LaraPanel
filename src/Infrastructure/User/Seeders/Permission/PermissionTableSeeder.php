@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Permission;
 
-final class PermissionTableSeeder extends MasterPermissionTableSeeder
+class PermissionTableSeeder extends MasterPermissionTableSeeder
 {
     protected $permissions = [
         [

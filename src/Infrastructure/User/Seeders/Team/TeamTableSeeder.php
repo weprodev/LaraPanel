@@ -8,8 +8,10 @@ class TeamTableSeeder extends MasterTeamTableSeeder
 {
     protected $teams = [
         [
+            'name' => 'Clients',
             'title' => 'Clients',
-            'parent' => '',
+            'parent' => null,
+            'description' => 'Group all the clients in one team!',
         ],
     ];
 }

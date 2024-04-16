@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Role;
 
-final class RoleTableSeeder extends MasterRoleTableSeeder
+class RoleTableSeeder extends MasterRoleTableSeeder
 {
     protected $roles = [
         [

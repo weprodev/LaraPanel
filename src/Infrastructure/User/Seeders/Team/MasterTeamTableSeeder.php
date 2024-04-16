@@ -15,73 +15,62 @@ class MasterTeamTableSeeder extends Seeder
     {
     }
 
-    protected function getTeams()
-    {
-        return $this->teams;
-    }
-
     public function run(): void
     {
-
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info(
-            '              USER MODULE: INSERT DEPARTMENTS DATA'
-        );
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info("\n");
+        $this->command->info('=================');
+        $this->command->info('LaraPanel: Insert Teams Data');
+        $this->command->info('Add new team in "database/seeders/TeamSeeder.php"');
+        $this->command->info("=================\n");
 
         foreach ($this->getTeams() as $item) {
+
+            if (! isset($item['name'])) {
+                dd('The `name` is required!');
+            }
+
             $parent = null;
             if ($item['parent'] != null) {
                 $parent = $this->teamRepositoryInterface->findBy([
-                    'title' => $item['title'],
+                    'name' => $item['name'],
                 ])->id;
             }
 
-            $findDepartment = $this->teamRepositoryInterface->findBy([
-                'title' => $item['title'],
+            $findTeam = $this->teamRepositoryInterface->findBy([
+                'name' => $item['name'],
                 'parent_id' => $parent,
             ]);
 
-            if ($findDepartment) {
-                $this->command->info(
-                    'THIS DEPARTMENT << '.
-                        $item['title'].
-                        '] >> EXISTED! UPDATING DATA ...'
-                );
+            if ($findTeam) {
+                $this->command->info('This team << '.$item['name'].' >> already existed! Updating data ...');
 
-                $this->teamRepositoryInterface->update($findDepartment->id, [
-                    'title' => $item['title'],
+                $this->teamRepositoryInterface->update($findTeam->id, [
+                    'name' => $item['name'],
+                    'title' => $item['title'] ?? $item['name'],
                     'parent_id' => $parent,
+                    'description' => $item['description'] ?? null,
                 ]);
 
                 continue;
             }
 
             $this->command->info(
-                'CREATING THIS DEPARTMENT <<'.$item['title'].'] >> ...'
+                'Creating the team <<'.$item['name'].'] >> ...'
             );
 
             $this->teamRepositoryInterface->store([
-                'title' => $item['title'],
+                'name' => $item['name'],
+                'title' => $item['title'] ?? $item['name'],
                 'parent_id' => $parent,
+                'description' => $item['description'] ?? null,
             ]);
         }
 
-        $this->command->info("\n");
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info(
-            '              INSERTING DEPARTMENTS DATA FINALIZED!'
-        );
-        $this->command->info(
-            '============================================================='
-        );
-        $this->command->info("\n");
+        $this->command->info("\nThe teams data has been successfully inserted!");
+        $this->command->info("=============================================================\n");
+    }
+
+    protected function getTeams()
+    {
+        return $this->teams;
     }
 }

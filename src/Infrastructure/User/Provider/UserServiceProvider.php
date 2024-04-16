@@ -15,6 +15,7 @@ use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
 use WeProDev\LaraPanel\Infrastructure\User\Facade\LPanelService;
 use WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent\PermissionEloquentRepository;
 use WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent\RoleEloquentRepository;
+use WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent\TeamEloquentRepository;
 use WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent\UserEloquentRepository;
 
 final class UserServiceProvider extends ServiceProvider
@@ -103,7 +104,7 @@ final class UserServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserEloquentRepository::class);
         $this->app->bind(PermissionRepositoryInterface::class, PermissionEloquentRepository::class);
         $this->app->bind(RoleRepositoryInterface::class, RoleEloquentRepository::class);
-        $this->app->bind(TeamRepositoryInterface::class, TeamRepositoryInterface::class);
+        $this->app->bind(TeamRepositoryInterface::class, TeamEloquentRepository::class);
 
         /*
         |--------------------------------------------------------------------------

@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Team;
+use WeProDev\LaraPanel\Infrastructure\User\Seeders\Team\TeamTableSeeder;
 
-class TeamSeeder extends MasterTeamTableSeeder
+final class TeamSeeder extends TeamTableSeeder
 {
-    protected $teams = [
-        [
-            'title' => 'Clients',
-            'parent' => '',
-        ],
-    ];
+    // protected $teams = [
+    //     [
+    //         'name' => 'Clients',      // unique
+    //         'title' => 'Clients',
+    //         'parent' => null,         // name of the team, default is null
+    //         'description' => 'Group all the clients in one team!',
+    //     ],
+    // ];
 }
