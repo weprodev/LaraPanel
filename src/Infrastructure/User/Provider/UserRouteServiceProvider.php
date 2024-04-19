@@ -13,9 +13,13 @@ final class UserRouteServiceProvider extends ServiceProvider
 
     protected string $moduleApiNamespace = 'WeProDev\LaraPanel\Presentation\User\Controller\Api';
 
-    public const LP_USER_ROUTE_FILE_NAME = 'larapanel.admin.user.web.php';
+    public const LP_USER_ROUTE_FILE_NAME = 'lp.admin.user.web.php';
+
+    public const LP_AUTH_ROUTE_FILE_NAME = 'lp.auth.web.php';
 
     public const LP_USER_ROUTE = __DIR__.'/../../../Presentation/User/Route/'.self::LP_USER_ROUTE_FILE_NAME;
+
+    public const LP_AUTH_ROUTE = __DIR__.'/../../../Presentation/User/Route/'.self::LP_AUTH_ROUTE_FILE_NAME;
 
     public function boot()
     {
@@ -25,13 +29,22 @@ final class UserRouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapWebRoutes();
+        $this->mapAuthRoutes();
     }
 
     private function mapWebRoutes()
     {
         Route::middleware(['web', 'auth:web'])
-            ->as('lp.admin.user.')
+            ->as('lp.admin.')
             ->namespace($this->moduleWebNamespace)
             ->group(UserRouteServiceProvider::LP_USER_ROUTE);
+    }
+
+    private function mapAuthRoutes()
+    {
+        Route::middleware(['web', 'auth:web'])
+            ->as('lp.auth.')
+            ->namespace($this->moduleWebNamespace)
+            ->group(UserRouteServiceProvider::LP_AUTH_ROUTE);
     }
 }
