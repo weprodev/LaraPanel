@@ -4,31 +4,38 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
-use Illuminate\Http\Request;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
+use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
 
 class PermissionsController
 {
-    public function __construct(private readonly PermissionRepositoryInterface $permissionRepository)
+    protected string $baseViewPath;
+
+    private PermissionRepositoryInterface $permissionRepository;
+
+    public function __construct()
     {
+        $this->permissionRepository = resolve(PermissionRepositoryInterface::class);
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.permission.';
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $permissions = $this->permissionRepository->paginate(config('laravel_user_management.row_list_per_page'));
+        $permissions = $this->permissionRepository->paginate(config('larapanel.pagination'));
 
-        return view('user-management.permission.index', compact('permissions'));
+        return view($this->baseViewPath.'index', compact('permissions'));
     }
 
     public function create()
     {
-        return view('user-management.permission.create');
+        return view($this->baseViewPath.'create');
     }
 
-    public function edit(int $ID)
+    public function edit(int $permissionName)
     {
+        // TODO
         if ($permission = $this->permissionRepository->find($ID)) {
-            return view('user-management.permission.edit', compact('permission'));
+            return view($this->baseViewPath.'edit', compact('permission'));
         }
 
         return redirect()->route('admin.user_management.permission.index')->with('message', [

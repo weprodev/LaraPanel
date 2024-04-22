@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Infrastructure\User\Provider;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
 
 final class UserRouteServiceProvider extends ServiceProvider
 {
@@ -24,27 +23,5 @@ final class UserRouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-    }
-
-    public function map()
-    {
-        $this->mapWebRoutes();
-        $this->mapAuthRoutes();
-    }
-
-    private function mapWebRoutes()
-    {
-        Route::middleware(['web', 'auth:web'])
-            ->as('lp.admin.')
-            ->namespace($this->moduleWebNamespace)
-            ->group(UserRouteServiceProvider::LP_USER_ROUTE);
-    }
-
-    private function mapAuthRoutes()
-    {
-        Route::middleware(['web', 'auth:web'])
-            ->as('lp.auth.')
-            ->namespace($this->moduleWebNamespace)
-            ->group(UserRouteServiceProvider::LP_AUTH_ROUTE);
     }
 }

@@ -3,17 +3,23 @@
 declare(strict_types=1);
 
 return [
-    // larapanel.admin_url
-    'admin_url' => env('APP_URL').env('LP_ADMIN_PATH', '/lp-admin'),
 
-    // larapanel.logo_url
-    'logo_url' => env('APP_URL').env('LP_DEFAULT_LOGO_PATH', '/images/larapanel.png'),
+    'path' => [
+        // larapanel.path.admin
+        'admin' => env('LP_ADMIN_PATH', '/lp-admin'),
+
+        // larapanel.path.logo
+        'logo' => env('LP_DEFAULT_LOGO_PATH', '/LaraPanel/PurpleAdmin/images/LaraPanel.png'),
+
+        // larapanel.path.favicon
+        'favicon' => env('LP_DEFAULT_FAVICON_PATH', '/LaraPanel/favicon.ico'),
+    ],
 
     // larapanel.pagination
     'pagination' => env('LP_DEFAULT_PAGINATION', 15),
 
     // larapanel.theme
-    'theme' => env('LP_DEFAULT_THEME', 'AdminLTE'),
+    'theme' => env('LP_DEFAULT_THEME', 'PurpleAdmin'),
 
     /*
     |--------------------------------------------------------------------------
@@ -25,15 +31,23 @@ return [
         // larapanel.auth.enable
         'enable' => env('LP_AUTH_ENABLED', true),
 
-        'url' => [
-            // larapanel.auth.url.login
-            'login' => '/login',
+        'signin' => [
+            // larapanel.auth.signin.enable
+            'enable' => true,
+            // larapanel.auth.signin.url
+            'url' => '/lp-admin/sign-in',
+        ],
 
-            // larapanel.auth.url.signup
-            'signup' => '/signup',
+        'signup' => [
+            // larapanel.auth.signup.enable
+            'enable' => true,
+            // larapanel.auth.signup.url
+            'url' => '/lp-admin/sign-up',
+        ],
 
-            // larapanel.auth.url.logout
-            'logout' => '/panel/logout',
+        'signout' => [
+            // larapanel.auth.signout.url
+            'url' => '/lp-admin/sign-out',
         ],
 
         // larapanel.auth.username
@@ -48,6 +62,24 @@ return [
 
         // larapanel.auth.redirection_home_route
         'redirection_home_route' => env('LP_REDIRECT_HOME_ROUTE_NAME', 'home'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tech Configurations
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'namespace' => [
+        // larapanel.namespace.directory
+        'directory' => 'LaraPanel',
+
+        // larapanel.namespace.admin
+        'admin' => sprintf('App\Http\Controllers\%s\Admin', config('larapanel.namespace.directory', 'LaraPanel')),
+
+        // larapanel.namespace.auth
+        'auth' => sprintf('App\Http\Controllers\%s\Auth', config('larapanel.namespace.directory', 'LaraPanel')),
     ],
 
     /*

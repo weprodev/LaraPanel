@@ -276,11 +276,6 @@ parameters:
 			path: src/Infrastructure/User/Model/Team.php
 
 		-
-			message: "#^Property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable \\(array\\<int, string\\>\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Infrastructure/User/Model/Team.php
-
-		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Model\\\\User\\:\\:__construct\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Infrastructure/User/Model/User.php
@@ -291,27 +286,12 @@ parameters:
 			path: src/Infrastructure/User/Model/User.php
 
 		-
-			message: "#^Property Illuminate\\\\Database\\\\Eloquent\\\\Model\\:\\:\\$fillable \\(array\\<int, string\\>\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Infrastructure/User/Model/User.php
-
-		-
 			message: "#^Property WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Model\\\\User\\:\\:\\$guard_name has no type specified\\.$#"
 			count: 1
 			path: src/Infrastructure/User/Model/User.php
 
 		-
-			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserRouteServiceProvider\\:\\:map\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Infrastructure/User/Provider/UserRouteServiceProvider.php
-
-		-
-			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserRouteServiceProvider\\:\\:mapWebRoutes\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Infrastructure/User/Provider/UserRouteServiceProvider.php
-
-		-
-			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
+			message: "#^Call to an undefined method Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View\\:\\:composer\\(\\)\\.$#"
 			count: 1
 			path: src/Infrastructure/User/Provider/UserServiceProvider.php
 
@@ -348,16 +328,6 @@ parameters:
 		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Infrastructure\\\\User\\\\Provider\\\\UserServiceProvider\\:\\:registerViews\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: src/Infrastructure/User/Provider/UserServiceProvider.php
-
-		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
-			count: 2
-			path: src/Infrastructure/User/Provider/UserServiceProvider.php
-
-		-
-			message: "#^Parameter \\#3 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, mixed given\\.$#"
-			count: 2
 			path: src/Infrastructure/User/Provider/UserServiceProvider.php
 
 		-
@@ -771,6 +741,11 @@ parameters:
 			path: src/Presentation/User/Controller/Admin/PermissionsController.php
 
 		-
+			message: "#^Undefined variable\\: \\$ID$#"
+			count: 1
+			path: src/Presentation/User/Controller/Admin/PermissionsController.php
+
+		-
 			message: "#^Undefined variable\\: \\$request$#"
 			count: 1
 			path: src/Presentation/User/Controller/Admin/PermissionsController.php
@@ -871,11 +846,6 @@ parameters:
 			path: src/Presentation/User/Controller/Admin/RolesController.php
 
 		-
-			message: "#^Parameter \\#1 \\$array of function array_column expects array, mixed given\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Admin/RolesController.php
-
-		-
 			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:store\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreRole\\.$#"
 			count: 1
 			path: src/Presentation/User/Controller/Admin/RolesController.php
@@ -884,6 +854,11 @@ parameters:
 			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\RolesController\\:\\:update\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UpdateRole\\.$#"
 			count: 1
 			path: src/Presentation/User/Controller/Admin/RolesController.php
+
+		-
+			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:\\$departmentRepository\\.$#"
+			count: 6
+			path: src/Presentation/User/Controller/Admin/TeamsController.php
 
 		-
 			message: "#^Access to property \\$parent_id on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreDepartment\\.$#"
@@ -951,18 +926,13 @@ parameters:
 			path: src/Presentation/User/Controller/Admin/TeamsController.php
 
 		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:\\$departmentRepository has no type specified\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Admin/TeamsController.php
-
-		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:\\$userRepository has no type specified\\.$#"
+			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\TeamsController\\:\\:\\$userRepository is never read, only written\\.$#"
 			count: 1
 			path: src/Presentation/User/Controller/Admin/TeamsController.php
 
 		-
 			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:\\$departmentRepository\\.$#"
-			count: 4
+			count: 1
 			path: src/Presentation/User/Controller/Admin/UsersController.php
 
 		-
@@ -1056,11 +1026,6 @@ parameters:
 			path: src/Presentation/User/Controller/Admin/UsersController.php
 
 		-
-			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:setRoleToMember\\(\\)\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Admin/UsersController.php
-
-		-
 			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:syncRoleToUser\\(\\)\\.$#"
 			count: 1
 			path: src/Presentation/User/Controller/Admin/UsersController.php
@@ -1111,11 +1076,6 @@ parameters:
 			path: src/Presentation/User/Controller/Admin/UsersController.php
 
 		-
-			message: "#^Parameter \\#1 \\$array of function array_column expects array, mixed given\\.$#"
-			count: 2
-			path: src/Presentation/User/Controller/Admin/UsersController.php
-
-		-
 			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\UsersController\\:\\:store\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Admin\\\\StoreUser\\.$#"
 			count: 1
 			path: src/Presentation/User/Controller/Admin/UsersController.php
@@ -1126,114 +1086,124 @@ parameters:
 			path: src/Presentation/User/Controller/Admin/UsersController.php
 
 		-
-			message: "#^Access to property \\$email on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
-
-		-
-			message: "#^Access to property \\$first_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
-
-		-
-			message: "#^Access to property \\$last_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
-
-		-
-			message: "#^Access to property \\$mobile on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
-
-		-
 			message: "#^Access to property \\$password on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserLogin\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
-
-		-
-			message: "#^Access to property \\$password on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
 			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:back\\(\\)\\.$#"
-			count: 3
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			count: 2
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
 			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:intended\\(\\)\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
-
-		-
-			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:route\\(\\)\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
-
-		-
-			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:setRoleToMember\\(\\)\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
 			message: "#^Call to static method attempt\\(\\) on an unknown class Auth\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
-
-		-
-			message: "#^Call to static method login\\(\\) on an unknown class Auth\\.$#"
-			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
 			message: "#^Call to static method logout\\(\\) on an unknown class Auth\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
 			message: "#^Call to static method user\\(\\) on an unknown class Auth\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
-			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:login\\(\\) has no return type specified\\.$#"
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\SignInController\\:\\:signIn\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
-			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:loginForm\\(\\) has no return type specified\\.$#"
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\SignInController\\:\\:signInForm\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
-			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:logout\\(\\) has no return type specified\\.$#"
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\SignInController\\:\\:signOut\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
-			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:register\\(\\) has no return type specified\\.$#"
+			message: "#^Parameter \\#1 \\$code of function abort expects Illuminate\\\\Contracts\\\\Support\\\\Responsable\\|int\\|Symfony\\\\Component\\\\HttpFoundation\\\\Response, string given\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
-			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:registerForm\\(\\) has no return type specified\\.$#"
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\SignInController\\:\\:signIn\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserLogin\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignInController.php
 
 		-
-			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:login\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserLogin\\.$#"
+			message: "#^Access to property \\$email on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
 
 		-
-			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\AuthController\\:\\:register\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			message: "#^Access to property \\$first_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
 
 		-
-			message: "#^Part \\$username \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
+			message: "#^Access to property \\$last_name on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
 			count: 1
-			path: src/Presentation/User/Controller/Auth/AuthController.php
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Access to property \\$mobile on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Access to property \\$password on an unknown class WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:back\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\RedirectResponse\\|Illuminate\\\\Routing\\\\Redirector\\:\\:route\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:setRoleToMember\\(\\)\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Call to static method login\\(\\) on an unknown class Auth\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\SignUpController\\:\\:signup\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\SignUpController\\:\\:signupForm\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Parameter \\#1 \\$code of function abort expects Illuminate\\\\Contracts\\\\Support\\\\Responsable\\|int\\|Symfony\\\\Component\\\\HttpFoundation\\\\Response, string given\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
+
+		-
+			message: "#^Parameter \\$request of method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\SignUpController\\:\\:signup\\(\\) has invalid type WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Controller\\\\Auth\\\\UserRegistration\\.$#"
+			count: 1
+			path: src/Presentation/User/Controller/Auth/SignUpController.php
 
 		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreDepartment\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -1241,17 +1211,7 @@ parameters:
 			path: src/Presentation/User/Requests/Admin/StoreDepartment.php
 
 		-
-			message: "#^Part \\$table \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
-			count: 2
-			path: src/Presentation/User/Requests/Admin/StoreDepartment.php
-
-		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StorePermission\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/StorePermission.php
-
-		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StorePermission\\:\\:\\$table \\(array\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Presentation/User/Requests/Admin/StorePermission.php
 
@@ -1266,11 +1226,6 @@ parameters:
 			path: src/Presentation/User/Requests/Admin/StoreRole.php
 
 		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreRole\\:\\:\\$table \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/StoreRole.php
-
-		-
 			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreRole\\:\\:\\$table type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Presentation/User/Requests/Admin/StoreRole.php
@@ -1281,22 +1236,7 @@ parameters:
 			path: src/Presentation/User/Requests/Admin/StoreUser.php
 
 		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:\\$departmentTable \\(string\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/StoreUser.php
-
-		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:\\$permissionTable \\(array\\) does not accept mixed\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/StoreUser.php
-
-		-
 			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:\\$permissionTable type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/StoreUser.php
-
-		-
-			message: "#^Property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\StoreUser\\:\\:\\$userTable \\(string\\) does not accept mixed\\.$#"
 			count: 1
 			path: src/Presentation/User/Requests/Admin/StoreUser.php
 
@@ -1311,17 +1251,7 @@ parameters:
 			path: src/Presentation/User/Requests/Admin/UpdateDepartment.php
 
 		-
-			message: "#^Part \\$table \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
-			count: 2
-			path: src/Presentation/User/Requests/Admin/UpdateDepartment.php
-
-		-
 			message: "#^Access to an undefined property WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdatePermission\\:\\:\\$ID\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/UpdatePermission.php
-
-		-
-			message: "#^Cannot access offset 'permissions' on mixed\\.$#"
 			count: 1
 			path: src/Presentation/User/Requests/Admin/UpdatePermission.php
 
@@ -1336,16 +1266,6 @@ parameters:
 			path: src/Presentation/User/Requests/Admin/UpdateRole.php
 
 		-
-			message: "#^Cannot access offset 'permissions' on mixed\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/UpdateRole.php
-
-		-
-			message: "#^Cannot access offset 'roles' on mixed\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/UpdateRole.php
-
-		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdateRole\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Presentation/User/Requests/Admin/UpdateRole.php
@@ -1356,23 +1276,8 @@ parameters:
 			path: src/Presentation/User/Requests/Admin/UpdateUser.php
 
 		-
-			message: "#^Cannot access offset 'roles' on mixed\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/UpdateUser.php
-
-		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Admin\\\\UpdateUser\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: src/Presentation/User/Requests/Admin/UpdateUser.php
-
-		-
-			message: "#^Part \\$departmentTable \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Admin/UpdateUser.php
-
-		-
-			message: "#^Part \\$userTable \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
-			count: 2
 			path: src/Presentation/User/Requests/Admin/UpdateUser.php
 
 		-
@@ -1381,31 +1286,6 @@ parameters:
 			path: src/Presentation/User/Requests/Auth/UserLogin.php
 
 		-
-			message: "#^Part \\$username \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Auth/UserLogin.php
-
-		-
 			message: "#^Method WeProDev\\\\LaraPanel\\\\Presentation\\\\User\\\\Requests\\\\Auth\\\\UserRegistration\\:\\:rules\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Presentation/User/Requests/Auth/UserRegistration.php
-
-		-
-			message: "#^Part \\$userTable \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
-			count: 2
-			path: src/Presentation/User/Requests/Auth/UserRegistration.php
-
-		-
-			message: "#^Part \\$username \\(mixed\\) of encapsed string cannot be cast to string\\.$#"
-			count: 1
-			path: src/Presentation/User/Requests/Auth/UserRegistration.php
-
-		-
-			message: "#^Parameter \\#1 \\$uri of static method Illuminate\\\\Support\\\\Facades\\\\Route\\:\\:get\\(\\) expects string, mixed given\\.$#"
-			count: 3
-			path: src/Presentation/User/Route/larapanel.admin.user.web.php
-
-		-
-			message: "#^Parameter \\#1 \\$uri of static method Illuminate\\\\Support\\\\Facades\\\\Route\\:\\:post\\(\\) expects string, mixed given\\.$#"
-			count: 2
-			path: src/Presentation/User/Route/larapanel.admin.user.web.php

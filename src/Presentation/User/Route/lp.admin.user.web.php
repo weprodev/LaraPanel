@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(
     [
-        'namespace' => "App\Http\Controllers\LaraPanel",
+        'namespace' => config('larapanel.namespace.admin'),
         'prefix' => config('larapanel.admin_url', 'lp-admin'),
         'as' => 'lp.admin.',
         'middleware' => ['web', 'auth:web'],
@@ -73,17 +73,17 @@ Route::group(
             ['prefix' => 'team', 'as' => 'team.'],
             function () {
                 // lp.admin.team.index
-                Route::get('/', 'DepartmentsController@index')->name('index');
+                Route::get('/', 'TeamsController@index')->name('index');
                 // lp.admin.team.create
-                Route::get('/create', 'DepartmentsController@create')->name('create');
+                Route::get('/create', 'TeamsController@create')->name('create');
                 // lp.admin.team.store
-                Route::post('/store', 'DepartmentsController@store')->name('store');
+                Route::post('/store', 'TeamsController@store')->name('store');
                 // lp.admin.team.edit
-                Route::get('/edit/{ID}', 'DepartmentsController@edit')->name('edit');
+                Route::get('/edit/{ID}', 'TeamsController@edit')->name('edit');
                 // lp.admin.team.update
-                Route::put('/update/{ID}', 'DepartmentsController@update')->name('update');
+                Route::put('/update/{ID}', 'TeamsController@update')->name('update');
                 // lp.admin.team.delete
-                Route::delete('/delete/{ID}', 'DepartmentsController@delete')->name('delete');
+                Route::delete('/delete/{ID}', 'TeamsController@delete')->name('delete');
             }
         );
     }

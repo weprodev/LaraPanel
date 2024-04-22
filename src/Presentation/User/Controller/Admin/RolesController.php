@@ -6,27 +6,35 @@ namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
+use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
 
 class RolesController
 {
-    public function __construct(
-        private readonly PermissionRepositoryInterface $permissionRepository,
-        private readonly RoleRepositoryInterface $roleRepository
-    ) {
+    protected string $baseViewPath;
+
+    private PermissionRepositoryInterface $permissionRepository;
+
+    private RoleRepositoryInterface $roleRepository;
+
+    public function __construct()
+    {
+        $this->permissionRepository = resolve(PermissionRepositoryInterface::class);
+        $this->roleRepository = resolve(RoleRepositoryInterface::class);
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.role.';
     }
 
     public function index()
     {
         $roles = $this->roleRepository->all();
 
-        return view('user-management.role.index', compact('roles'));
+        return view($this->baseViewPath.'index', compact('roles'));
     }
 
     public function create()
     {
         $permissions = $this->permissionRepository->all();
 
-        return view('user-management.role.create', compact('permissions'));
+        return view($this->baseViewPath.'create', compact('permissions'));
     }
 
     public function edit(int $ID)
@@ -35,7 +43,7 @@ class RolesController
             $permissions = $this->permissionRepository->all();
             $roleHasPermissions = array_column(json_decode($role->permissions, true), 'id');
 
-            return view('user-management.role.edit', compact('role', 'permissions', 'roleHasPermissions'));
+            return view($this->baseViewPath.'edit', compact('role', 'permissions', 'roleHasPermissions'));
         }
 
         return redirect()->route('admin.user_management.role.index')->with('message', [

@@ -7,41 +7,43 @@ namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 use Illuminate\Routing\Controller;
 use WeProDev\LaraPanel\Core\User\Repository\TeamRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
+use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
 
 class TeamsController extends Controller
 {
-    protected $departmentRepository;
+    protected string $baseViewPath;
 
-    protected $userRepository;
+    private TeamRepositoryInterface $teamRepository;
 
-    public function __construct(
-        TeamRepositoryInterface $department,
-        UserRepositoryInterface $user
-    ) {
-        $this->departmentRepository = $department;
-        $this->userRepository = $user;
+    private UserRepositoryInterface $userRepository;
+
+    public function __construct()
+    {
+        $this->teamRepository = resolve(TeamRepositoryInterface::class);
+        $this->userRepository = resolve(UserRepositoryInterface::class);
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.team.';
     }
 
     public function index()
     {
-        $departments = $this->departmentRepository->all();
+        $team = $this->departmentRepository->all();
 
-        return view('user-management.department.index', compact('departments'));
+        return view($this->baseViewPath.'index', compact('team'));
     }
 
     public function create()
     {
-        $departments = $this->departmentRepository->all();
+        $team = $this->teamRepository->all();
 
-        return view('user-management.department.create', compact('departments'));
+        return view($this->baseViewPath.'create', compact('team'));
     }
 
     public function edit(int $ID)
     {
-        if ($department = $this->departmentRepository->find($ID)) {
-            $departments = $this->departmentRepository->all();
+        if ($team = $this->teamRepository->find($ID)) {
+            $team = $this->teamRepository->all();
 
-            return view('user-management.department.edit', compact('department', 'departments'));
+            return view($this->baseViewPath.'edit', compact('team'));
         }
 
         return redirect()->route('admin.user_management.department.index')->with('message', [
@@ -95,8 +97,8 @@ class TeamsController extends Controller
 
     public function delete(int $ID)
     {
-        if ($department = $this->departmentRepository->find($ID)) {
-            $this->departmentRepository->delete($ID);
+        if ($this->teamRepository->find($ID)) {
+            $this->teamRepository->delete($ID);
 
             return redirect()->route('admin.user_management.department.index')->with('message', [
                 'type' => 'warning',

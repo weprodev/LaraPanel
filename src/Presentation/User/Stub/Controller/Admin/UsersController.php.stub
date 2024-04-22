@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\UserManagement;
+namespace App\Http\Controllers\LaraPanel\Admin;
 
 use WeProDev\LaraPanel\Presentation\User\Controller\Admin\UsersController as AdminUsersController;
 
@@ -14,26 +14,36 @@ final class UsersController extends AdminUsersController
     |--------------------------------------------------------------------------
     |   All of the functions we have commented below, if you want to overwrite
     |   any of them you can uncomment it and write your code.
+    |
+    |   baseViewPath loads from config file:larapanel.LaraPanel_parent_path and Default: LaraPanel
     */
 
+    /**
+     * Below variable are available here
+     * $this->baseViewPath
+     * $this->userRepository
+     * $this->roleRepository
+     */
+
+    // public function __construct()
+    // {
+    //     parent::__construct();
+    // }
+
     // public function index(){
-    //     return view('user-management.user.index');
+    //     return view($this->baseViewPath . 'index');
     // }
 
     // public function create(){
-    //     return view('user-management.user.create');
+    //     return view($this->baseViewPath . 'create');
     // }
 
     // public function store(){
-
     // }
 
     // public function update(){
-
     // }
 
-    // public function delete()
-    // {
-
+    // public function delete(){
     // }
 }
