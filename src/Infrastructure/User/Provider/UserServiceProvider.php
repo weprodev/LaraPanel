@@ -32,7 +32,7 @@ final class UserServiceProvider extends ServiceProvider
 
         $this->registerTranslations();
         $this->registerViews();
-        $this->loadUserAuthenticatedOnViewPages();
+        $this->loadLaraPanelDataOnViewPages();
 
         Artisan::call('vendor:publish', [
             '--provider' => 'Spatie\Permission\PermissionServiceProvider',
@@ -88,7 +88,7 @@ final class UserServiceProvider extends ServiceProvider
         $this->loadViewsFrom(resource_path('/views'), self::$LPanel_Path);
     }
 
-    private function loadUserAuthenticatedOnViewPages()
+    private function loadLaraPanelDataOnViewPages()
     {
         view()->composer('*', function ($view) {
             View::share([
@@ -233,7 +233,7 @@ final class UserServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get auth controllers and form requests to be published.
+     * Get Auth controllers and form requests to be published.
      *
      * @return array<string, string>
      */
@@ -241,8 +241,11 @@ final class UserServiceProvider extends ServiceProvider
     {
         return [
             __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Auth/SignInController.php.stub') => app_path(sprintf('Http/Controllers/%s/Auth/SignInController.php', self::$LPanel_Path)),
-
             __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Auth/SignUpController.php.stub') => app_path(sprintf('Http/Controllers/%s/Auth/SignUpController.php', self::$LPanel_Path)),
+
+            // FormRequest Validation
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Auth/SignInFormRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Auth/SignInFormRequest.php', self::$LPanel_Path)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Auth/SignUpFormRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Auth/SignUpFormRequest.php', self::$LPanel_Path)),
         ];
     }
 }

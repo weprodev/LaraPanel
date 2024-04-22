@@ -9,6 +9,7 @@ use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
 use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Presentation\User\Requests\Auth\SignUpFormRequest;
 
 class SignUpController
 {
@@ -34,8 +35,14 @@ class SignUpController
         return view($this->baseViewPath.'signup');
     }
 
-    public function signup(UserRegistration $request)
+    public function signUp(SignUpFormRequest $request)
     {
+        if (method_exists($this, 'customSignUpHook')) {
+
+            // @php-ignore  @phpstan-ignore-next-line
+            return $this->customSignUpHook($request);
+        }
+
         $userDefaultRole = $this->roleRepository->findBy([
             'name' => config('larapanel.auth.default_role'),
         ]);
