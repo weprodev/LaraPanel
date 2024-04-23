@@ -4,39 +4,50 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent;
 
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use WeProDev\LaraPanel\Core\User\Domain\UserDomain;
+use WeProDev\LaraPanel\Core\User\Dto\UserDto;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
-use WeProDev\LaraPanel\Infrastructure\Shared\Repository\BaseEloquentRepository;
+use WeProDev\LaraPanel\Infrastructure\User\Model\User;
+use WeProDev\LaraPanel\Infrastructure\User\Repository\Factory\UserFactory;
 
-class UserEloquentRepository extends BaseEloquentRepository implements UserRepositoryInterface
+class UserEloquentRepository implements UserRepositoryInterface
 {
-    protected $model = User::class;
-
-    public function getUserBaseRole($roleRequest)
+    public function firstOrCreate(UserDto $userDto): UserDomain
     {
-        $query = $this->model::query();
+        $userModel = User::firstOrCreate([
+            'email' => $userDto->getEmail(),
+        ], [
+            'first_name' => $userDto->getFirstName(),
+            'last_name' => $userDto->getLastName(),
+            'email' => $userDto->getEmail(),
+            'status' => $userDto->getStatus()->value,
+            'mobile' => $userDto->getMobile(),
+            'password' => $userDto->getPassword(),
+            'language' => $userDto->getLanguage()->value,
+        ]);
 
-        return $query
-            ->when($roleRequest, function ($q) use ($roleRequest) {
-                $q->whereHas('roles', function ($q) use ($roleRequest) {
-                    $q->where('name', $roleRequest->name);
-                });
-            })
-            ->orderBy('created_at', 'DESC')
-            ->paginate();
+        return UserFactory::fromEloquent($userModel);
     }
 
-    public function allWithTrashed()
+    public function findById(int $userId): UserDomain
     {
-        $query = $this->model::query();
+        $userModel = User::where(['id' => $userId])->firstOrFail();
 
-        return $query->withTrashed()->orderBy('created_at', 'DESC')->paginate();
+        return UserFactory::fromEloquent($userModel);
     }
 
-    public function restoreUser(int $ID)
+    public function assignRolesToUser(UserDomain $userDomain, array $rolesName): void
     {
-        $query = $this->model::query();
+        $userModel = User::where(['id' => $userDomain->getId()])->firstOrFail();
 
-        return $query->withTrashed()->where('id', $ID)->restore();
+        $userModel->assignRole(['name' => $rolesName[0], 'team_id' => 1]);
+    }
+
+    public function signInUser(UserDomain $userDomain): void
+    {
+        $userModel = User::where(['id' => $userDomain->getId()])->firstOrFail();
+
+        Auth::login($userModel);
     }
 }

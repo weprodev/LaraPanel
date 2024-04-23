@@ -4,26 +4,22 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Core\User\Domain;
 
-use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
-
-final class RoleDomain
+final class TeamDomain
 {
     public static function make(
         int $id,
         string $name,
         string $title,
-        ?int $teamId = null,
+        ?int $parentId = null,
         ?string $description = null,
-        ?GuardTypeEnum $guardName = null
-    ): RoleDomain {
+    ): TeamDomain {
 
-        return new RoleDomain(
+        return new TeamDomain(
             $id,
             $name,
             $title,
-            $teamId,
-            $description,
-            $guardName
+            $parentId,
+            $description
         );
     }
 
@@ -31,11 +27,9 @@ final class RoleDomain
         private readonly int $id,
         private readonly string $name,
         private readonly string $title,
-        private readonly ?int $teamId = null,
-        private readonly ?string $description = null,
-        private ?GuardTypeEnum $guardName = null
+        private readonly ?int $parentId = null,
+        private readonly ?string $description = null
     ) {
-        $this->guardName = $guardName ?? GuardTypeEnum::WEB;
     }
 
     public function getId(): int
@@ -53,18 +47,13 @@ final class RoleDomain
         return $this->title;
     }
 
-    public function getTeamId(): int
+    public function getParent(): ?int
     {
-        return $this->teamId;
+        return $this->parentId;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
-    }
-
-    public function getGuardName(): GuardTypeEnum
-    {
-        return $this->guardName;
     }
 }

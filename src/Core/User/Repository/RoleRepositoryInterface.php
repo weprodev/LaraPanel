@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Core\User\Repository;
 
-use WeProDev\LaraPanel\Core\Shared\Repository\BaseRepositoryInterface;
+use WeProDev\LaraPanel\Core\User\Domain\RoleDomain;
+use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
 
-interface RoleRepositoryInterface extends BaseRepositoryInterface
+interface RoleRepositoryInterface
 {
+    public function firstOrCreate(RoleDto $roleDto): RoleDomain;
 }

@@ -11,6 +11,5 @@ class Permission extends SpatiePermission
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        $this->table = $this->table;
     }
 }

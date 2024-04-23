@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use WeProDev\LaraPanel\Core\Shared\Enum\LanguageEnum;
+
 return [
 
     'path' => [
@@ -20,6 +22,9 @@ return [
 
     // larapanel.theme
     'theme' => env('LP_DEFAULT_THEME', 'PurpleAdmin'),
+
+    // larapanel.language
+    'language' => env('LP_DEFAULT_LANG', LanguageEnum::EN->value),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,15 +58,22 @@ return [
         // larapanel.auth.username
         'username' => env('LP_DEFAULT_USERNAME', 'BOTH'), // EMAIL, MOBILE, BOTH
 
-        /**
-         *  DEFAULT ROLE FOR USERS WANT TO REGISTER ON WEBSITE
-         *  YOU SHOULD DEFINE THIS ROLE IN SEEDER OR CREATE IT IN ADMIN PANEL
-         * **/
-        // larapanel.auth.default_role
-        'default_role' => env('LP_DEFAULT_ROLE', 'User'),
+        'default' => [
+            /**
+             *  DEFAULT ROLE FOR USERS WANT TO REGISTER ON WEBSITE
+             *  YOU SHOULD DEFINE THIS ROLE IN SEEDER OR CREATE IT IN ADMIN PANEL
+             * **/
+            // larapanel.auth.default.role
+            'role' => env('LP_DEFAULT_ROLE', 'User'),
 
-        // larapanel.auth.redirection_home_route
-        'redirection_home_route' => env('LP_REDIRECT_HOME_ROUTE_NAME', 'home'),
+            // larapanel.auth.default.team
+            'team' => env('LP_DEFAULT_TEAM', 'Default'),
+
+            // larapanel.auth.default.redirection
+            'redirection' => env('LP_REDIRECT_HOME_ROUTE_NAME', 'home'),
+        ],
+
+
     ],
 
     /*
@@ -98,12 +110,13 @@ return [
 
             // larapanel.table.user.columns
             'columns' => [
-                // required columns
+                'id',
                 'first_name',
                 'last_name',
                 'email',        // unique
                 'password',
                 'status',
+                'language',     // default: EN
                 'email_verified_at',    // DateTime, nullable
                 // optional
                 'mobile',   // unique, nullable
@@ -117,6 +130,7 @@ return [
 
             // larapanel.table.team.columns
             'columns' => [
+                'id',
                 'title',
                 'name', // unique
                 'description',

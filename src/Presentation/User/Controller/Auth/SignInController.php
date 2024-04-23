@@ -18,7 +18,7 @@ class SignInController
     public function __construct()
     {
         if (! config('larapanel.auth.signin.enable')) {
-            abort('404');
+            abort(404);
         }
         $this->userRepository = resolve(UserRepositoryInterface::class);
         $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.auth.';

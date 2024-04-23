@@ -4,11 +4,21 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Core\User\Repository;
 
-use WeProDev\LaraPanel\Core\Shared\Repository\BaseRepositoryInterface;
+use WeProDev\LaraPanel\Core\User\Domain\UserDomain;
+use WeProDev\LaraPanel\Core\User\Dto\UserDto;
 
-interface UserRepositoryInterface extends BaseRepositoryInterface
+interface UserRepositoryInterface
 {
-    public function allWithTrashed();
+    public function findById(int $userId): UserDomain;
 
-    public function restoreUser(int $ID);
+    public function firstOrCreate(UserDto $userDto): UserDomain;
+
+    /**
+     * Assign list of roles to a user
+     *
+     * @param  array<int, string>  $rolesName
+     */
+    public function assignRolesToUser(UserDomain $userDomain, array $rolesName): void;
+
+    public function signInUser(UserDomain $userDomain): void;
 }

@@ -7,40 +7,33 @@ namespace WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent;
 use App\Models\Permission;
 use App\Models\Role;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
-use WeProDev\LaraPanel\Infrastructure\Shared\Repository\BaseEloquentRepository;
 
-class PermissionEloquentRepository extends BaseEloquentRepository implements PermissionRepositoryInterface
+class PermissionEloquentRepository implements PermissionRepositoryInterface
 {
-    protected $model = Permission::class;
+    // public function setPermissionToRole(int $roleID, $permission, $give = true)
+    // {
+    //     $query = $this->roleModel::query();
+    //     $role = $query->find($roleID);
 
-    protected $roleModel = Role::class;
+    //     if ($give) {
+    //         return $role->givePermissionTo($permission);
+    //     }
 
-    // TODO use the existing methods
+    //     return $role->revokePermissionTo($permission);
+    // }
 
-    public function setPermissionToRole(int $roleID, $permission, $give = true)
-    {
-        $query = $this->roleModel::query();
-        $role = $query->find($roleID);
+    // public function SyncPermToRole(int $roleID, array $permissions)
+    // {
+    //     $query = $this->roleModel::query();
+    //     $role = $query->find($roleID);
 
-        if ($give) {
-            return $role->givePermissionTo($permission);
-        }
+    //     return $role->syncPermissions($permissions);
+    // }
 
-        return $role->revokePermissionTo($permission);
-    }
+    // public function getPermissionsModule()
+    // {
+    //     $query = $this->model::query();
 
-    public function SyncPermToRole(int $roleID, array $permissions)
-    {
-        $query = $this->roleModel::query();
-        $role = $query->find($roleID);
-
-        return $role->syncPermissions($permissions);
-    }
-
-    public function getPermissionsModule()
-    {
-        $query = $this->model::query();
-
-        return array_keys(collect($query->get())->keyBy('module')->toArray());
-    }
+    //     return array_keys(collect($query->get())->keyBy('module')->toArray());
+    // }
 }

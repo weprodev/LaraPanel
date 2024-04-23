@@ -14,7 +14,7 @@
   "Your username or password is wrong!": "Your username or password is wrong!",
   "Something is wrong!": "Something is wrong!",
   "Ooops! Default role does not exist!": "Ooops! Default role does not exist!",
-  "Your account created successfully!": "Your account created successfully!",
+  "Your account has been created successfully!": "Your account has been created successfully!",
   "Create": "Create",
   "Password": "Password",
   "Password Confirmation": "Password Confirmation",
@@ -22,6 +22,7 @@
   "Your Username": "Your Username",
   "First Name": "First Name",
   "Last Name": "Last Name",
+  "Phone number": "Phone number",
   "Username": "Username",
   "Your Username, email or phone number": "Your Username, email or phone number",
   "Authentication": "Authentication"

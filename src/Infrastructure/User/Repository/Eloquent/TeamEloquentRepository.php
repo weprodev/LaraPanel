@@ -4,21 +4,35 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent;
 
-use App\Models\Team;
+use WeProDev\LaraPanel\Core\User\Domain\TeamDomain;
+use WeProDev\LaraPanel\Core\User\Dto\TeamDto;
 use WeProDev\LaraPanel\Core\User\Repository\TeamRepositoryInterface;
-use WeProDev\LaraPanel\Infrastructure\Shared\Repository\BaseEloquentRepository;
+use WeProDev\LaraPanel\Infrastructure\User\Model\Team;
+use WeProDev\LaraPanel\Infrastructure\User\Repository\Factory\TeamFactory;
 
-class TeamEloquentRepository extends BaseEloquentRepository implements TeamRepositoryInterface
+class TeamEloquentRepository implements TeamRepositoryInterface
 {
-    protected $model = Team::class;
-
-    public function syncDepartments($owner, array $departments = [])
+    public function firstOrCreate(TeamDto $teamDto): TeamDomain
     {
-        return $owner->departments()->sync($departments, true);
+        $teamModel = Team::firstOrCreate([
+            "name" => $teamDto->getName(),
+        ], [
+            "name" => $teamDto->getName(),
+            "title" => $teamDto->getTitle(),
+            "parent_id" => $teamDto->getParentId(),
+            "description" => $teamDto->getDescription()
+        ]);
+
+        return TeamFactory::fromEloquent($teamModel);
     }
 
-    public function attachDepartment($owner, array $departments = [])
+    public function getDefaultTeam(): TeamDomain
     {
-        return $owner->departments()->attach($departments);
+        $teamDto = TeamDto::make(
+            config('larapanel.auth.default.team', 'Default'),
+            config('larapanel.auth.default.team', 'Default Team')
+        );
+
+        return $this->firstOrCreate($teamDto);
     }
 }

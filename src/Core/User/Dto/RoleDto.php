@@ -2,23 +2,22 @@
 
 declare(strict_types=1);
 
-namespace WeProDev\LaraPanel\Core\User\Domain;
+namespace WeProDev\LaraPanel\Core\User\Dto;
 
 use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
+use WeProDev\LaraPanel\Core\User\Repository\TeamRepositoryInterface;
 
-final class RoleDomain
+final class RoleDto
 {
     public static function make(
-        int $id,
         string $name,
         string $title,
         ?int $teamId = null,
         ?string $description = null,
-        ?GuardTypeEnum $guardName = null
-    ): RoleDomain {
+        GuardTypeEnum $guardName = GuardTypeEnum::WEB,
+    ): RoleDto {
 
-        return new RoleDomain(
-            $id,
+        return new RoleDto(
             $name,
             $title,
             $teamId,
@@ -27,20 +26,16 @@ final class RoleDomain
         );
     }
 
+    private TeamRepositoryInterface $teamRepository;
     private function __construct(
-        private readonly int $id,
         private readonly string $name,
         private readonly string $title,
-        private readonly ?int $teamId = null,
+        private ?int $teamId = null,
         private readonly ?string $description = null,
-        private ?GuardTypeEnum $guardName = null
+        private readonly GuardTypeEnum $guardName = GuardTypeEnum::WEB,
     ) {
-        $this->guardName = $guardName ?? GuardTypeEnum::WEB;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
+        $this->teamRepository = resolve(TeamRepositoryInterface::class);
+        $this->teamId = $teamId ?? $this->teamRepository->getDefaultTeam()->getId();
     }
 
     public function getName(): string
@@ -58,7 +53,7 @@ final class RoleDomain
         return $this->teamId;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }

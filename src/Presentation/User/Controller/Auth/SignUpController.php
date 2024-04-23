@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Auth;
 
-use Auth;
+use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
+use WeProDev\LaraPanel\Core\Shared\Enum\LanguageEnum;
+use WeProDev\LaraPanel\Core\User\Dto\UserDto;
 use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
+use WeProDev\LaraPanel\Core\User\Repository\TeamRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
+use WeProDev\LaraPanel\Core\User\Service\RoleServiceInterface;
 use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
 use WeProDev\LaraPanel\Presentation\User\Requests\Auth\SignUpFormRequest;
 
@@ -17,22 +21,22 @@ class SignUpController
 
     private UserRepositoryInterface $userRepository;
 
-    private RoleRepositoryInterface $roleRepository;
+    private RoleServiceInterface $roleService;
 
     public function __construct()
     {
-        if (! config('larapanel.auth.signup.enable')) {
-            abort('404');
+        if (!config('larapanel.auth.signup.enable')) {
+            abort(404);
         }
 
         $this->userRepository = resolve(UserRepositoryInterface::class);
-        $this->roleRepository = resolve(RoleRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.auth.';
+        $this->roleService = resolve(RoleServiceInterface::class);
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path . '.User.auth.';
     }
 
     public function signupForm()
     {
-        return view($this->baseViewPath.'signup');
+        return view($this->baseViewPath . 'signup');
     }
 
     public function signUp(SignUpFormRequest $request)
@@ -43,36 +47,27 @@ class SignUpController
             return $this->customSignUpHook($request);
         }
 
-        $userDefaultRole = $this->roleRepository->findBy([
-            'name' => config('larapanel.auth.default_role'),
-        ]);
+        $defaultRole = $this->roleService->getDefaultRole();
 
-        if (! $userDefaultRole) {
-            return redirect()->back()->with('message', [
-                'type' => 'danger',
-                'text' => trans('trans.default_role_does_not_exist'),
-            ]);
-        }
+        $usrDto = UserDto::make(
+            $request->email,
+            $request->first_name,
+            $request->last_name,
+            $request->mobile ?? null,
+            UserStatusEnum::PENDING,
+            LanguageEnum::tryFrom(config('larapanel.language', LanguageEnum::default()->value)),
+            $request->password
+        );
+        $user = $this->userRepository->firstOrCreate($usrDto);
 
-        //// FOR ACTIVE ACCOUNT BASE PROJECT CONFIG ONE OF THE FIELDS [MOBILE, EMAIL] SHOULD BE REQUIRED
-        $user = $this->userRepository->store([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => $request->password,
-            'mobile' => $request->mobile,
-            'status' => UserStatusEnum::PENDING->value,
-        ]);
+        $this->userRepository->assignRolesToUser($user, [$defaultRole->getName()]);
 
-        /// ASSIGN DEFAULT ROLE TO USER
-        $this->roleRepository->setRoleToMember($user, $userDefaultRole);
+        $this->userRepository->signInUser($user);
 
-        Auth::login($user);
-
-        return redirect()->route(config('larapanel.auth.redirection_home_route'))
+        return redirect()->route(config('larapanel.auth.default.redirection'))
             ->with('message', [
-                'type' => 'success',
-                'text' => trans('trans.account_created_successfully'),
+                'type' => AlertTypeEnum::SUCCESS,
+                'text' => __('Your account has been created successfully!'),
             ]);
     }
 }

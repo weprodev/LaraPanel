@@ -16,22 +16,28 @@
         <div class="form-group">
             <label for="first_name">{{ __('First Name') }}</label>
             <input type="text" name="first_name" class="form-control form-control-lg" placeholder="{{ __('First Name') }}"
-                autofocus required>
+                autofocus value="{{ old('first_name') }}" required>
         </div>
 
         <div class="form-group">
             <label for="last_name">{{ __('Last Name') }}</label>
             <input type="text" name="last_name" class="form-control form-control-lg" placeholder="{{ __('Last Name') }}"
-                required>
+                value="{{ old('last_name') }}" required>
         </div>
 
         <div class="form-group">
-            <label for="username">{{ __('Your Username, email or phone number') }}</label>
-            <input type="{{ config('larapanel.auth.username') == 'EMAIL' ? 'email' : 'text' }}" name="username" autofocus
-                class="form-control form-control-lg"
-                placeholder="{{ config('larapanel.auth.username') == 'EMAIL' ? __('Your Email') : __('Your Username, email or phone number') }}"
-                required>
+            <label for="username">{{ __('Email Address') }}</label>
+            <input type="email" name="email" autofocus class="form-control form-control-lg"
+                placeholder="{{ __('Your Email') }}" value="{{ old('email') }}" required>
         </div>
+
+        @if (config('larapanel.auth.username') !== 'EMAIL')
+            <div class="form-group">
+                <label for="username">{{ __('Phone number') }}</label>
+                <input type="text" name="mobile" autofocus class="form-control form-control-lg"
+                    placeholder="{{ __('Your phone number') }}" value="{{ old('mobile') }}" required>
+            </div>
+        @endif
 
         <div class="form-group">
             <label for="password">{{ __('Password') }}</label>
