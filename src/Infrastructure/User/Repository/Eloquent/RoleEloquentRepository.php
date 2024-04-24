@@ -21,11 +21,20 @@ class RoleEloquentRepository implements RoleRepositoryInterface
             'name' => $roleDto->getName(),
             'title' => $roleDto->getTitle(),
             'guard_name' => $roleDto->getGuardName()->value,
-            'team_id' => $roleDto->getTeamId(),
             'description' => $roleDto->getDescription(),
         ]);
 
         return RoleFactory::fromEloquent($roleModel);
+    }
+
+    public function getDefaultRole(): RoleDomain
+    {
+        $roleDto = RoleDto::make(
+            config('larapanel.auth.default.role', 'User'),
+            config('larapanel.auth.default.role', 'Default User Role'),
+        );
+
+        return $this->firstOrCreate($roleDto);
     }
 
     // public function syncRoleToUser($owner, array $roles = [])

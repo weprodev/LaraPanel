@@ -10,4 +10,6 @@ use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
 interface RoleRepositoryInterface
 {
     public function firstOrCreate(RoleDto $roleDto): RoleDomain;
+
+    public function getDefaultRole(): RoleDomain;
 }

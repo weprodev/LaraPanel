@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\LaraPanel\Admin;
 
-use WeProDev\LaraPanel\Presentation\User\Controller\Admin\TeamsController as AdminTeamsController;
+use WeProDev\LaraPanel\Presentation\User\Controller\Admin\GroupsController as AdminGroupsController;
 
-final class TeamsController extends AdminTeamsController
+final class GroupsController extends AdminGroupsController
 {
     /*
     |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ final class TeamsController extends AdminTeamsController
     /**
      * Below variable are available here
      * $this->baseViewPath
-     * $this->teamRepository
+     * $this->groupRepository
      * $this->userRepository
      */
 

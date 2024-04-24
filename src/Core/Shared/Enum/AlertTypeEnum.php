@@ -9,9 +9,4 @@ enum AlertTypeEnum: string
     case SUCCESS = 'success';
 
     case WARNING = 'warning';
-
-    public function __toString(): string
-    {
-        return $this->value;
-    }
 }

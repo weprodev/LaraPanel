@@ -12,7 +12,6 @@ final class RoleDomain
         int $id,
         string $name,
         string $title,
-        ?int $teamId = null,
         ?string $description = null,
         ?GuardTypeEnum $guardName = null
     ): RoleDomain {
@@ -21,7 +20,6 @@ final class RoleDomain
             $id,
             $name,
             $title,
-            $teamId,
             $description,
             $guardName
         );
@@ -31,7 +29,6 @@ final class RoleDomain
         private readonly int $id,
         private readonly string $name,
         private readonly string $title,
-        private readonly ?int $teamId = null,
         private readonly ?string $description = null,
         private ?GuardTypeEnum $guardName = null
     ) {
@@ -51,11 +48,6 @@ final class RoleDomain
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    public function getTeamId(): int
-    {
-        return $this->teamId;
     }
 
     public function getDescription(): string

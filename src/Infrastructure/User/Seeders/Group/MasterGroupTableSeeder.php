@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Team;
+namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Group;
 
 use Illuminate\Database\Seeder;
-use WeProDev\LaraPanel\Core\User\Repository\TeamRepositoryInterface;
+use WeProDev\LaraPanel\Core\User\Repository\GroupRepositoryInterface;
 
-class MasterTeamTableSeeder extends Seeder
+class MasterGroupTableSeeder extends Seeder
 {
-    protected $teams = [];
+    protected $groups = [];
 
-    public function __construct(private readonly TeamRepositoryInterface $teamRepositoryInterface)
+    public function __construct(private readonly GroupRepositoryInterface $groupRepositoryInterface)
     {
     }
 
     public function run(): void
     {
         $this->command->info('=================');
-        $this->command->info('LaraPanel: Insert Teams Data');
-        $this->command->info('Add new team in "database/seeders/TeamSeeder.php"');
+        $this->command->info('LaraPanel: Insert Groups Data');
+        $this->command->info('Add new group in "database/seeders/GroupSeeder.php"');
         $this->command->info("=================\n");
 
-        foreach ($this->getTeams() as $item) {
+        foreach ($this->getGroups() as $item) {
 
             if (! isset($item['name'])) {
                 dd('The `name` is required!');
@@ -30,20 +30,20 @@ class MasterTeamTableSeeder extends Seeder
 
             $parent = null;
             if ($item['parent'] != null) {
-                $parent = $this->teamRepositoryInterface->findBy([
+                $parent = $this->groupRepositoryInterface->findBy([
                     'name' => $item['name'],
                 ])->id;
             }
 
-            $findTeam = $this->teamRepositoryInterface->findBy([
+            $findGroup = $this->groupRepositoryInterface->findBy([
                 'name' => $item['name'],
                 'parent_id' => $parent,
             ]);
 
-            if ($findTeam) {
-                $this->command->info('This team << '.$item['name'].' >> already existed! Updating data ...');
+            if ($findGroup) {
+                $this->command->info('This group << '.$item['name'].' >> already existed! Updating data ...');
 
-                $this->teamRepositoryInterface->update($findTeam->id, [
+                $this->groupRepositoryInterface->update($findGroup->id, [
                     'name' => $item['name'],
                     'title' => $item['title'] ?? $item['name'],
                     'parent_id' => $parent,
@@ -54,10 +54,10 @@ class MasterTeamTableSeeder extends Seeder
             }
 
             $this->command->info(
-                'Creating the team <<'.$item['name'].'] >> ...'
+                'Creating the group <<'.$item['name'].'] >> ...'
             );
 
-            $this->teamRepositoryInterface->store([
+            $this->groupRepositoryInterface->store([
                 'name' => $item['name'],
                 'title' => $item['title'] ?? $item['name'],
                 'parent_id' => $parent,
@@ -65,12 +65,12 @@ class MasterTeamTableSeeder extends Seeder
             ]);
         }
 
-        $this->command->info("\nThe teams data has been successfully inserted!");
+        $this->command->info("\nThe groups data has been successfully inserted!");
         $this->command->info("=============================================================\n");
     }
 
-    protected function getTeams()
+    protected function getGroups()
     {
-        return $this->teams;
+        return $this->groups;
     }
 }

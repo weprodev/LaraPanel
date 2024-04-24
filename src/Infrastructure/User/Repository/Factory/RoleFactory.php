@@ -16,7 +16,6 @@ final class RoleFactory
             $role->id,
             $role->name,
             $role->title,
-            $role->team_id,
             $role->description,
             GuardTypeEnum::tryFrom($role->guard_name)
         );

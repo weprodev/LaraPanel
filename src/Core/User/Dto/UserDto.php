@@ -36,7 +36,7 @@ final class UserDto
         private readonly string $lastName,
         private readonly ?string $mobile = null,
         private readonly ?UserStatusEnum $status = null,
-        private ?LanguageEnum $language =  null,
+        private ?LanguageEnum $language = null,
         private readonly ?string $password = null
     ) {
         $this->language = $language ?? LanguageEnum::default();

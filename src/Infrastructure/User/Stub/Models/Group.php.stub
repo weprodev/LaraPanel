@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Models;
+namespace App\Models\LaraPanel;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use WeProDev\LaraPanel\Infrastructure\User\Model\User as LaraPanelUser;
+use WeProDev\LaraPanel\Infrastructure\User\Model\Group as LaraPanelGroup;
 
-final class LPanelUser extends LaraPanelUser
+final class Group extends LaraPanelGroup
 {
     use HasFactory;
 

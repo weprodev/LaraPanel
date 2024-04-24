@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent;
 
-use App\Models\Permission;
-use App\Models\Role;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
 
 class PermissionEloquentRepository implements PermissionRepositoryInterface

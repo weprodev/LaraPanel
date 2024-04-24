@@ -66,13 +66,12 @@ return [
             // larapanel.auth.default.role
             'role' => env('LP_DEFAULT_ROLE', 'User'),
 
-            // larapanel.auth.default.team
-            'team' => env('LP_DEFAULT_TEAM', 'Default'),
+            // larapanel.auth.default.group
+            'group' => env('LP_DEFAULT_GROUP', 'Default'),
 
             // larapanel.auth.default.redirection
-            'redirection' => env('LP_REDIRECT_HOME_ROUTE_NAME', 'home'),
+            'redirection' => env('LP_DEFAULT_REDIRECT', 'home'),
         ],
-
 
     ],
 
@@ -92,6 +91,16 @@ return [
 
         // larapanel.namespace.auth
         'auth' => sprintf('App\Http\Controllers\%s\Auth', config('larapanel.namespace.directory', 'LaraPanel')),
+    ],
+
+    'group' => [
+        // larapanel.group.morphMap
+        'morphMap' => [
+            // larapanel.group.morphMap.user
+            'user' => 'App\Models\LaraPanel\User',
+            // larapanel.group.morphMap.role
+            'role' => 'App\Models\LaraPanel\Role',
+        ],
     ],
 
     /*
@@ -124,18 +133,23 @@ return [
             ],
         ],
 
-        'team' => [
-            // larapanel.table.team.name
-            'name' => 'teams',
+        'group' => [
+            // larapanel.table.group.name
+            'name' => 'groups',
 
-            // larapanel.table.team.columns
+            // larapanel.table.group.columns
             'columns' => [
                 'id',
                 'title',
                 'name', // unique
                 'description',
-                'parent_id',
+                'parent_id',    // nullable, FK: id
             ],
+        ],
+
+        'model_has_group' => [
+            // larapanel.table.model_has_group.name
+            'name' => 'model_has_group',
         ],
     ],
 ];

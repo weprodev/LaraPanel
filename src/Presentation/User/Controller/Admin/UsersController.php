@@ -34,7 +34,7 @@ class UsersController
     {
         $roles = $this->roleRepository->all();
         // TODO
-        // $teams = $this->departmentRepository->all();
+        // $groups = $this->departmentRepository->all();
 
         return view($this->baseViewPath.'create', compact('roles'));
     }

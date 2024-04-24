@@ -70,20 +70,20 @@ Route::group(
         );
 
         Route::group(
-            ['prefix' => 'team', 'as' => 'team.'],
+            ['prefix' => 'group', 'as' => 'group.'],
             function () {
-                // lp.admin.team.index
-                Route::get('/', 'TeamsController@index')->name('index');
-                // lp.admin.team.create
-                Route::get('/create', 'TeamsController@create')->name('create');
-                // lp.admin.team.store
-                Route::post('/store', 'TeamsController@store')->name('store');
-                // lp.admin.team.edit
-                Route::get('/edit/{ID}', 'TeamsController@edit')->name('edit');
-                // lp.admin.team.update
-                Route::put('/update/{ID}', 'TeamsController@update')->name('update');
-                // lp.admin.team.delete
-                Route::delete('/delete/{ID}', 'TeamsController@delete')->name('delete');
+                // lp.admin.group.index
+                Route::get('/', 'GroupsController@index')->name('index');
+                // lp.admin.group.create
+                Route::get('/create', 'GroupsController@create')->name('create');
+                // lp.admin.group.store
+                Route::post('/store', 'GroupsController@store')->name('store');
+                // lp.admin.group.edit
+                Route::get('/edit/{ID}', 'GroupsController@edit')->name('edit');
+                // lp.admin.group.update
+                Route::put('/update/{ID}', 'GroupsController@update')->name('update');
+                // lp.admin.group.delete
+                Route::delete('/delete/{ID}', 'GroupsController@delete')->name('delete');
             }
         );
     }

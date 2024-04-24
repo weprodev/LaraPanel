@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-namespace WeProDev\LaraPanel\Core\User\Domain;
+namespace WeProDev\LaraPanel\Core\User\Dto;
 
-final class TeamDomain
+final class GroupDto
 {
     public static function make(
-        int $id,
         string $name,
         string $title,
         ?int $parentId = null,
         ?string $description = null,
-    ): TeamDomain {
+    ): GroupDto {
 
-        return new TeamDomain(
-            $id,
+        return new GroupDto(
             $name,
             $title,
             $parentId,
@@ -24,17 +22,11 @@ final class TeamDomain
     }
 
     private function __construct(
-        private readonly int $id,
         private readonly string $name,
         private readonly string $title,
         private readonly ?int $parentId = null,
         private readonly ?string $description = null
     ) {
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     public function getName(): string
@@ -47,7 +39,7 @@ final class TeamDomain
         return $this->title;
     }
 
-    public function getParent(): ?int
+    public function getParentId(): ?int
     {
         return $this->parentId;
     }

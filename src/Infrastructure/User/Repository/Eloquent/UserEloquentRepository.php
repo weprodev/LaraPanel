@@ -41,7 +41,7 @@ class UserEloquentRepository implements UserRepositoryInterface
     {
         $userModel = User::where(['id' => $userDomain->getId()])->firstOrFail();
 
-        $userModel->assignRole(['name' => $rolesName[0], 'team_id' => 1]);
+        $userModel->assignRole($rolesName);
     }
 
     public function signInUser(UserDomain $userDomain): void
