@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ config('larapanel.name') }}</title>
+    <title>{{ $lp['name'] }}</title>
     <!-- plugins:css -->
     <link rel="stylesheet"
         href="{{ asset($lp['directory'] . '/PurpleAdmin/vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
@@ -41,9 +41,10 @@
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <!-- Of courese you can delete our name here :)
-                        and your support and donation will motivate us to improve the package for the future -->
+                        -> your support and donation will motivate us to improve the package for the future :)
+                    -->
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-block">LaraPanel Package By
+                        <span class="text-muted text-center text-sm-left d-block d-sm-block">LaraPanel By
                             <a href="https://weprodev.com" target="_blank">WeProDev</a>.</span>
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Theme By <a
                                 href="https://www.bootstrapdash.com/" target="_blank">Bootstrap Dash</a>. All rights

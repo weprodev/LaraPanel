@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         @foreach (\WeProDev\LaraNav\Service\LNavService::getNav('SIDE_NAV') as $item)
-            @include(config('laranav.default.directory') . '.layouts.link', ['item' => $item])
+            @include($lp['directory'] . '.' . $lp['theme'] . '.layouts.link', ['item' => $item])
         @endforeach
 
         <li class="nav-item sidebar-actions">

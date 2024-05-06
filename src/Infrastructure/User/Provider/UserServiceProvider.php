@@ -24,6 +24,8 @@ final class UserServiceProvider extends ServiceProvider
 {
     public static string $LPanel_Path;
 
+    private string $publishGenericName = 'larapanel-install';
+
     private string $moduleName = 'User';
 
     private string $moduleNameLower = 'user';
@@ -40,32 +42,34 @@ final class UserServiceProvider extends ServiceProvider
             '--provider' => 'Spatie\Permission\PermissionServiceProvider',
         ]);
 
-        $publishes = [
-            //  route files
+        // USER MODULE VIEW FILES
+        $this->publishes([
             UserRouteServiceProvider::LP_USER_ROUTE => app_path('/../routes/' . UserRouteServiceProvider::LP_USER_ROUTE_FILE_NAME),
             UserRouteServiceProvider::LP_AUTH_ROUTE => app_path('/../routes/' . UserRouteServiceProvider::LP_AUTH_ROUTE_FILE_NAME),
+        ], [$this->publishGenericName, 'larapanel-route-user']);
 
-            // Overwrite permission config from laravel permission package
-            __DIR__ . '/../Stub/Config/permission.php.stub' => config_path('permission.php'),
-
-            // SEEDERS
-            __DIR__ . '/../Stub/Seeder/PermissionSeeder.php.stub' => database_path('seeders/PermissionSeeder.php'),
-            __DIR__ . '/../Stub/Seeder/RoleSeeder.php.stub' => database_path('seeders/RoleSeeder.php'),
-            __DIR__ . '/../Stub/Seeder/GroupSeeder.php.stub' => database_path('seeders/GroupSeeder.php'),
-
-            // LANG
-            __DIR__ . '/../../../Presentation/User/lang/' => resource_path('lang/'),
-
-            // USER MODULE VIEW FILES
+        // USER MODULE VIEW FILES
+        $this->publishes([
             __DIR__ . sprintf('/../../../Presentation/%s/Stub/View', $this->moduleName) => resource_path(sprintf('views/%s/%s', self::$LPanel_Path, $this->moduleName)),
-        ];
-        $publishes = array_merge($publishes, $this->getMigrationFilesToPublish());
-        $publishes = array_merge($publishes, $this->getAdminControllersToPublish());
-        $publishes = array_merge($publishes, $this->getAuthControllersToPublish());
-        $publishes = array_merge($publishes, $this->getModelsToPublish());
-        $this->publishes($publishes);
+        ], [$this->publishGenericName, 'larapanel-view-user']);
 
-        // //   CHECK IF ROUTE EXISTS IN BASE PROJECT, LOAD FROM THERE
+        // LANG
+        $this->publishes([
+            __DIR__ . '/../../../Presentation/User/lang/' => resource_path('lang/'),
+        ], [$this->publishGenericName, 'larapanel-lang']);
+
+        // SEEDERS
+        $this->publishSeeders();
+        // MODELS
+        $this->publishModels();
+        // MIGRATIONS
+        $this->publishMigrationFiles();
+        // ADMIN CONTROLLERS
+        $this->publishAdminControllers();
+        // AUTH CONTROLLERS
+        $this->publishAuthControllers();
+
+        // CHECK IF ROUTE EXISTS IN BASE PROJECT, LOAD FROM THERE
         if (file_exists(base_path('routes/' . UserRouteServiceProvider::LP_USER_ROUTE_FILE_NAME))) {
             $this->loadRoutesFrom(base_path('routes/' . UserRouteServiceProvider::LP_USER_ROUTE_FILE_NAME));
         }
@@ -162,16 +166,16 @@ final class UserServiceProvider extends ServiceProvider
      *
      * @return array<string, string>
      */
-    private function getMigrationFilesToPublish(): array
+    private function publishMigrationFiles(): void
     {
         $timeFormat = 'Y_m_d_His';
         $now = Carbon::now();
 
-        return [
+        $this->publishes([
             __DIR__ . '/../Stub/Migrations/2024_01_01_111111_create_users_table.php.stub' => database_path('migrations/' . $now->addSeconds(5)->format($timeFormat) . '_create_users_table.php'),
             __DIR__ . '/../Stub/Migrations/2024_01_01_222222_create_groups_table.php.stub' => database_path('migrations/' . $now->addSeconds(10)->format($timeFormat) . '_create_groups_table.php'),
             __DIR__ . '/../Stub/Migrations/2024_01_01_333333_edit_permission_tables.php.stub' => database_path('migrations/' . $now->addSeconds(15)->format($timeFormat) . '_edit_permission_tables.php'),
-        ];
+        ], [$this->publishGenericName, 'larapanel-migrations']);
     }
 
     /**
@@ -179,20 +183,17 @@ final class UserServiceProvider extends ServiceProvider
      *
      * @return array<string, string>
      */
-    private function getAdminControllersToPublish(): array
+    private function publishAdminControllers(): void
     {
-        return [
+        $this->publishes([
             __DIR__ . sprintf('/../../../Presentation/User/Stub/Controller/Admin/PermissionsController.php.stub') => app_path(sprintf('Http/Controllers/%s/Admin/PermissionsController.php', self::$LPanel_Path)),
-
             __DIR__ . sprintf('/../../../Presentation/User/Stub/Controller/Admin/RolesController.php.stub') => app_path(sprintf('Http/Controllers/%s/Admin/RolesController.php', self::$LPanel_Path)),
-
             __DIR__ . sprintf('/../../../Presentation/User/Stub/Controller/Admin/GroupsController.php.stub') => app_path(sprintf('Http/Controllers/%s/Admin/GroupsController.php', self::$LPanel_Path)),
-
             __DIR__ . sprintf('/../../../Presentation/User/Stub/Controller/Admin/UsersController.php.stub') => app_path(sprintf('Http/Controllers/%s/Admin/UsersController.php', self::$LPanel_Path)),
 
             // Form Request
             // __DIR__ . sprintf('/../../../Presentation/User/Stub/Requests') => resource_path(sprintf('Http/Requests/%s', self::$LPanel_Path)),
-        ];
+        ], [$this->publishGenericName, 'larapanel-admin-controller']);
     }
 
     /**
@@ -200,25 +201,34 @@ final class UserServiceProvider extends ServiceProvider
      *
      * @return array<string, string>
      */
-    private function getAuthControllersToPublish(): array
+    private function publishAuthControllers(): void
     {
-        return [
+        $this->publishes([
             __DIR__ . sprintf('/../../../Presentation/User/Stub/Controller/Auth/SignInController.php.stub') => app_path(sprintf('Http/Controllers/%s/Auth/SignInController.php', self::$LPanel_Path)),
             __DIR__ . sprintf('/../../../Presentation/User/Stub/Controller/Auth/SignUpController.php.stub') => app_path(sprintf('Http/Controllers/%s/Auth/SignUpController.php', self::$LPanel_Path)),
 
             // FormRequest Validation
             __DIR__ . sprintf('/../../../Presentation/User/Stub/Requests/Auth/SignInFormRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Auth/SignInFormRequest.php', self::$LPanel_Path)),
             __DIR__ . sprintf('/../../../Presentation/User/Stub/Requests/Auth/SignUpFormRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Auth/SignUpFormRequest.php', self::$LPanel_Path)),
-        ];
+        ], [$this->publishGenericName, 'larapanel-auth-controller']);
     }
 
-    private function getModelsToPublish(): array
+    private function publishModels(): void
     {
-        return [
+        $this->publishes([
             __DIR__ . '/../Stub/Models/Permission.php.stub' => app_path(sprintf('Models/%s/Permission.php', self::$LPanel_Path)),
             __DIR__ . '/../Stub/Models/Role.php.stub' => app_path(sprintf('Models/%s/Role.php', self::$LPanel_Path)),
             __DIR__ . '/../Stub/Models/Group.php.stub' => app_path(sprintf('Models/%s/Group.php', self::$LPanel_Path)),
             __DIR__ . '/../Stub/Models/User.php.stub' => app_path(sprintf('Models/%s/User.php', self::$LPanel_Path)),
-        ];
+        ], ['larapanel-install', 'larapanel-models']);
+    }
+
+    private function publishSeeders(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../Stub/Seeder/PermissionSeeder.php.stub' => database_path('seeders/PermissionSeeder.php'),
+            __DIR__ . '/../Stub/Seeder/RoleSeeder.php.stub' => database_path('seeders/RoleSeeder.php'),
+            __DIR__ . '/../Stub/Seeder/GroupSeeder.php.stub' => database_path('seeders/GroupSeeder.php'),
+        ], [$this->publishGenericName, 'larapanel-seeders']);
     }
 }

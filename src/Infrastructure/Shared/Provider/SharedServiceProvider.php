@@ -11,35 +11,31 @@ final class SharedServiceProvider extends ServiceProvider
 {
     public static string $LPanel_Path;
 
+    private string $publishGenericName = 'larapanel-install';
+
     public function boot()
     {
         self::$LPanel_Path = config('larapanel.namespace.directory', 'LaraPanel');
         $this->loadLaraPanelDataOnViewPages();
 
-        $publishes = [
-            // configuration
-            __DIR__ . '/../../../Config/larapanel.php' => config_path('larapanel.php'),
+        // Configs
+        $this->publishConfigs();
+        // View Files
+        $this->publishPurpleAdminViewFiles();
 
-            // BASE VIEW LAYOUTS
-            __DIR__ . '/../../../Presentation/Panel/View/layouts' => resource_path(sprintf('views/%s/layouts', self::$LPanel_Path)),
-        ];
-        $publishes = array_merge($publishes, $this->getViewFilesToPublish());
-        $this->publishes($publishes);
-
+        // LOADING FROM
         $this->loadMigrationsFrom(base_path('database/migrations'));
-
-        // LOADING VIEW FILES
         $this->loadViewsFrom(resource_path('/views'), self::$LPanel_Path);
     }
 
     private function loadLaraPanelDataOnViewPages()
     {
-        view()->composer('*', function ($view) {
+        view()->composer('*', function () {
             View::share([
                 'lp' => [
-                    'name' => config('larapanel.name'),
-                    'directory' => config('larapanel.namespace.directory'),
-                    'theme' => config('larapanel.theme') ?? 'AdminLTE',
+                    'name' => config('larapanel.name', 'LaraPanel'),
+                    'directory' => self::$LPanel_Path,
+                    'theme' => config('larapanel.theme', 'PurpleAdmin'),
                 ],
             ]);
         });
@@ -49,21 +45,24 @@ final class SharedServiceProvider extends ServiceProvider
     {
     }
 
-    /**
-     * Get the view files to be published.
-     *
-     * @return array<string, string>
-     */
-    private function getViewFilesToPublish(): array
+    private function publishConfigs(): void
     {
-        $defaultTheme = config('larapanel.theme', 'PurpleAdmin');
+        $this->publishes([
+            // Overwrite third party packages
+            __DIR__ . '/../Stub/Config/permission.php.stub' => config_path('permission.php'),
+            __DIR__ . '/../../../Config/laranav.php' => config_path('laranav.php'),
+            // LaraPanel Config
+            __DIR__ . '/../../../Config/larapanel.php' => config_path('larapanel.php'),
+        ], [$this->publishGenericName, 'larapanel-config']);
+    }
 
-        return [
+    private function publishPurpleAdminViewFiles(): void
+    {
+        $this->publishes([
             // ASSETS, PUBLIC FILES
-            __DIR__ . sprintf('/../../../Presentation/Panel/Stub/Public/%s', $defaultTheme) => public_path(sprintf('/%s/%s', self::$LPanel_Path, $defaultTheme)),
+            __DIR__ . '/../../../Presentation/Panel/Stub/Public/PurpleAdmin' => public_path(self::$LPanel_Path),
 
-            // THEME LAYOUTS
-            __DIR__ . sprintf('/../../../Presentation/Panel/View/%s', $defaultTheme) => resource_path(sprintf('views/%s/%s', self::$LPanel_Path, $defaultTheme)),
-        ];
+            __DIR__ . './../../../Presentation/Panel/View/PurpleAdmin' => resource_path(sprintf('views/%s', self::$LPanel_Path)),
+        ], [$this->publishGenericName, 'larapanel-view-PurpleAdmin']);
     }
 }
