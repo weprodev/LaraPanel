@@ -9,9 +9,13 @@ use WeProDev\LaraPanel\Core\User\Dto\UserDto;
 
 interface UserRepositoryInterface
 {
+    public function paginate(int $perPage);
+
     public function findById(int $userId): UserDomain;
 
     public function firstOrCreate(UserDto $userDto): UserDomain;
+
+    public function findBy(array $attributes): UserDomain;
 
     /**
      * Assign list of roles to a user

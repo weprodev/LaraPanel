@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
     @include($lp['directory'] . '.' . $lp['theme'] . '.layouts.breadcrumb', [
-        'title' => 'Roles',
+        'title' => __('Groups'),
         'lists' => [
             [
                 'link' => '#',
@@ -14,7 +14,7 @@
             ],
             [
                 'link' => '#',
-                'name' => __('Roles'),
+                'name' => __('Groups'),
             ],
         ],
     ])
@@ -25,36 +25,33 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('lp.admin.role.create') }}"
+                    <a href="{{ route('admin.user_management.department.create') }}"
                         class="btn btn-outline-primary btn-icon-text float-right btn-newInList">
-                        <i class="mdi mdi-settings btn-icon-prepend"></i>
-                        {{ __('New role') }}
+                        <i class="mdi mdi-shape-rectangle-plus btn-icon-prepend"></i>
+                        {{ __('New Group') }}
                     </a>
-                    <h4 class="card-title">{{ __('List of roles') }}</h4>
+                    <h4 class="card-title">{{ __('List of groups') }}</h4>
+
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th> # </th>
-                                <th> {{ __('Role') }} </th>
                                 <th> {{ __('Title') }} </th>
-                                <th> {{ __('Guard name') }} </th>
-                                <th> {{ __('Description') }} </th>
+                                <th> {{ __('Parent') }} </th>
                                 <th> {{ __('Actions') }} </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $item)
+                            @foreach ($departments as $item)
                                 <tr>
                                     <td> {{ $item->id }} </td>
-                                    <td> {{ $item->name }} </td>
                                     <td> {{ $item->title }} </td>
-                                    <td> {{ $item->guard_name }} </td>
-                                    <td> {{ $item->description }} </td>
+                                    <td> {{ $item->parent ? $item->parent->title : '----' }} </td>
                                     <td>
-                                        <a href="{{ route('lp.admin.role.edit', $item->id) }}"
+                                        <a href="{{ route('lp.admin.group.edit', $item->id) }}"
                                             class="btn btn-outline-dark btn-sm">{{ __('Edit') }}</a>
 
-                                        <form action="{{ route('lp.admin.role.delete', $item->id) }}" method="post"
+                                        <form action="{{ route('lp.admin.group.delete', $item->id) }}" method="post"
                                             class="inline-block">
                                             @method('DELETE')
                                             @csrf
@@ -64,7 +61,6 @@
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>

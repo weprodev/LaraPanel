@@ -9,4 +9,6 @@ enum AlertTypeEnum: string
     case SUCCESS = 'success';
 
     case WARNING = 'warning';
+
+    case DANGER = 'danger';
 }

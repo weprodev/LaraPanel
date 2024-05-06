@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     [
         'namespace' => config('larapanel.namespace.admin'),
-        'prefix' => config('larapanel.admin_url', 'lp-admin'),
+        'prefix' => config('larapanel.path.admin', 'lp-admin'),
         'as' => 'lp.admin.',
         'middleware' => ['web', 'auth:web'],
     ],
     function () {
 
         Route::group(
-            ['prefix' => 'user', 'as' => 'user.'],
+            ['prefix' => 'users', 'as' => 'user.'],
             function () {
                 // lp.admin.user.index
                 Route::get('/', 'UsersController@index')->name('index');
@@ -34,7 +34,7 @@ Route::group(
         );
 
         Route::group(
-            ['prefix' => 'role', 'as' => 'role.'],
+            ['prefix' => 'roles', 'as' => 'role.'],
             function () {
                 // lp.admin.role.index
                 Route::get('/', 'RolesController@index')->name('index');
@@ -52,7 +52,7 @@ Route::group(
         );
 
         Route::group(
-            ['prefix' => 'permission', 'as' => 'permission.'],
+            ['prefix' => 'permissions', 'as' => 'permission.'],
             function () {
                 // lp.admin.permission.index
                 Route::get('/', 'PermissionsController@index')->name('index');
@@ -70,7 +70,7 @@ Route::group(
         );
 
         Route::group(
-            ['prefix' => 'group', 'as' => 'group.'],
+            ['prefix' => 'groups', 'as' => 'group.'],
             function () {
                 // lp.admin.group.index
                 Route::get('/', 'GroupsController@index')->name('index');

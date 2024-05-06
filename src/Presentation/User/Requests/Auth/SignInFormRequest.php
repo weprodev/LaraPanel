@@ -11,16 +11,12 @@ class SignInFormRequest extends RequestValidation
 {
     public function rules(): array
     {
-        $inputUserName = request('username');
-        $validation = [
-            'password' => 'required|string|min:6',
-        ];
+        $usernameValidation = match ($this->method) {
+            UserNameTypeEnum::MOBILE->value => ['username' => 'required|min:10'],
+            UserNameTypeEnum::EMAIL->value => ['username' => 'required|email'],
+            default => ['username' => 'required']
+        };
 
-        if (config('larapanel.auth.username') == UserNameTypeEnum::BOTH->value) {
-        }
-
-        return $validation;
+        return array_merge(['password' => 'required|string|min:6'], $usernameValidation);
     }
-
-    // TODO withValidation
 }

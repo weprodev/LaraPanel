@@ -20,12 +20,12 @@ class UsersController
     {
         $this->userRepository = resolve(UserRepositoryInterface::class);
         $this->roleRepository = resolve(RoleRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.role.';
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.user.';
     }
 
     public function index()
     {
-        $users = $this->userRepository->allWithTrashed();
+        $users = $this->userRepository->paginate(config('larapanel.pagination'));
 
         return view($this->baseViewPath.'index', compact('users'));
     }

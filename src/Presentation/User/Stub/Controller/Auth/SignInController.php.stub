@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\LaraPanel\Auth;
 
 use WeProDev\LaraPanel\Presentation\User\Controller\Auth\SignInController as AuthSignInController;
+use App\Http\Requests\LaraPanel\Auth\SignInFormRequest;
 
 final class SignInController extends AuthSignInController
 {
@@ -34,9 +35,9 @@ final class SignInController extends AuthSignInController
     /// WRITE YOUR CODE ....
     // }
 
-    // public function signIn()
+    // protected function customSignUpHook(SignInFormRequest $request)
     // {
-    /// WRITE YOUR CODE ....
+    //     // Custom implementation for signIn
     // }
 
     //  public function signOut()

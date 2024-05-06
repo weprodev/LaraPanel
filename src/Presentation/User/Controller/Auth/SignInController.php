@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Auth;
 
 use Auth;
-use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
+use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
+use WeProDev\LaraPanel\Core\User\Enum\UserNameTypeEnum;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
 use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Presentation\User\Requests\Auth\SignInFormRequest;
 
 class SignInController
 {
@@ -17,41 +19,45 @@ class SignInController
 
     public function __construct()
     {
-        if (! config('larapanel.auth.signin.enable')) {
+        if (!config('larapanel.auth.signin.enable')) {
             abort(404);
         }
         $this->userRepository = resolve(UserRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.auth.';
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path . '.User.auth.';
     }
 
     public function signInForm()
     {
-        return view($this->baseViewPath.'signin');
+        return view($this->baseViewPath . 'signin');
     }
 
-    public function signIn(UserLogin $request)
+    public function signIn(SignInFormRequest $request)
     {
-        // TODO
-        $username = config('larapanel.auth.username');
-        $credentials = [$username => $request->{$username}, 'password' => $request->password, 'status' => 'accepted'];
+        if (method_exists($this, 'customSignInHook')) {
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-
-            return redirect()->intended('/');
+            // @php-ignore  @phpstan-ignore-next-line
+            return $this->customSignInHook($request);
         }
 
-        $user = $this->userRepository->findBy(["{$username}" => $request->{$username}]);
-        if ($user && $user->status != UserStatusEnum::ACCEPTED->value) {
-            return redirect()->back()->with('message', [
-                'type' => 'danger',
-                'text' => trans('trans.your_account_does_not_activated'),
-            ]);
+        $username = match (config('larapanel.auth.username')) {
+            UserNameTypeEnum::MOBILE => 'mobile',
+            default => 'email'
+        };
+
+        $credentials = [
+            $username => $request->username,
+            'password' => $request->password,
+        ];
+
+        if (Auth::attempt($credentials)) {
+            Auth::user();
+
+            return redirect()->intended(config('larapanel.auth.default.redirection', '/'));
         }
 
         return redirect()->back()->with('message', [
-            'type' => 'danger',
-            'text' => trans('trans.username_or_password_wrong'),
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('Your username or password is wrong!'),
         ]);
     }
 

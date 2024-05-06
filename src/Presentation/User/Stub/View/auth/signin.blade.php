@@ -1,4 +1,4 @@
-﻿@extends('LaraPanel.User.auth.master')
+﻿@extends($lp['directory'] . '.User.auth.master')
 
 @section('header')
     @parent

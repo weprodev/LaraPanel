@@ -93,16 +93,6 @@ return [
         'auth' => sprintf('App\Http\Controllers\%s\Auth', config('larapanel.namespace.directory', 'LaraPanel')),
     ],
 
-    'group' => [
-        // larapanel.group.morphMap
-        'morphMap' => [
-            // larapanel.group.morphMap.user
-            'user' => 'App\Models\LaraPanel\User',
-            // larapanel.group.morphMap.role
-            'role' => 'App\Models\LaraPanel\Role',
-        ],
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | DataBase Configurations

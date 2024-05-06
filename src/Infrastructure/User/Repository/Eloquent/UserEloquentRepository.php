@@ -13,6 +13,11 @@ use WeProDev\LaraPanel\Infrastructure\User\Repository\Factory\UserFactory;
 
 class UserEloquentRepository implements UserRepositoryInterface
 {
+    public function paginate(int $perPage)
+    {
+        return User::query()->paginate($perPage);
+    }
+
     public function firstOrCreate(UserDto $userDto): UserDomain
     {
         $userModel = User::firstOrCreate([
@@ -33,6 +38,13 @@ class UserEloquentRepository implements UserRepositoryInterface
     public function findById(int $userId): UserDomain
     {
         $userModel = User::where(['id' => $userId])->firstOrFail();
+
+        return UserFactory::fromEloquent($userModel);
+    }
+
+    public function findBy(array $attributes): UserDomain
+    {
+        $userModel = User::where($attributes)->firstOrFail();
 
         return UserFactory::fromEloquent($userModel);
     }
