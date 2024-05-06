@@ -60,9 +60,9 @@ final class SharedServiceProvider extends ServiceProvider
     {
         $this->publishes([
             // ASSETS, PUBLIC FILES
-            __DIR__ . '/../../../Presentation/Panel/Stub/Public/PurpleAdmin' => public_path(self::$LPanel_Path),
+            __DIR__ . '/../../../Presentation/Panel/Stub/Public/PurpleAdmin' => public_path(self::$LPanel_Path . '/PurpleAdmin'),
 
-            __DIR__ . './../../../Presentation/Panel/View/PurpleAdmin' => resource_path(sprintf('views/%s', self::$LPanel_Path)),
+            __DIR__ . '/../../../Presentation/Panel/View/PurpleAdmin' => resource_path(sprintf('views/%s/PurpleAdmin', self::$LPanel_Path)),
         ], [$this->publishGenericName, 'larapanel-view-PurpleAdmin']);
     }
 }
