@@ -1,7 +1,7 @@
 {
   "name": "weprodev/larapanel",
   "description": "LaraPanel is a user interface for managing users and permissions.",
-  "type": "project",
+  "type": "package",
   "homepage": "https://weprodev.com",
   "keywords": [
     "Project",

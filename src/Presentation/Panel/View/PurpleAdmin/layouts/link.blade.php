@@ -4,15 +4,15 @@
             @if (!empty($item['children'])) data-bs-toggle="collapse"
                 data-toggle="collapse"
                 aria-expanded="false"
-                aria-controls="{{ str_replace(' ', '_', $item['title']) }}"
+                aria-controls="{{ $item['url'] }}"
                 href="#{{ $item['url'] }}"
             @else
-                href="@php match ($item['type']) {
+                @php $link =  match ($item['type']) {
                     'PATH' => url($item['url']),
-                    'FULL_URL' => $item['url'],
                     'ROUTE' => route($item['url']),
-                    default => '#' .$item['url']
-                } @endphp"> @endif
+                    default => $item['url']
+                } @endphp
+                href="{{ $link }}"> @endif
             <span class="menu-title">{{ $item['title'] }}</span>
 
             @if (!empty($item['children']))
@@ -26,7 +26,9 @@
             <div class="collapse" id="{{ $item['url'] }}">
                 <ul class="nav flex-column sub-menu">
                     @foreach ($item['children'] as $child)
-                        @include(config('laranav.default.directory') . '.layouts.link', ['item' => $child])
+                        @include($lp['directory'] . '.' . $lp['theme'] . '.layouts.link', [
+                            'item' => $child,
+                        ])
                     @endforeach
                 </ul>
             </div>
