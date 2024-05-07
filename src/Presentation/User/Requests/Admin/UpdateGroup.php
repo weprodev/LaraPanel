@@ -6,15 +6,17 @@ namespace WeProDev\LaraPanel\Presentation\User\Requests\Admin;
 
 use WeProDev\LaraPanel\Presentation\Panel\Requests\RequestValidation;
 
-final class UpdateDepartment extends RequestValidation
+final class UpdateGroup extends RequestValidation
 {
     public function rules(): array
     {
-        $table = config('laravel_user_management.user_department_table');
+        $table = config('larapanel.table.prefix').config('larapanel.table.group.name');
 
         return [
-            'title' => "required|unique:{$table},title,".$this->ID,
+            'title' => 'nullable|string',
+            'name' => "required|unique:{$table},name,".$this->groupId,
             'parent_id' => "nullable|numeric|exists:{$table},id",
+            'description' => 'nullable|string',
         ];
     }
 }

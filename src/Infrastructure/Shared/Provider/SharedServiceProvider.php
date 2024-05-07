@@ -37,6 +37,7 @@ final class SharedServiceProvider extends ServiceProvider
         view()->composer('*', function () {
             View::share([
                 'lp' => [
+                    'dashboard_url' => url(config('larapanel.auth.default.redirection', '/')),
                     'name' => config('larapanel.name', 'LaraPanel'),
                     'directory' => self::$LPanel_Path,
                     'theme' => config('larapanel.theme', 'PurpleAdmin'),
@@ -53,10 +54,10 @@ final class SharedServiceProvider extends ServiceProvider
     {
         $this->publishes([
             // Overwrite third party packages
-            __DIR__ . '/../Stub/Config/permission.php.stub' => config_path('permission.php'),
-            __DIR__ . '/../../../Config/laranav.php' => config_path('laranav.php'),
+            __DIR__.'/../Stub/Config/permission.php.stub' => config_path('permission.php'),
+            __DIR__.'/../../../Config/laranav.php' => config_path('laranav.php'),
             // LaraPanel Config
-            __DIR__ . '/../../../Config/larapanel.php' => config_path('larapanel.php'),
+            __DIR__.'/../../../Config/larapanel.php' => config_path('larapanel.php'),
         ], [$this->publishGenericName, 'larapanel-config']);
     }
 
@@ -64,9 +65,9 @@ final class SharedServiceProvider extends ServiceProvider
     {
         $this->publishes([
             // ASSETS, PUBLIC FILES
-            __DIR__ . '/../../../Presentation/Panel/Stub/Public/PurpleAdmin' => public_path(self::$LPanel_Path . '/PurpleAdmin'),
+            __DIR__.'/../../../Presentation/Panel/Stub/Public/PurpleAdmin' => public_path(self::$LPanel_Path.'/PurpleAdmin'),
 
-            __DIR__ . '/../../../Presentation/Panel/View/PurpleAdmin' => resource_path(sprintf('views/%s/PurpleAdmin', self::$LPanel_Path)),
+            __DIR__.'/../../../Presentation/Panel/View/PurpleAdmin' => resource_path(sprintf('views/%s/PurpleAdmin', self::$LPanel_Path)),
         ], [$this->publishGenericName, 'larapanel-view-PurpleAdmin']);
     }
 

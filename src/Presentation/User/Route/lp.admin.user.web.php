@@ -21,7 +21,7 @@ Route::group(
                 // lp.admin.user.create
                 Route::get('/create', 'UsersController@create')->name('create');
                 // lp.admin.user.store
-                Route::post('/store', 'UsersController@store')->name('store');
+                Route::post('/create', 'UsersController@store')->name('store');
                 // lp.admin.user.edit
                 Route::get('/edit/{ID}', 'UsersController@edit')->name('edit');
                 // lp.admin.user.update
@@ -41,11 +41,11 @@ Route::group(
                 // lp.admin.role.create
                 Route::get('/create', 'RolesController@create')->name('create');
                 // lp.admin.role.store
-                Route::post('/store', 'RolesController@store')->name('store');
+                Route::post('/create', 'RolesController@store')->name('store');
                 // lp.admin.role.edit
                 Route::get('/edit/{ID}', 'RolesController@edit')->name('edit');
                 // lp.admin.role.update
-                Route::put('/update/{ID}', 'RolesController@update')->name('update');
+                Route::put('/edit/{ID}', 'RolesController@update')->name('update');
                 // lp.admin.role.delete
                 Route::delete('/delete/{ID}', 'RolesController@delete')->name('delete');
             }
@@ -76,14 +76,14 @@ Route::group(
                 Route::get('/', 'GroupsController@index')->name('index');
                 // lp.admin.group.create
                 Route::get('/create', 'GroupsController@create')->name('create');
-                // lp.admin.group.store
-                Route::post('/store', 'GroupsController@store')->name('store');
+                // lp.admin.group.create
+                Route::post('/create', 'GroupsController@store')->name('create');
                 // lp.admin.group.edit
-                Route::get('/edit/{ID}', 'GroupsController@edit')->name('edit');
-                // lp.admin.group.update
-                Route::put('/update/{ID}', 'GroupsController@update')->name('update');
+                Route::get('/edit/{groupId}', 'GroupsController@edit')->name('edit');
+                // lp.admin.group.edit
+                Route::put('/edit/{groupId}', 'GroupsController@update')->name('edit');
                 // lp.admin.group.delete
-                Route::delete('/delete/{ID}', 'GroupsController@delete')->name('delete');
+                Route::delete('/delete/{groupId}', 'GroupsController@delete')->name('delete');
             }
         );
     }

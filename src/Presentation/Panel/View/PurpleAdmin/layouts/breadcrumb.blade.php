@@ -3,19 +3,15 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             @foreach ($lists as $item)
-                <li class="breadcrumb-item  {{ $loop->last ? 'active' : '' }}">
-                    @if ($loop->last || $item['link'] == '#')
+                <li class="breadcrumb-item {{ $loop->last ? 'active' : '' }}">
+                    @php
+                        $link = WeProDev\LaraPanel\Infrastructure\Shared\Helper\BreadcrumbHelper::generateLink($item);
+                    @endphp
+
+                    @if ($loop->last || $link == '#')
                         {{ $item['name'] }}
                     @else
-                        @php($link = $item['link'])
-
-                        @if (isset($type) && $type == 'link')
-                            <a href="{{ $link }}">{{ $item['name'] }}</a>
-                        @elseif(isset($item['param']))
-                            <a href="{{ route($link, $item['param']) }}">{{ $item['name'] }}</a>
-                        @else
-                            <a href="{{ route($link) }}">{{ $item['name'] }}</a>
-                        @endif
+                        <a href="{{ $link }}"> {{ $item['name'] }} </a>
                     @endif
                 </li>
             @endforeach

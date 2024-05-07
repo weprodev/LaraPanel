@@ -9,15 +9,15 @@
         'title' => __('Create a new group'),
         'lists' => [
             [
-                'link' => '#',
+                'url' => $lp['dashboard_url'],
                 'name' => $lp['name'],
             ],
             [
-                'link' => 'lp.admin.group.index',
+                'route' => 'lp.admin.group.index',
                 'name' => __('Groups'),
             ],
             [
-                'link' => '#',
+                'url' => '#',
                 'name' => __('New group'),
             ],
         ],
@@ -28,33 +28,46 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <form class="forms-sample" method="POST" action="{{ route('lp.admin.group.store') }}">
+                <form class="forms-sample" method="POST" action="{{ route('lp.admin.group.create') }}">
                     @csrf
-
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="title">{{ __('Title') }}</label>
                                 <input type="text" name="title" class="form-control" id="title"
-                                    placeholder="Title like: Client">
+                                    placeholder="Title like: Silver Group" autofocus>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="name">{{ __('Name') }} (unique without space)</label>
+                                <input type="text" name="name" class="form-control" id="name"
+                                    placeholder="optional: silver-group">
+                            </div>
+                        </div>
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="parent">{{ __('Parent') }}</label>
                                 <select class="form-control" name="parent_id" id="parent"
                                     placeholder="{{ __('Select a group') }}">
                                     <option></option>
-                                    @foreach ($groups as $item)
-                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                    @foreach ($groups as $id => $item)
+                                        <option value="{{ $id }}">{{ $item }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="description">{{ __('Description') }}</label>
+                                <textarea type="text" name="description" class="form-control" id="description"
+                                    placeholder="Optional: explain the reason of the group..." max="255" rows="2"></textarea>
 
-                    <button type="submit" class="btn btn-gradient-primary mr-2">{{ __('Submit') }}</button>
-                    <a href="{{ route('lp.admin.group.index') }}" class="btn btn-light">{{ __('Cancel') }}</a>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-gradient-primary mr-2">{{ __('Submit') }}</button>
+                        <a href="{{ route('lp.admin.group.index') }}" class="btn btn-light">{{ __('Cancel') }}</a>
                 </form>
             </div>
         </div>

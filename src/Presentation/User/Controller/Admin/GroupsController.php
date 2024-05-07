@@ -4,18 +4,22 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Controller;
+use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
+use WeProDev\LaraPanel\Core\User\Dto\GroupDto;
 use WeProDev\LaraPanel\Core\User\Repository\GroupRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
 use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Presentation\User\Requests\Admin\StoreGroup;
+use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateGroup;
 
 class GroupsController extends Controller
 {
     protected string $baseViewPath;
 
     private GroupRepositoryInterface $groupRepository;
-
-    private UserRepositoryInterface $userRepository;
 
     public function __construct()
     {
@@ -31,84 +35,81 @@ class GroupsController extends Controller
         return view($this->baseViewPath.'index', compact('groups'));
     }
 
-    // public function create()
-    // {
-    //     $group = $this->groupRepository->all();
+    public function create()
+    {
+        $groups = $this->groupRepository->pluckAll();
 
-    //     return view($this->baseViewPath . 'create', compact('group'));
-    // }
+        return view($this->baseViewPath.'create', compact('groups'));
+    }
 
-    // public function edit(int $ID)
-    // {
-    //     if ($group = $this->groupRepository->find($ID)) {
-    //         $group = $this->groupRepository->all();
+    public function edit(int $groupId): View|RedirectResponse
+    {
+        if ($group = $this->groupRepository->findById($groupId)) {
+            $groups = $this->groupRepository->pluckAll();
 
-    //         return view($this->baseViewPath . 'edit', compact('group'));
-    //     }
+            return view($this->baseViewPath.'edit', compact('group', 'groups'));
+        }
 
-    //     return redirect()->route('admin.user_management.department.index')->with('message', [
-    //         'type' => 'danger',
-    //         'text' => 'Department does not exist!',
-    //     ]);
-    // }
+        return redirect()->route('lp.admin.group.index')->with('message', [
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The group does not exist!'),
+        ]);
+    }
 
-    // public function store(StoreDepartment $request)
-    // {
-    //     $parent = null;
-    //     if ($request->parent_id && $findDepartment = $this->departmentRepository->find($request->parent_id)) {
-    //         $parent = $findDepartment->id;
-    //     }
+    public function store(StoreGroup $request): RedirectResponse
+    {
+        $parent = $request->parent_id ? $this->groupRepository->findById($request->parent_id)->getId() : null;
 
-    //     $this->groupRepository->store([
-    //         'title' => $request->title,
-    //         'parent_id' => $parent,
-    //     ]);
+        $groupDto = GroupDto::make(
+            $request->name,
+            $request->title ?? $request->name,
+            $parent,
+            $request->description
+        );
+        $this->groupRepository->create($groupDto);
 
-    //     return redirect()->route('admin.user_management.department.index')->with('message', [
-    //         'type' => 'success',
-    //         'text' => "This department << {$request->title} >> created successfully.",
-    //     ]);
-    // }
+        return redirect()->route('lp.admin.group.index')->with('message', [
+            'type' => AlertTypeEnum::SUCCESS->value,
+            'text' => __('The group :group created successfully.', ['group' => $request->name]),
+        ]);
+    }
 
-    // public function update(int $ID, UpdateDepartment $request)
-    // {
-    //     if ($department = $this->departmentRepository->find($ID)) {
-    //         $parent = null;
-    //         if ($request->parent_id && $findDepartment = $this->departmentRepository->find($request->parent_id)) {
-    //             $parent = $findDepartment->id;
-    //         }
+    public function update(int $groupId, UpdateGroup $request)
+    {
+        if ($group = $this->groupRepository->findById((int) $groupId)) {
 
-    //         $this->departmentRepository->update($ID, [
-    //             'title' => $request->title,
-    //             'parent_id' => $parent,
-    //         ]);
+            $parent = $request->parent_id ? $this->groupRepository->findById((int) $request->parent_id)->getId() : null;
 
-    //         return redirect()->route('admin.user_management.department.index')->with('message', [
-    //             'type' => 'success',
-    //             'text' => "This department << {$request->title} >> updated successfully.",
-    //         ]);
-    //     }
+            $groupDto = GroupDto::make($request->name, $request->title, $parent, $request->description);
+            $this->groupRepository->update($group, $groupDto);
 
-    //     return redirect()->route('admin.user_management.department.index')->with('message', [
-    //         'type' => 'danger',
-    //         'text' => 'Department does not exist!',
-    //     ]);
-    // }
+            return redirect()->route('lp.admin.group.index')->with('message', [
+                'type' => AlertTypeEnum::SUCCESS->value,
+                'text' => __('This group :group has been updated successfully.', ['group' => $request->name]),
+            ]);
+        }
 
-    // public function delete(int $ID)
-    // {
-    //     if ($this->groupRepository->find($ID)) {
-    //         $this->groupRepository->delete($ID);
+        return redirect()->route('lp.admin.group.index')->with('message', [
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The group does not exist!'),
+        ]);
+    }
 
-    //         return redirect()->route('admin.user_management.department.index')->with('message', [
-    //             'type' => 'warning',
-    //             'text' => 'Department deleted successfully!',
-    //         ]);
-    //     }
+    public function delete(int $groupId)
+    {
+        if ($this->groupRepository->findById($groupId)) {
 
-    //     return redirect()->route('admin.user_management.department.index')->with('message', [
-    //         'type' => 'danger',
-    //         'text' => 'Department does not exist!',
-    //     ]);
-    // }
+            $this->groupRepository->delete($groupId);
+
+            return redirect()->route('lp.admin.group.index')->with('message', [
+                'type' => AlertTypeEnum::WARNING->value,
+                'text' => 'The group deleted successfully!',
+            ]);
+        }
+
+        return redirect()->route('lp.admin.group.index')->with('message', [
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The group does not exist!'),
+        ]);
+    }
 }

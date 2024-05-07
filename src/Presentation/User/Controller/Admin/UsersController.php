@@ -20,14 +20,14 @@ class UsersController
     {
         $this->userRepository = resolve(UserRepositoryInterface::class);
         $this->roleRepository = resolve(RoleRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path . '.User.user.';
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.user.';
     }
 
     public function index()
     {
         $users = $this->userRepository->paginate(config('larapanel.pagination'));
 
-        return view($this->baseViewPath . 'index', compact('users'));
+        return view($this->baseViewPath.'index', compact('users'));
     }
 
     public function create()
@@ -36,7 +36,7 @@ class UsersController
         // TODO
         // $groups = $this->departmentRepository->all();
 
-        return view($this->baseViewPath . 'create', compact('roles'));
+        return view($this->baseViewPath.'create', compact('roles'));
     }
 
     public function edit($ID)
@@ -47,7 +47,7 @@ class UsersController
             // $userHasRoles = $user->roles ? array_column(json_decode($user->roles, true), 'id') : [];
             // $userHasDepartments = $user->departments ? array_column(json_decode($user->departments, true), 'id') : [];
 
-            return view($this->baseViewPath . 'edit', compact('roles'));
+            return view($this->baseViewPath.'edit', compact('roles'));
         }
 
         return redirect()->back()->with('message', [

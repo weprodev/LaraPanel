@@ -9,11 +9,11 @@
         'title' => __('Groups'),
         'lists' => [
             [
-                'link' => '#',
+                'url' => $lp['dashboard_url'],
                 'name' => $lp['name'],
             ],
             [
-                'link' => '#',
+                'url' => '#',
                 'name' => __('Groups'),
             ],
         ],
@@ -67,6 +67,7 @@
             </div>
         </div>
     </div>
+    {{ $groups->links() }}
 @endsection
 
 

@@ -47,7 +47,7 @@ final class GroupDomain
         return $this->title;
     }
 
-    public function getParent(): ?int
+    public function getParentId(): ?int
     {
         return $this->parentId;
     }
