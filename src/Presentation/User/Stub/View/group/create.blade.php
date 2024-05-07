@@ -33,16 +33,16 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="title">{{ __('Title') }}</label>
-                                <input type="text" name="title" class="form-control" id="title"
-                                    placeholder="Title like: Silver Group" autofocus>
+                                <label for="name">{{ __('Name') }} (unique without space)</label>
+                                <input type="text" name="name" class="form-control" id="name"
+                                    placeholder="silver-group" autofocus required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="name">{{ __('Name') }} (unique without space)</label>
-                                <input type="text" name="name" class="form-control" id="name"
-                                    placeholder="optional: silver-group">
+                                <label for="title">{{ __('Title') }}</label>
+                                <input type="text" name="title" class="form-control" id="title"
+                                    placeholder="optional: Silver Group">
                             </div>
                         </div>
                         <div class="col-4">

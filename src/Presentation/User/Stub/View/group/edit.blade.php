@@ -35,18 +35,19 @@
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="title">{{ __('Title') }}</label>
-                                <input type="text" name="title" class="form-control" id="title"
-                                    value="{{ $group->getTitle() }}">
+                                <label for="name">{{ __('Name') }} (unique without space)</label>
+                                <input type="text" name="name" class="form-control" id="name" autofocus
+                                    value="{{ $group->getName() }}" placeholder="Example: silver-group" required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="name">{{ __('Name') }} (unique without space)</label>
-                                <input type="text" name="name" class="form-control" id="name"
-                                    value="{{ $group->getName() }}" placeholder="optional: silver-group">
+                                <label for="title">{{ __('Title') }}</label>
+                                <input type="text" name="title" class="form-control" id="title"
+                                    value="{{ $group->getTitle() }}" placeholder="optional: Silver Package">
                             </div>
                         </div>
+
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="parent">{{ __('Parent') }}</label>

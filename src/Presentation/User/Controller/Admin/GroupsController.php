@@ -42,8 +42,9 @@ class GroupsController extends Controller
         return view($this->baseViewPath.'create', compact('groups'));
     }
 
-    public function edit(int $groupId): View|RedirectResponse
+    public function edit(string $groupId): View|RedirectResponse
     {
+        $groupId = (int) $groupId;
         if ($group = $this->groupRepository->findById($groupId)) {
             $groups = $this->groupRepository->pluckAll();
 
@@ -58,7 +59,7 @@ class GroupsController extends Controller
 
     public function store(StoreGroup $request): RedirectResponse
     {
-        $parent = $request->parent_id ? $this->groupRepository->findById($request->parent_id)->getId() : null;
+        $parent = (int) $request->parent_id ? $this->groupRepository->findById((int) $request->parent_id)->getId() : null;
 
         $groupDto = GroupDto::make(
             $request->name,
@@ -74,11 +75,12 @@ class GroupsController extends Controller
         ]);
     }
 
-    public function update(int $groupId, UpdateGroup $request)
+    public function update(string $groupId, UpdateGroup $request)
     {
-        if ($group = $this->groupRepository->findById((int) $groupId)) {
+        $groupId = (int) $groupId;
+        if ($group = $this->groupRepository->findById($groupId)) {
 
-            $parent = $request->parent_id ? $this->groupRepository->findById((int) $request->parent_id)->getId() : null;
+            $parent = (int) $request->parent_id ? $this->groupRepository->findById((int) $request->parent_id)->getId() : null;
 
             $groupDto = GroupDto::make($request->name, $request->title, $parent, $request->description);
             $this->groupRepository->update($group, $groupDto);
@@ -95,10 +97,12 @@ class GroupsController extends Controller
         ]);
     }
 
-    public function delete(int $groupId)
+    public function delete(string $groupId)
     {
+        $groupId = (int) $groupId;
         if ($this->groupRepository->findById($groupId)) {
 
+            $groupId = (int) $groupId;
             $this->groupRepository->delete($groupId);
 
             return redirect()->route('lp.admin.group.index')->with('message', [
