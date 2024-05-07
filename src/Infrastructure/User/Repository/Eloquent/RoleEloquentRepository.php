@@ -12,6 +12,11 @@ use WeProDev\LaraPanel\Infrastructure\User\Repository\Factory\RoleFactory;
 
 class RoleEloquentRepository implements RoleRepositoryInterface
 {
+    public function paginate(int $perPage)
+    {
+        return Role::query()->paginate($perPage);
+    }
+
     public function firstOrCreate(RoleDto $roleDto): RoleDomain
     {
         $roleModel = Role::firstOrCreate([
@@ -37,10 +42,12 @@ class RoleEloquentRepository implements RoleRepositoryInterface
         return $this->firstOrCreate($roleDto);
     }
 
-    // public function syncRoleToUser($owner, array $roles = [])
-    // {
-    //     return $owner->syncRoles($roles);
-    // }
+    public function findBy(array $attributes): RoleDomain
+    {
+        $roleModel = Role::where($attributes)->firstOrFail();
+
+        return RoleFactory::fromEloquent($roleModel);
+    }
 
     // public function setRoleToMember($owner, $role, $assign = true)
     // {
@@ -51,12 +58,17 @@ class RoleEloquentRepository implements RoleRepositoryInterface
     //     return $owner->removeRole($role);
     // }
 
-    // public function getAllRolePermissions(Role $role, $method = 'get')
-    // {
-    //     if ($method == 'pluck') {
-    //         return $role->getAllPermissions()->pluck('id', 'id')->toArray();
-    //     }
+    public function getAllRolePermissions(array $attributes)
+    {
+        $role = Role::where($attributes)->firstOrFail();
 
-    //     return $role->getAllPermissions();
-    // }
+        return $role->getAllPermissions();
+    }
+
+    public function pluckAllRolePermissions(array $attributes)
+    {
+        $role = Role::where($attributes)->firstOrFail();
+
+        return $role->getAllPermissions()->pluck('id', 'id')->toArray();
+    }
 }

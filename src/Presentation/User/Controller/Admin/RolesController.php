@@ -25,7 +25,7 @@ class RolesController
 
     public function index()
     {
-        $roles = $this->roleRepository->all();
+        $roles = $this->roleRepository->paginate(config('larapanel.pagination'));
 
         return view($this->baseViewPath.'index', compact('roles'));
     }

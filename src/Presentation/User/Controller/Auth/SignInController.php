@@ -19,16 +19,16 @@ class SignInController
 
     public function __construct()
     {
-        if (!config('larapanel.auth.signin.enable')) {
+        if (! config('larapanel.auth.signin.enable')) {
             abort(404);
         }
         $this->userRepository = resolve(UserRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path . '.User.auth.';
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.auth.';
     }
 
     public function signInForm()
     {
-        return view($this->baseViewPath . 'signin');
+        return view($this->baseViewPath.'signin');
     }
 
     public function signIn(SignInFormRequest $request)

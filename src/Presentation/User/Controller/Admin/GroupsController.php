@@ -24,12 +24,12 @@ class GroupsController extends Controller
         $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.group.';
     }
 
-    // public function index()
-    // {
-    //     $group = $this->groupRepository->all();
+    public function index()
+    {
+        $groups = $this->groupRepository->paginate(config('larapanel.pagination'));
 
-    //     return view($this->baseViewPath . 'index', compact('group'));
-    // }
+        return view($this->baseViewPath.'index', compact('groups'));
+    }
 
     // public function create()
     // {

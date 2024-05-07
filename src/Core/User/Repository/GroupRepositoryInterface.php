@@ -10,6 +10,8 @@ use WeProDev\LaraPanel\Core\User\Enum\GroupMorphMapsEnum;
 
 interface GroupRepositoryInterface
 {
+    public function paginate(int $perPage);
+
     public function firstOrCreate(GroupDto $groupDto): GroupDomain;
 
     public function getDefaultGroup(): GroupDomain;

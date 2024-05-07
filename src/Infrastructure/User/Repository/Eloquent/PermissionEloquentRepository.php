@@ -4,34 +4,49 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent;
 
+use WeProDev\LaraPanel\Core\User\Domain\PermissionDomain;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
+use WeProDev\LaraPanel\Infrastructure\User\Model\Permission;
+use WeProDev\LaraPanel\Infrastructure\User\Model\Role;
+use WeProDev\LaraPanel\Infrastructure\User\Repository\Factory\PermissionFactory;
 
 class PermissionEloquentRepository implements PermissionRepositoryInterface
 {
-    // public function setPermissionToRole(int $roleID, $permission, $give = true)
-    // {
-    //     $query = $this->roleModel::query();
-    //     $role = $query->find($roleID);
+    public function paginate(int $perPage)
+    {
+        return Permission::query()->paginate($perPage);
+    }
 
-    //     if ($give) {
-    //         return $role->givePermissionTo($permission);
-    //     }
+    public function findBy(array $attributes): PermissionDomain
+    {
+        $permModel = Permission::where($attributes)->firstOrFail();
 
-    //     return $role->revokePermissionTo($permission);
-    // }
+        return PermissionFactory::fromEloquent($permModel);
+    }
 
-    // public function SyncPermToRole(int $roleID, array $permissions)
-    // {
-    //     $query = $this->roleModel::query();
-    //     $role = $query->find($roleID);
+    public function setPermissionToRole(int $roleId, $permission): void
+    {
+        $role = Role::find($roleId);
 
-    //     return $role->syncPermissions($permissions);
-    // }
+        return $role->givePermissionTo($permission);
+    }
 
-    // public function getPermissionsModule()
-    // {
-    //     $query = $this->model::query();
+    public function revokePermFromRole(int $roleId, $permission): void
+    {
+        $role = Role::find($roleId);
 
-    //     return array_keys(collect($query->get())->keyBy('module')->toArray());
-    // }
+        return $role->revokePermissionTo($permission);
+    }
+
+    public function SyncPermToRole(int $roleId, array $permissions): void
+    {
+        $role = Role::find($roleId);
+
+        return $role->syncPermissions($permissions);
+    }
+
+    public function getPermissionsModule(): array
+    {
+        return array_keys(collect(Permission::get())->keyBy('module')->toArray());
+    }
 }

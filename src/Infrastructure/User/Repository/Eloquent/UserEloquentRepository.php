@@ -15,7 +15,7 @@ class UserEloquentRepository implements UserRepositoryInterface
 {
     public function paginate(int $perPage)
     {
-        return User::query()->paginate($perPage);
+        return User::query()->with(['groups', 'roles'])->paginate($perPage);
     }
 
     public function firstOrCreate(UserDto $userDto): UserDomain
@@ -61,5 +61,12 @@ class UserEloquentRepository implements UserRepositoryInterface
         $userModel = User::where(['id' => $userDomain->getId()])->firstOrFail();
 
         Auth::login($userModel);
+    }
+
+    public function syncRoleToUser(UserDomain $userDomain, array $roles = []): void
+    {
+        $userModel = User::where(['id' => $userDomain->getId()])->firstOrFail();
+
+        $userModel->syncRoles($roles);
     }
 }

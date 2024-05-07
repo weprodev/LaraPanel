@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\Shared\Provider;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,6 +18,9 @@ final class SharedServiceProvider extends ServiceProvider
     {
         self::$LPanel_Path = config('larapanel.namespace.directory', 'LaraPanel');
         $this->loadLaraPanelDataOnViewPages();
+
+        // Load Pagination View File
+        $this->setupPaginationView();
 
         // Configs
         $this->publishConfigs();
@@ -64,5 +68,22 @@ final class SharedServiceProvider extends ServiceProvider
 
             __DIR__ . '/../../../Presentation/Panel/View/PurpleAdmin' => resource_path(sprintf('views/%s/PurpleAdmin', self::$LPanel_Path)),
         ], [$this->publishGenericName, 'larapanel-view-PurpleAdmin']);
+    }
+
+    private function setupPaginationView(): void
+    {
+        $defaultTheme = config('larapanel.theme', 'PurpleAdmin');
+
+        $bladePaginationViewPath = sprintf('%s/%s/layouts/pagination', self::$LPanel_Path, $defaultTheme);
+        $paginationPath = resource_path(sprintf('views/%s.blade.php', $bladePaginationViewPath));
+        if (file_exists($paginationPath)) {
+            Paginator::defaultView($bladePaginationViewPath);
+        }
+
+        $bladeSimplePaginationViewPath = sprintf('%s/%s/layouts/simple-pagination', self::$LPanel_Path, $defaultTheme);
+        $simplePaginationPath = resource_path(sprintf('views/%s.blade.php', $bladeSimplePaginationViewPath));
+        if (file_exists($simplePaginationPath)) {
+            Paginator::defaultSimpleView($bladeSimplePaginationViewPath);
+        }
     }
 }

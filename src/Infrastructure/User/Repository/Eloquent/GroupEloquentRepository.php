@@ -14,6 +14,11 @@ use WeProDev\LaraPanel\Infrastructure\User\Repository\Factory\GroupFactory;
 
 class GroupEloquentRepository implements GroupRepositoryInterface
 {
+    public function paginate(int $perPage)
+    {
+        return Group::query()->paginate($perPage);
+    }
+
     public function firstOrCreate(GroupDto $groupDto): GroupDomain
     {
         $groupModel = Group::firstOrCreate([

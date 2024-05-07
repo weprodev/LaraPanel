@@ -20,14 +20,14 @@ class UsersController
     {
         $this->userRepository = resolve(UserRepositoryInterface::class);
         $this->roleRepository = resolve(RoleRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.user.';
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path . '.User.user.';
     }
 
     public function index()
     {
         $users = $this->userRepository->paginate(config('larapanel.pagination'));
 
-        return view($this->baseViewPath.'index', compact('users'));
+        return view($this->baseViewPath . 'index', compact('users'));
     }
 
     public function create()
@@ -36,7 +36,7 @@ class UsersController
         // TODO
         // $groups = $this->departmentRepository->all();
 
-        return view($this->baseViewPath.'create', compact('roles'));
+        return view($this->baseViewPath . 'create', compact('roles'));
     }
 
     public function edit($ID)
@@ -47,7 +47,7 @@ class UsersController
             // $userHasRoles = $user->roles ? array_column(json_decode($user->roles, true), 'id') : [];
             // $userHasDepartments = $user->departments ? array_column(json_decode($user->departments, true), 'id') : [];
 
-            return view($this->baseViewPath.'edit', compact('roles'));
+            return view($this->baseViewPath . 'edit', compact('roles'));
         }
 
         return redirect()->back()->with('message', [
@@ -68,12 +68,13 @@ class UsersController
         ]);
 
         $roles = $request->roles ?? [];
-        $departments = $request->departments ?? [];
+        $groups = $request->groups ?? [];
 
-        // $this->roleRepository->setRoleToMember($user, $roles);
+        $this->userRepository->assignRolesToUser($user, $roles);
+        // $this->groupRepository->assignGroupsToUser($user, $groups);
         // $this->departmentRepository->attachDepartment($user, $departments);
 
-        return redirect()->route('admin.user_management.user.index')->with('message', [
+        return redirect()->route('lp.admin.user.index')->with('message', [
             'type' => 'success',
             'text' => 'َUser updated successfully!',
         ]);
@@ -106,10 +107,10 @@ class UsersController
             }
             ////////////////////////////////////////////////////////////
 
-            $this->roleRepository->syncRoleToUser($user, $roles);
+            $this->userRepository->syncRoleToUser($user, $roles);
             $this->departmentRepository->syncDepartments($user, $departments);
 
-            return redirect()->route('admin.user_management.user.index')->with('message', [
+            return redirect()->route('lp.admin.user.index')->with('message', [
                 'type' => 'success',
                 'text' => 'َUser updated successfully!',
             ]);
@@ -130,7 +131,7 @@ class UsersController
             ]);
             $user->delete();
 
-            return redirect()->route('admin.user_management.user.index')->with('message', [
+            return redirect()->route('lp.admin.user.index')->with('message', [
                 'type' => 'warning',
                 'text' => 'User Deleted successfully!',
             ]);
@@ -150,7 +151,7 @@ class UsersController
                 'status' => 'accepted',
             ]);
 
-            return redirect()->route('admin.user_management.user.index')->with('message', [
+            return redirect()->route('lp.admin.user.index')->with('message', [
                 'type' => 'success',
                 'text' => 'User restored successfully!',
             ]);

@@ -25,7 +25,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('admin.user_management.department.create') }}"
+                    <a href="{{ route('lp.admin.group.create') }}"
                         class="btn btn-outline-primary btn-icon-text float-right btn-newInList">
                         <i class="mdi mdi-shape-rectangle-plus btn-icon-prepend"></i>
                         {{ __('New Group') }}
@@ -42,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($departments as $item)
+                            @foreach ($groups as $item)
                                 <tr>
                                     <td> {{ $item->id }} </td>
                                     <td> {{ $item->title }} </td>

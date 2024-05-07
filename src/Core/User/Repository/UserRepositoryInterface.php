@@ -25,4 +25,6 @@ interface UserRepositoryInterface
     public function assignRolesToUser(UserDomain $userDomain, array $rolesName): void;
 
     public function signInUser(UserDomain $userDomain): void;
+
+    public function syncRoleToUser(UserDomain $userDomain, array $roles = []): void;
 }

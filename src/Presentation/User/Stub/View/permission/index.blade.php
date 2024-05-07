@@ -25,7 +25,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('admin.user_management.permission.create') }}"
+                    <a href="{{ route('lp.admin.permission.create') }}"
                         class="btn btn-outline-primary btn-icon-text float-right btn-newInList">
                         <i class="mdi mdi-settings btn-icon-prepend"></i>
                         {{ __('New permission') }}
