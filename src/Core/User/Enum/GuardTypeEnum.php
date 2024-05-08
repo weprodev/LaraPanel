@@ -18,8 +18,9 @@ enum GuardTypeEnum: string
 
         $guardNames = self::all();
 
-        if (!empty($guardNames) && in_array($guard, $guardNames) && !self::isValueValid($guard)) {
+        if (! empty($guardNames) && in_array($guard, $guardNames) && ! self::isValueValid($guard)) {
             self::createNewCase($guard);
+
             return self::from($guard);
         }
 
@@ -32,15 +33,15 @@ enum GuardTypeEnum: string
 
     private static function isValueValid(string $value): bool
     {
-        return !is_null(self::tryFrom($value));
+        return ! is_null(self::tryFrom($value));
     }
 
     private static function createNewCase(string $guard): void
     {
         // Check if the guard already exists as a case
-        if (!self::isValueValid($guard)) {
+        if (! self::isValueValid($guard)) {
             // Dynamically add a new case to the enum
-            eval("enum GuardTypeEnum: string { case $guard = '$guard'; }");
+            eval("enum GuardTypeEnum: string { case {$guard} = '{$guard}'; }");
         }
     }
 

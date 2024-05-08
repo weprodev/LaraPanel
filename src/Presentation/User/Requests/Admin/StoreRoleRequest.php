@@ -7,18 +7,20 @@ namespace WeProDev\LaraPanel\Presentation\User\Requests\Admin;
 use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 use WeProDev\LaraPanel\Presentation\Panel\Requests\RequestValidation;
 
-class UpdatePermissionRequest extends RequestValidation
+final class StoreRoleRequest extends RequestValidation
 {
     public function rules(): array
     {
+        $table = config('permission.table_names');
         $guardNames = implode(',', GuardTypeEnum::all() ?? []);
-        $modules = implode(',', config('larapanel.permission.module.list', []));
 
         return [
-            'title' => 'nullable|string',
-            'module' => 'required|string|in:'.$modules,
+            'name' => 'required|unique:'.$table['roles'].',name',
+            'title' => 'required|string',
             'guard_name' => 'nullable|string|in:'.$guardNames,
             'description' => 'nullable|string',
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'nullable|exists:'.$table['permissions'].',name',
         ];
     }
 }

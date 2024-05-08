@@ -6,19 +6,22 @@ use WeProDev\LaraPanel\Core\Shared\Enum\LanguageEnum;
 
 return [
 
+    // larapanel.name
+    'name' => env('LP_DEFAULT_APP_NAME', 'LaraPanel'),
+
     'path' => [
         // larapanel.path.admin
         'admin' => env('LP_ADMIN_PATH', '/lp-admin'),
 
         // larapanel.path.logo
-        'logo' => env('LP_DEFAULT_LOGO_PATH', '/LaraPanel/PurpleAdmin/images/LaraPanel.png'),
+        'logo' => env('LP_DEFAULT_LOGO_PATH', '/LaraPanel/logo.png'),
 
         // larapanel.path.favicon
         'favicon' => env('LP_DEFAULT_FAVICON_PATH', '/LaraPanel/favicon.ico'),
     ],
 
     // larapanel.pagination
-    'pagination' => env('LP_DEFAULT_PAGINATION', 15),
+    'pagination' => env('LP_DEFAULT_PAGINATION', 5),
 
     // larapanel.theme
     'theme' => env('LP_DEFAULT_THEME', 'PurpleAdmin'),
@@ -70,7 +73,7 @@ return [
             'group' => env('LP_DEFAULT_GROUP', 'Default'),
 
             // larapanel.auth.default.redirection
-            'redirection' => env('LP_DEFAULT_REDIRECT', 'home'),
+            'redirection' => env('LP_DEFAULT_REDIRECT', '/'), // path, dashboard page
         ],
 
     ],
@@ -140,6 +143,36 @@ return [
         'model_has_group' => [
             // larapanel.table.model_has_group.name
             'name' => 'model_has_group',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Permission Config
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'permission' => [
+
+        'guard' => [
+            // larapanel.permission.guard.default
+            'default' => 'WEB',
+            // larapanel.permission.guard.names
+            'names' => [
+                'WEB' => 'WEB',
+            ],
+        ],
+
+        'module' => [
+            // larapanel.permission.module.default
+            'default' => 'Default',
+            // larapanel.permission.module.list
+            'list' => [
+                'Default',
+                'Core',
+                'User',
+            ],
         ],
     ],
 ];

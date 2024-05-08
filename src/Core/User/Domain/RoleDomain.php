@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Core\User\Domain;
 
+use Illuminate\Database\Eloquent\Collection;
 use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 
 final class RoleDomain
@@ -24,6 +25,8 @@ final class RoleDomain
             $guardName
         );
     }
+
+    private Collection $permissions;
 
     private function __construct(
         private readonly int $id,
@@ -50,7 +53,7 @@ final class RoleDomain
         return $this->title;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -58,5 +61,15 @@ final class RoleDomain
     public function getGuardName(): GuardTypeEnum
     {
         return $this->guardName;
+    }
+
+    public function setPermissions(Collection $permissions): void
+    {
+        $this->permissions = $permissions;
+    }
+
+    public function getPermissions(): Collection
+    {
+        return $this->permissions;
     }
 }

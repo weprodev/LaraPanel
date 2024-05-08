@@ -16,10 +16,10 @@ class StorePermissionRequest extends RequestValidation
         $modules = implode(',', config('larapanel.permission.module.list', []));
 
         return [
-            'name' => 'required|unique:' . $table['permissions'],
+            'name' => 'required|unique:'.$table['permissions'],
             'title' => 'nullable|string',
-            'module' => 'required|string|in:' . $modules,
-            'guard_name' => 'nullable|string|in:' . $guardNames,
+            'module' => 'required|string|in:'.$modules,
+            'guard_name' => 'nullable|string|in:'.$guardNames,
             'description' => 'nullable|string',
         ];
     }

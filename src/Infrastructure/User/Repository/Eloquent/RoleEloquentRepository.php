@@ -33,6 +33,32 @@ class RoleEloquentRepository implements RoleRepositoryInterface
         return RoleFactory::fromEloquent($roleModel);
     }
 
+    public function create(RoleDto $roleDto): RoleDomain
+    {
+        $roleModel = Role::create([
+            'name' => $roleDto->getName(),
+            'title' => $roleDto->getTitle(),
+            'guard_name' => $roleDto->getGuardName()->value,
+            'description' => $roleDto->getDescription(),
+        ]);
+
+        return RoleFactory::fromEloquent($roleModel);
+    }
+
+    public function update(RoleDomain $roleDomain, RoleDto $roleDto): RoleDomain
+    {
+        $roleModel = Role::where('id', $roleDomain->getId())->firstOrFail();
+
+        $roleModel->update([
+            'title' => $roleDto->getTitle(),
+            'guard_name' => $roleDto->getGuardName()->value,
+            'description' => $roleDto->getDescription(),
+        ]);
+        $roleModel->refresh();
+
+        return RoleFactory::fromEloquent($roleModel);
+    }
+
     public function getDefaultRole(): RoleDomain
     {
         $roleDto = RoleDto::make(
@@ -71,5 +97,10 @@ class RoleEloquentRepository implements RoleRepositoryInterface
         $role = Role::where($attributes)->firstOrFail();
 
         return $role->getAllPermissions()->pluck('id', 'id')->toArray();
+    }
+
+    public function delete(int $roleId): void
+    {
+        Role::where('id', $roleId)->delete();
     }
 }

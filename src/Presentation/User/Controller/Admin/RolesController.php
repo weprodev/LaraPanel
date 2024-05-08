@@ -4,13 +4,22 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
+use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
+use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
 use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Presentation\User\Requests\Admin\StoreRoleRequest;
+use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateRoleRequest;
 
 class RolesController
 {
     protected string $baseViewPath;
+
+    private array $guards = [];
 
     private PermissionRepositoryInterface $permissionRepository;
 
@@ -21,95 +30,103 @@ class RolesController
         $this->permissionRepository = resolve(PermissionRepositoryInterface::class);
         $this->roleRepository = resolve(RoleRepositoryInterface::class);
         $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.role.';
+        $this->guards = GuardTypeEnum::all();
     }
 
-    public function index()
+    public function index(): View
     {
-        $roles = $this->roleRepository->paginate(config('larapanel.pagination'));
-
-        return view($this->baseViewPath.'index', compact('roles'));
+        return view($this->baseViewPath.'index')->with([
+            'roles' => $this->roleRepository->paginate(config('larapanel.pagination')),
+        ]);
     }
 
-    public function create()
+    public function create(): View
     {
-        $permissions = $this->permissionRepository->all();
-
-        return view($this->baseViewPath.'create', compact('permissions'));
+        return view($this->baseViewPath.'create')->with([
+            'permissions' => $this->permissionRepository->getPermissionsModule(),
+            'guards' => $this->guards,
+            'defaultGuard' => GuardTypeEnum::default()->value,
+        ]);
     }
 
-    public function edit(int $ID)
+    public function edit(int $roleId): View|RedirectResponse
     {
-        if ($role = $this->roleRepository->find($ID)) {
-            $permissions = $this->permissionRepository->all();
-            $roleHasPermissions = array_column(json_decode($role->permissions, true), 'id');
+        if ($role = $this->roleRepository->findBy(['id' => $roleId])) {
 
-            return view($this->baseViewPath.'edit', compact('role', 'permissions', 'roleHasPermissions'));
+            return view($this->baseViewPath.'edit')->with([
+                'role' => $role,
+                'guards' => $this->guards,
+                'permissions' => $this->permissionRepository->getPermissionsModule(),
+                'roleHasPermissions' => $role->getPermissions()->pluck('id', 'id')->toArray(),
+            ]);
         }
 
-        return redirect()->route('admin.user_management.role.index')->with('message', [
-            'type' => 'danger',
-            'text' => 'This role does not exist!',
+        return redirect()->route('lp.admin.role.index')->with('message', [
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The role does not exist!'),
         ]);
     }
 
-    public function store(StoreRole $request)
+    public function store(StoreRoleRequest $request)
     {
-        $role = $this->roleRepository->store([
-            'name' => $request->name,
-            'title' => $request->title,
-            'guard_name' => $request->guard_name,
-            'description' => $request->description,
-        ]);
+        $roleDto = RoleDto::make(
+            $request->name,
+            $request->title,
+            $request->description,
+            $request->guard_name ? GuardTypeEnum::getGuardType($request->guard_name ?? GuardTypeEnum::default()) : null,
+        );
+        $role = $this->roleRepository->create($roleDto);
 
         if (! empty($request->permissions)) {
-            $this->permissionRepository->setPermissionToRole($role->id, $request->permissions);
+            $this->permissionRepository->SyncPermToRole($role->getId(), $request->permissions);
         }
 
-        return redirect()->route('admin.user_management.role.index')->with('message', [
-            'type' => 'success',
-            'text' => "his role << {$request->name} >> created successfully.",
+        return redirect()->route('lp.admin.role.index')->with('message', [
+            'type' => AlertTypeEnum::SUCCESS->value,
+            'text' => __('The role :role created successfully.', ['role' => $request->title]),
         ]);
     }
 
-    public function update(int $ID, UpdateRole $request)
+    public function update(int $roleId, UpdateRoleRequest $request)
     {
-        if ($role = $this->roleRepository->find($ID)) {
-            $this->roleRepository->update($ID, [
-                'name' => $request->name,
-                'title' => $request->title,
-                'guard_name' => $request->guard_name,
-                'description' => $request->description,
-            ]);
+        if ($role = $this->roleRepository->findBy(['id' => $roleId])) {
+            $roleDto = RoleDto::make(
+                $role->getName(),
+                $request->title,
+                $request->description,
+                $request->guard_name ? GuardTypeEnum::getGuardType($request->guard_name ?? GuardTypeEnum::default()) : null,
+            );
+            $this->roleRepository->update($role, $roleDto);
 
             $permissions = $request->permissions ?? [];
-            $this->permissionRepository->SyncPermToRole($role->id, $permissions);
+            $this->permissionRepository->SyncPermToRole($role->getId(), $permissions);
 
-            return redirect()->route('admin.user_management.role.index')->with('message', [
-                'type' => 'success',
-                'text' => "This role << {$request->name} >> updated successfully.",
+            return redirect()->route('lp.admin.role.index')->with('message', [
+                'type' => AlertTypeEnum::SUCCESS->value,
+                'text' => __('The role :role has been successfully updated!', ['role' => $role->getName()]),
             ]);
         }
 
-        return redirect()->route('admin.user_management.role.index')->with('message', [
-            'type' => 'danger',
-            'text' => 'This role does not exist!',
+        return redirect()->route('lp.admin.role.index')->with('message', [
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The role does not exist!'),
         ]);
     }
 
-    public function delete(int $ID)
+    public function delete(int $roleId)
     {
-        if ($this->roleRepository->find($ID)) {
-            $this->roleRepository->delete($ID);
+        if ($role = $this->roleRepository->findBy(['id' => $roleId])) {
+            $this->roleRepository->delete($roleId);
 
-            return redirect()->route('admin.user_management.role.index')->with('message', [
-                'type' => 'warning',
-                'text' => 'Role deleted successfully!',
+            return redirect()->route('lp.admin.role.index')->with('message', [
+                'type' => AlertTypeEnum::WARNING->value,
+                'text' => __('The role deleted successfully!'),
             ]);
         }
 
-        return redirect()->route('admin.user_management.role.index')->with('message', [
-            'type' => 'danger',
-            'text' => 'This role does not exist!',
+        return redirect()->route('lp.admin.role.index')->with('message', [
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The role does not exist!'),
         ]);
     }
 }

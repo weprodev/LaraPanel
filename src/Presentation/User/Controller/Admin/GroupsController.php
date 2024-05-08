@@ -25,21 +25,21 @@ class GroupsController extends Controller
     {
         $this->groupRepository = resolve(GroupRepositoryInterface::class);
         $this->userRepository = resolve(UserRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path . '.User.group.';
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.group.';
     }
 
     public function index(): View
     {
         $groups = $this->groupRepository->paginate(config('larapanel.pagination'));
 
-        return view($this->baseViewPath . 'index', compact('groups'));
+        return view($this->baseViewPath.'index', compact('groups'));
     }
 
     public function create(): View
     {
         $groups = $this->groupRepository->pluckAll();
 
-        return view($this->baseViewPath . 'create', compact('groups'));
+        return view($this->baseViewPath.'create', compact('groups'));
     }
 
     public function edit(string $groupId): View|RedirectResponse
@@ -48,7 +48,7 @@ class GroupsController extends Controller
         if ($group = $this->groupRepository->findById($groupId)) {
             $groups = $this->groupRepository->pluckAll();
 
-            return view($this->baseViewPath . 'edit', compact('group', 'groups'));
+            return view($this->baseViewPath.'edit', compact('group', 'groups'));
         }
 
         return redirect()->route('lp.admin.group.index')->with('message', [

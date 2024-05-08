@@ -17,7 +17,9 @@ use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdatePermissionRequest;
 class PermissionsController
 {
     private array $guards = [];
+
     private array $modules = [];
+
     protected string $baseViewPath;
 
     private PermissionRepositoryInterface $permissionRepository;
@@ -25,7 +27,7 @@ class PermissionsController
     public function __construct()
     {
         $this->permissionRepository = resolve(PermissionRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path . '.User.permission.';
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.permission.';
         $this->guards = GuardTypeEnum::all();
         $this->modules = config('larapanel.permission.module.list', []);
     }
@@ -34,12 +36,12 @@ class PermissionsController
     {
         $permissions = $this->permissionRepository->paginate(config('larapanel.pagination'));
 
-        return view($this->baseViewPath . 'index', compact('permissions'));
+        return view($this->baseViewPath.'index', compact('permissions'));
     }
 
     public function create(): View
     {
-        return view($this->baseViewPath . 'create')->with([
+        return view($this->baseViewPath.'create')->with([
             'guards' => $this->guards,
             'defaultGuard' => GuardTypeEnum::default()->value,
             'modules' => $this->modules,
@@ -47,11 +49,11 @@ class PermissionsController
         ]);
     }
 
-    public function edit(int $permissionId): View | RedirectResponse
+    public function edit(int $permissionId): View|RedirectResponse
     {
         if ($permission = $this->permissionRepository->findBy(['id' => $permissionId])) {
 
-            return view($this->baseViewPath . 'edit')->with([
+            return view($this->baseViewPath.'edit')->with([
                 'guards' => $this->guards,
                 'permission' => $permission,
                 'modules' => $this->modules,
@@ -71,7 +73,7 @@ class PermissionsController
             $request->title,
             $request->module,
             $request->description,
-            $request->guard_name ? GuardTypeEnum::getGuardType($request->guard_name ?? GuardTypeEnum::WEB) : null,
+            $request->guard_name ? GuardTypeEnum::getGuardType($request->guard_name ?? GuardTypeEnum::default()) : null,
         );
         $this->permissionRepository->create($permDto);
 
@@ -89,7 +91,7 @@ class PermissionsController
                 $request->title,
                 $request->module,
                 $request->description,
-                $request->guard_name ? GuardTypeEnum::getGuardType($request->guard_name ?? GuardTypeEnum::WEB) : null,
+                $request->guard_name ? GuardTypeEnum::getGuardType($request->guard_name ?? GuardTypeEnum::default()) : null,
             );
             $this->permissionRepository->update($permission, $permDto);
 

@@ -27,7 +27,7 @@ final class RoleDto
         private readonly string $name,
         private readonly string $title,
         private readonly ?string $description = null,
-        private ?GuardTypeEnum $guardName = null,
+        private ?GuardTypeEnum $guardName = null
     ) {
         $this->guardName = $guardName ?? GuardTypeEnum::WEB;
     }

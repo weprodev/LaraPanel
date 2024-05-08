@@ -13,7 +13,13 @@ interface RoleRepositoryInterface
 
     public function firstOrCreate(RoleDto $roleDto): RoleDomain;
 
+    public function create(RoleDto $roleDto): RoleDomain;
+
+    public function update(RoleDomain $roleDomain, RoleDto $roleDto): RoleDomain;
+
     public function getDefaultRole(): RoleDomain;
 
     public function findBy(array $attributes): RoleDomain;
+
+    public function delete(int $roleId): void;
 }

@@ -12,12 +12,15 @@ final class RoleFactory
 {
     public static function fromEloquent(Role $role): RoleDomain
     {
-        return RoleDomain::make(
+        $roleDomain = RoleDomain::make(
             $role->id,
             $role->name,
             $role->title,
             $role->description,
             GuardTypeEnum::tryFrom($role->guard_name)
         );
+        $roleDomain->setPermissions($role->permissions);
+
+        return $roleDomain;
     }
 }

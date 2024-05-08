@@ -25,7 +25,7 @@ class PermissionEloquentRepository implements PermissionRepositoryInterface
             'title' => $permissionDto->getTitle(),
             'description' => $permissionDto->getDescription(),
             'module' => $permissionDto->getModule(),
-            'guard_name' => $permissionDto->getGuardName()
+            'guard_name' => $permissionDto->getGuardName(),
         ]);
 
         return PermissionFactory::fromEloquent($permissionModel);
@@ -39,7 +39,7 @@ class PermissionEloquentRepository implements PermissionRepositoryInterface
             'title' => $permissionDto->getTitle(),
             'description' => $permissionDto->getDescription(),
             'module' => $permissionDto->getModule(),
-            'guard_name' => $permissionDto->getGuardName()
+            'guard_name' => $permissionDto->getGuardName(),
         ]);
         $permModel->refresh();
 
@@ -76,7 +76,7 @@ class PermissionEloquentRepository implements PermissionRepositoryInterface
 
     public function getPermissionsModule(): array
     {
-        return array_keys(collect(Permission::get())->keyBy('module')->toArray());
+        return Permission::all()->groupBy('module')->toArray();
     }
 
     public function delete(int $permissionId): void

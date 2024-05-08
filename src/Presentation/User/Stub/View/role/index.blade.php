@@ -9,11 +9,11 @@
         'title' => 'Roles',
         'lists' => [
             [
-                'link' => '#',
+                'url' => $lp['dashboard_url'],
                 'name' => $lp['name'],
             ],
             [
-                'link' => '#',
+                'url' => '#',
                 'name' => __('Roles'),
             ],
         ],
@@ -26,8 +26,8 @@
             <div class="card">
                 <div class="card-body">
                     <a href="{{ route('lp.admin.role.create') }}"
-                        class="btn btn-outline-primary btn-icon-text float-right btn-newInList">
-                        <i class="mdi mdi-settings btn-icon-prepend"></i>
+                        class="btn btn-outline-primary btn-icon-text float-right btn-sm mb-2">
+                        <i class="mdi mdi-playlist-plus"></i>
                         {{ __('New role') }}
                     </a>
                     <h4 class="card-title">{{ __('List of roles') }}</h4>
@@ -50,27 +50,30 @@
                                     <td> {{ $item->title }} </td>
                                     <td> {{ $item->guard_name }} </td>
                                     <td> {{ $item->description }} </td>
-                                    <td>
+                                    <td class="text-right">
                                         <a href="{{ route('lp.admin.role.edit', $item->id) }}"
-                                            class="btn btn-outline-dark btn-sm">{{ __('Edit') }}</a>
+                                            class="btn btn-outline-dark btn-sm">
+                                            <i class="mdi mdi-pencil-box-outline text-primary"></i>
+                                            {{ __('Edit') }}</a>
 
                                         <form action="{{ route('lp.admin.role.delete', $item->id) }}" method="post"
-                                            class="inline-block">
+                                            class="inline-block btn btn-sm">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit"
-                                                class="btn btn-outline-danger btn-sm">{{ __('Delete') }}</button>
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                <i class="mdi mdi-delete-forever"></i>
+                                                {{ __('Delete') }}</button>
                                         </form>
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    {{ $roles->links() }}
 @endsection
 
 
