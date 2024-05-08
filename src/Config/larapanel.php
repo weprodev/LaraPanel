@@ -73,7 +73,7 @@ return [
             'group' => env('LP_DEFAULT_GROUP', 'Default'),
 
             // larapanel.auth.default.redirection
-            'redirection' => env('LP_DEFAULT_REDIRECT', '/'), // path, dashboard page
+            'redirection' => env('LP_DEFAULT_REDIRECT', '/lp-admin'), // path, dashboard page
         ],
 
     ],
@@ -113,6 +113,7 @@ return [
             // larapanel.table.user.columns
             'columns' => [
                 'id',
+                'uuid',
                 'first_name',
                 'last_name',
                 'email',        // unique

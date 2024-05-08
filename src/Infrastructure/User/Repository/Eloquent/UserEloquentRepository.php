@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent;
 
 use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Uuid;
 use WeProDev\LaraPanel\Core\User\Domain\UserDomain;
 use WeProDev\LaraPanel\Core\User\Dto\UserDto;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
@@ -15,7 +16,9 @@ class UserEloquentRepository implements UserRepositoryInterface
 {
     public function paginate(int $perPage)
     {
-        return User::query()->with(['groups', 'roles'])->paginate($perPage);
+        return User::query()->with(['groups', 'roles'])
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
     }
 
     public function firstOrCreate(UserDto $userDto): UserDomain
@@ -25,6 +28,23 @@ class UserEloquentRepository implements UserRepositoryInterface
         ], [
             'first_name' => $userDto->getFirstName(),
             'last_name' => $userDto->getLastName(),
+            'uuid' => Uuid::uuid4()->toString(),
+            'email' => $userDto->getEmail(),
+            'status' => $userDto->getStatus()->value,
+            'mobile' => $userDto->getMobile(),
+            'password' => $userDto->getPassword(),
+            'language' => $userDto->getLanguage()->value,
+        ]);
+
+        return UserFactory::fromEloquent($userModel);
+    }
+
+    public function create(UserDto $userDto): UserDomain
+    {
+        $userModel = User::create([
+            'first_name' => $userDto->getFirstName(),
+            'last_name' => $userDto->getLastName(),
+            'uuid' => Uuid::uuid4()->toString(),
             'email' => $userDto->getEmail(),
             'status' => $userDto->getStatus()->value,
             'mobile' => $userDto->getMobile(),
@@ -54,6 +74,15 @@ class UserEloquentRepository implements UserRepositoryInterface
         $userModel = User::where(['id' => $userDomain->getId()])->firstOrFail();
 
         $userModel->assignRole($rolesName);
+    }
+
+    public function assignGroupsToUser(UserDomain $userDomain, array $groupsId): void
+    {
+        $userModel = User::where(['id' => $userDomain->getId()])->firstOrFail();
+
+        $userModel->groups()->attach($groupsId);
+
+        // TODO $userModel->assignGroup($groupsId);
     }
 
     public function signInUser(UserDomain $userDomain): void

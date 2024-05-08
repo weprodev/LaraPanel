@@ -101,4 +101,9 @@ class GroupEloquentRepository implements GroupRepositoryInterface
     {
         Group::where('id', $groupId)->delete();
     }
+
+    public function all(): Collection
+    {
+        return Group::select('id', 'name', 'title', 'description')->get();
+    }
 }

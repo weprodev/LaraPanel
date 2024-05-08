@@ -15,7 +15,7 @@ class PermissionEloquentRepository implements PermissionRepositoryInterface
 {
     public function paginate(int $perPage)
     {
-        return Permission::query()->paginate($perPage);
+        return Permission::query()->orderBy('created_at', 'desc')->paginate($perPage);
     }
 
     public function create(PermissionDto $permissionDto): PermissionDomain

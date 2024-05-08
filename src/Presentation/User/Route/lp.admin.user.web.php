@@ -20,14 +20,14 @@ Route::group(
                 Route::get('/', 'UsersController@index')->name('index');
                 // lp.admin.user.create
                 Route::get('/create', 'UsersController@create')->name('create');
-                // lp.admin.user.store
-                Route::post('/create', 'UsersController@store')->name('store');
+                // lp.admin.user.create
+                Route::post('/create', 'UsersController@store')->name('create');
                 // lp.admin.user.edit
-                Route::get('/edit/{userId}', 'UsersController@edit')->name('edit');
-                // lp.admin.user.update
-                Route::put('/edit/{userId}', 'UsersController@update')->name('update');
+                Route::get('/edit/{userUuid}', 'UsersController@edit')->name('edit');
+                // lp.admin.user.edit
+                Route::put('/edit/{userUuid}', 'UsersController@update')->name('edit');
                 // lp.admin.user.delete
-                Route::delete('/delete/{userId}', 'UsersController@delete')->name('delete');
+                Route::delete('/delete/{userUuid}', 'UsersController@delete')->name('delete');
             }
         );
 
@@ -38,12 +38,12 @@ Route::group(
                 Route::get('/', 'RolesController@index')->name('index');
                 // lp.admin.role.create
                 Route::get('/create', 'RolesController@create')->name('create');
-                // lp.admin.role.store
-                Route::post('/create', 'RolesController@store')->name('store');
+                // lp.admin.role.create
+                Route::post('/create', 'RolesController@store')->name('create');
                 // lp.admin.role.edit
                 Route::get('/edit/{roleId}', 'RolesController@edit')->name('edit');
-                // lp.admin.role.update
-                Route::put('/edit/{roleId}', 'RolesController@update')->name('update');
+                // lp.admin.role.edit
+                Route::put('/edit/{roleId}', 'RolesController@update')->name('edit');
                 // lp.admin.role.delete
                 Route::delete('/delete/{roleId}', 'RolesController@delete')->name('delete');
             }

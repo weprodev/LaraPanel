@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Core\User\Repository;
 
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use WeProDev\LaraPanel\Core\User\Domain\RoleDomain;
 use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
 
@@ -22,4 +23,6 @@ interface RoleRepositoryInterface
     public function findBy(array $attributes): RoleDomain;
 
     public function delete(int $roleId): void;
+
+    public function all(): EloquentCollection;
 }

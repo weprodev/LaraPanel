@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent;
 
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 use WeProDev\LaraPanel\Core\User\Domain\RoleDomain;
 use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
@@ -15,7 +16,7 @@ class RoleEloquentRepository implements RoleRepositoryInterface
 {
     public function paginate(int $perPage)
     {
-        return Role::query()->paginate($perPage);
+        return Role::query()->orderBy('created_at', 'desc')->paginate($perPage);
     }
 
     public function firstOrCreate(RoleDto $roleDto): RoleDomain
@@ -76,15 +77,6 @@ class RoleEloquentRepository implements RoleRepositoryInterface
         return RoleFactory::fromEloquent($roleModel);
     }
 
-    // public function setRoleToMember($owner, $role, $assign = true)
-    // {
-    //     if ($assign) {
-    //         return $owner->assignRole($role);
-    //     }
-
-    //     return $owner->removeRole($role);
-    // }
-
     public function getAllRolePermissions(array $attributes): Collection
     {
         $role = Role::where($attributes)->firstOrFail();
@@ -102,5 +94,10 @@ class RoleEloquentRepository implements RoleRepositoryInterface
     public function delete(int $roleId): void
     {
         Role::where('id', $roleId)->delete();
+    }
+
+    public function all(): EloquentCollection
+    {
+        return Role::select('name', 'title', 'description')->get();
     }
 }

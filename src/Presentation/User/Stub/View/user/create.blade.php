@@ -9,15 +9,15 @@
         'title' => __('Create a new user'),
         'lists' => [
             [
-                'link' => '#',
+                'url' => $lp['dashboard_url'],
                 'name' => $lp['name'],
             ],
             [
-                'link' => 'lp.admin.user.index',
+                'route' => 'lp.admin.user.index',
                 'name' => __('Users'),
             ],
             [
-                'link' => '#',
+                'url' => '#',
                 'name' => __('New user'),
             ],
         ],
@@ -25,9 +25,8 @@
 @endsection
 
 @section('content')
-    <form class="forms-sample" method="POST" action="{{ route('lp.admin.user.store') }}">
+    <form class="forms-sample" method="POST" action="{{ route('lp.admin.user.create') }}">
         @csrf
-
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -36,26 +35,21 @@
                             <div class="form-group">
                                 <label for="first_name">{{ __('First Name') }}</label>
                                 <input type="text" name="first_name" value="{{ old('first_name') }}" class="form-control"
-                                    id="first_name" placeholder="First Name like: Mekaeil">
+                                    id="first_name" placeholder="{{ __('First Name') }}" autofocus required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="last_name">{{ __('Last Name') }}</label>
                                 <input type="text" name="last_name" value="{{ old('last_name') }}" class="form-control"
-                                    id="last_name" placeholder="Last Name like: Andisheh">
+                                    id="last_name" placeholder="{{ __('Last Name') }}" required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="guard_name">{{ __('Groups') }}</label>
-                                <select multiple class="form-control" name="groups[]" id="group_name">
-                                    <option></option>
-                                    @forelse ($groups as $item)
-                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
-                                    @empty
-                                    @endforelse
-                                </select>
+                                <label for="password">{{ __('Password') }}</label>
+                                <input type="text" name="password" class="form-control" id="password"
+                                    placeholder="{{ __('The minimum character is 6') }}" required>
                             </div>
                         </div>
                     </div>
@@ -65,34 +59,37 @@
                             <div class="form-group">
                                 <label for="email">{{ __('Email') }}</label>
                                 <input type="email" name="email" value="{{ old('email') }}" class="form-control"
-                                    id="email" placeholder="example@weprodev.com">
+                                    id="email" placeholder="example@weprodev.com" required>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="mobile">{{ __('Mobile') }}</label>
                                 <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control"
-                                    id="mobile" placeholder="Mobile number like: 031687xxxxxxxx">
+                                    id="mobile" placeholder="{{ __('Phone Number') }}">
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="status">{{ __('Status') }}</label>
                                 <select class="form-control" name="status" id="status">
-                                    <option value="pending">pending</option>
-                                    <option value="accepted">accepted</option>
-                                    <option value="blocked">blocked</option>
+                                    @foreach ($statuses as $status)
+                                        <option value="{{ $status }}">{{ $status }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="password">{{ __('Password') }}</label>
-                                <input type="text" name="password" class="form-control" id="password"
-                                    placeholder="Min character is 6">
+                                <label for="groups">{{ __('Groups') }}</label>
+                                <select multiple class="form-control form-select" name="groups[]" id="groups">
+                                    @foreach ($groups as $item)
+                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -107,18 +104,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                @forelse ($roles as $item)
+                                @foreach ($roles as $item)
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input type="checkbox" name="roles[]" value="{{ $item->name }}"
                                                 class="form-check-input">
-                                            {{ $item->title . ($item->description ? '  [ ' . $item->description . ' ]' : '') }}
+                                            {{ $item->title . $item->description ?? '' }}
                                             <i class="input-helper"></i>
                                         </label>
                                     </div>
-                                @empty
-                                    ----
-                                @endforelse
+                                @endforeach
                             </div>
                         </div>
                     </div>

@@ -10,10 +10,11 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use WeProDev\LaraPanel\Core\User\Enum\GroupMorphMapsEnum;
 use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
+use WeProDev\LaraPanel\Infrastructure\User\Traits\HasGroups;
 
 class User extends Authenticatable
 {
-    use HasRoles, Notifiable;
+    use HasGroups, HasRoles, Notifiable;
 
     private string $intermediateGroupTableName;
 
@@ -39,8 +40,8 @@ class User extends Authenticatable
             GroupMorphMapsEnum::USER->value,
             'groupable',
             $this->intermediateGroupTableName,
-            'group_id',
-            'groupable_id'
+            'groupable_id',
+            'group_id'
         );
     }
 }

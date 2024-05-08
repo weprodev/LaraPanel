@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Core\User\Domain;
 
 use Carbon\CarbonImmutable;
+use Ramsey\Uuid\UuidInterface;
 use WeProDev\LaraPanel\Core\Shared\Enum\LanguageEnum;
 use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
 
@@ -12,6 +13,7 @@ final class UserDomain
 {
     public static function make(
         int $id,
+        UuidInterface $uuid,
         string $email,
         string $firstName,
         string $lastName,
@@ -24,6 +26,7 @@ final class UserDomain
 
         return new UserDomain(
             $id,
+            $uuid,
             $email,
             $firstName,
             $lastName,
@@ -37,6 +40,7 @@ final class UserDomain
 
     private function __construct(
         private readonly int $id,
+        private readonly UuidInterface $uuid,
         private readonly string $email,
         private readonly string $firstName,
         private readonly string $lastName,
@@ -52,6 +56,11 @@ final class UserDomain
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getUuid(): UuidInterface
+    {
+        return $this->uuid;
     }
 
     public function getEmail(): string

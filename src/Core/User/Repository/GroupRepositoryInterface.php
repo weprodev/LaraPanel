@@ -28,4 +28,6 @@ interface GroupRepositoryInterface
     public function findById(int $groupId): GroupDomain;
 
     public function delete(int $groupId): void;
+
+    public function all(): Collection;
 }

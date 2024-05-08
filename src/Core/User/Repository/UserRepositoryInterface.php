@@ -15,6 +15,8 @@ interface UserRepositoryInterface
 
     public function firstOrCreate(UserDto $userDto): UserDomain;
 
+    public function create(UserDto $userDto): UserDomain;
+
     public function findBy(array $attributes): UserDomain;
 
     /**
@@ -23,6 +25,8 @@ interface UserRepositoryInterface
      * @param  array<int, string>  $rolesName
      */
     public function assignRolesToUser(UserDomain $userDomain, array $rolesName): void;
+
+    public function assignGroupsToUser(UserDomain $userDomain, array $groupsId): void;
 
     public function signInUser(UserDomain $userDomain): void;
 
