@@ -23,13 +23,11 @@ Route::group(
                 // lp.admin.user.store
                 Route::post('/create', 'UsersController@store')->name('store');
                 // lp.admin.user.edit
-                Route::get('/edit/{ID}', 'UsersController@edit')->name('edit');
+                Route::get('/edit/{userId}', 'UsersController@edit')->name('edit');
                 // lp.admin.user.update
-                Route::put('/update/{ID}', 'UsersController@update')->name('update');
+                Route::put('/edit/{userId}', 'UsersController@update')->name('update');
                 // lp.admin.user.delete
-                Route::delete('/delete/{ID}', 'UsersController@delete')->name('delete');
-                // lp.admin.user.restore
-                Route::put('/restore/{ID}', 'UsersController@restoreBackUser')->name('restore');
+                Route::delete('/delete/{userId}', 'UsersController@delete')->name('delete');
             }
         );
 
@@ -43,11 +41,11 @@ Route::group(
                 // lp.admin.role.store
                 Route::post('/create', 'RolesController@store')->name('store');
                 // lp.admin.role.edit
-                Route::get('/edit/{ID}', 'RolesController@edit')->name('edit');
+                Route::get('/edit/{roleId}', 'RolesController@edit')->name('edit');
                 // lp.admin.role.update
-                Route::put('/edit/{ID}', 'RolesController@update')->name('update');
+                Route::put('/edit/{roleId}', 'RolesController@update')->name('update');
                 // lp.admin.role.delete
-                Route::delete('/delete/{ID}', 'RolesController@delete')->name('delete');
+                Route::delete('/delete/{roleId}', 'RolesController@delete')->name('delete');
             }
         );
 
@@ -58,14 +56,14 @@ Route::group(
                 Route::get('/', 'PermissionsController@index')->name('index');
                 // lp.admin.permission.create
                 Route::get('/create', 'PermissionsController@create')->name('create');
-                // lp.admin.permission.store
-                Route::post('/store', 'PermissionsController@store')->name('store');
+                // lp.admin.permission.create
+                Route::post('/create', 'PermissionsController@store')->name('create');
                 // lp.admin.permission.edit
-                Route::get('/edit/{ID}', 'PermissionsController@edit')->name('edit');
-                // lp.admin.permission.update
-                Route::put('/update/{ID}', 'PermissionsController@update')->name('update');
+                Route::get('/edit/{permissionId}', 'PermissionsController@edit')->name('edit');
+                // lp.admin.permission.edit
+                Route::put('/edit/{permissionId}', 'PermissionsController@update')->name('edit');
                 // lp.admin.permission.delete
-                Route::delete('/delete/{ID}', 'PermissionsController@delete')->name('delete');
+                Route::delete('/delete/{permissionId}', 'PermissionsController@delete')->name('delete');
             }
         );
 

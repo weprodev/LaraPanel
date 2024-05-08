@@ -6,7 +6,7 @@ namespace WeProDev\LaraPanel\Presentation\User\Requests\Admin;
 
 use WeProDev\LaraPanel\Presentation\Panel\Requests\RequestValidation;
 
-class StoreGroup extends RequestValidation
+class StoreGroupRequest extends RequestValidation
 {
     public function rules(): array
     {

@@ -9,15 +9,15 @@
         'title' => __('Create a new permission'),
         'lists' => [
             [
-                'link' => '#',
+                'url' => $lp['dashboard_url'],
                 'name' => $lp['name'],
             ],
             [
-                'link' => 'lp.admin.permission.index',
+                'route' => 'lp.admin.permission.index',
                 'name' => __('Permission'),
             ],
             [
-                'link' => '#',
+                'url' => '#',
                 'name' => __('New permission'),
             ],
         ],
@@ -28,7 +28,7 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <form class="forms-sample" method="POST" action="{{ route('admin.user_management.permission.store') }}">
+                <form class="forms-sample" method="POST" action="{{ route('lp.admin.permission.create') }}">
                     @csrf
 
                     <div class="row">
@@ -36,14 +36,14 @@
                             <div class="form-group">
                                 <label for="name">{{ __('Name') }}</label>
                                 <input type="text" name="name" class="form-control" id="name"
-                                    placeholder="Name like: admin.manager">
+                                    placeholder="Name like: admin.manager" autofocus required>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="title">{{ __('Title') }}</label>
                                 <input type="text" name="title" class="form-control" id="title"
-                                    placeholder="Title like: Admin panel">
+                                    placeholder="optional, title like: Admin panel">
                             </div>
                         </div>
                     </div>
@@ -51,15 +51,24 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="module">{{ __('Module name') }}</label>
-                                <input type="text" class="form-control" name="module" id="module"
-                                    placeholder="Module name like: User">
+                                <select class="form-control" name="module" id="module">
+                                    @foreach ($modules as $module)
+                                        <option value="{{ $module }}"
+                                            {{ $module == $defaultModule ? 'selected' : '' }}>
+                                            {{ $module }}</option>
+                                    @endforeach
+                                </select>
+
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="guard_name">{{ __('Guard name') }}</label>
                                 <select class="form-control" name="guard_name" id="guard_name">
-                                    <option selected>web</option>
+                                    @foreach ($guards as $guard)
+                                        <option value="{{ $guard }}" {{ $defaultGuard == $guard ? 'selected' : '' }}>
+                                            {{ $guard }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

@@ -38,10 +38,17 @@
   "New user": "New user",
   "List of users": "List of users",
   "Create a new user": "Create a new user",
+  "The group :group created successfully.": "The group :group created successfully.",
+  "The group does not exist!": "The group does not exist!",
+  "This group :group has been updated successfully.": "This group :group has been updated successfully.",
+  "The permission :permission created successfully!": "The permission :permission created successfully!",
+  "The permission does not exist!": "The permission does not exist!",
+  "The permission :permission has been successfully updated!": "The permission :permission has been successfully updated!",
   "Submit": "Submit",
   "Cancel": "Cancel",
   "Showing": "Showing",
   "to": "to",
   "of": "of",
-  "entries": "entries"
+  "entries": "entries",
+  "Save Changes": "Save Changes"
 }

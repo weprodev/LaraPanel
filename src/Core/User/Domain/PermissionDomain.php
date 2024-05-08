@@ -58,7 +58,7 @@ final class PermissionDomain
         return $this->module;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }

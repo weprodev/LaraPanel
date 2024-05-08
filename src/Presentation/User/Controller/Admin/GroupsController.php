@@ -12,8 +12,8 @@ use WeProDev\LaraPanel\Core\User\Dto\GroupDto;
 use WeProDev\LaraPanel\Core\User\Repository\GroupRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
 use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
-use WeProDev\LaraPanel\Presentation\User\Requests\Admin\StoreGroup;
-use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateGroup;
+use WeProDev\LaraPanel\Presentation\User\Requests\Admin\StoreGroupRequest;
+use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateGroupRequest;
 
 class GroupsController extends Controller
 {
@@ -25,21 +25,21 @@ class GroupsController extends Controller
     {
         $this->groupRepository = resolve(GroupRepositoryInterface::class);
         $this->userRepository = resolve(UserRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.group.';
+        $this->baseViewPath = UserServiceProvider::$LPanel_Path . '.User.group.';
     }
 
-    public function index()
+    public function index(): View
     {
         $groups = $this->groupRepository->paginate(config('larapanel.pagination'));
 
-        return view($this->baseViewPath.'index', compact('groups'));
+        return view($this->baseViewPath . 'index', compact('groups'));
     }
 
-    public function create()
+    public function create(): View
     {
         $groups = $this->groupRepository->pluckAll();
 
-        return view($this->baseViewPath.'create', compact('groups'));
+        return view($this->baseViewPath . 'create', compact('groups'));
     }
 
     public function edit(string $groupId): View|RedirectResponse
@@ -48,7 +48,7 @@ class GroupsController extends Controller
         if ($group = $this->groupRepository->findById($groupId)) {
             $groups = $this->groupRepository->pluckAll();
 
-            return view($this->baseViewPath.'edit', compact('group', 'groups'));
+            return view($this->baseViewPath . 'edit', compact('group', 'groups'));
         }
 
         return redirect()->route('lp.admin.group.index')->with('message', [
@@ -57,7 +57,7 @@ class GroupsController extends Controller
         ]);
     }
 
-    public function store(StoreGroup $request): RedirectResponse
+    public function store(StoreGroupRequest $request): RedirectResponse
     {
         $parent = (int) $request->parent_id ? $this->groupRepository->findById((int) $request->parent_id)->getId() : null;
 
@@ -75,7 +75,7 @@ class GroupsController extends Controller
         ]);
     }
 
-    public function update(string $groupId, UpdateGroup $request)
+    public function update(string $groupId, UpdateGroupRequest $request): RedirectResponse
     {
         $groupId = (int) $groupId;
         if ($group = $this->groupRepository->findById($groupId)) {
@@ -97,7 +97,7 @@ class GroupsController extends Controller
         ]);
     }
 
-    public function delete(string $groupId)
+    public function delete(string $groupId): RedirectResponse
     {
         $groupId = (int) $groupId;
         if ($this->groupRepository->findById($groupId)) {

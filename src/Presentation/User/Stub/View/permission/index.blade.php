@@ -9,11 +9,11 @@
         'title' => __('Permissions'),
         'lists' => [
             [
-                'link' => '#',
+                'url' => $lp['dashboard_url'],
                 'name' => $lp['name'],
             ],
             [
-                'link' => '#',
+                'url' => '#',
                 'name' => __('Permissions'),
             ],
         ],
@@ -26,8 +26,8 @@
             <div class="card">
                 <div class="card-body">
                     <a href="{{ route('lp.admin.permission.create') }}"
-                        class="btn btn-outline-primary btn-icon-text float-right btn-newInList">
-                        <i class="mdi mdi-settings btn-icon-prepend"></i>
+                        class="btn btn-outline-primary btn-icon-text float-right btn-sm mb-2">
+                        <i class="mdi mdi-playlist-plus"></i>
                         {{ __('New permission') }}
                     </a>
                     <h4 class="card-title">{{ __('List of permissions') }}</h4>
@@ -49,17 +49,20 @@
                                     <td> {{ $item->name }} </td>
                                     <td> {{ $item->title ?? '--' }} </td>
                                     <td> {{ $item->guard_name }} </td>
-                                    <td> {{ $item->description }} </td>
-                                    <td>
+                                    <td> {{ $item->description ?? '--' }} </td>
+                                    <td class="text-right">
                                         <a href="{{ route('lp.admin.permission.edit', $item->id) }}"
-                                            class="btn btn-outline-dark btn-sm">{{ __('Edit') }}</a>
+                                            class="btn btn-outline-dark btn-sm">
+                                            <i class="mdi mdi-pencil-box-outline text-primary"></i>
+                                            {{ __('Edit') }}</a>
 
                                         <form action="{{ route('lp.admin.permission.delete', $item->id) }}" method="post"
-                                            class="inline-block">
+                                            class="inline-block btn btn-sm">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit"
-                                                class="btn btn-outline-danger btn-sm">{{ __('Delete') }}</button>
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                <i class="mdi mdi-delete-forever"></i>
+                                                {{ __('Delete') }}</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -67,14 +70,11 @@
 
                         </tbody>
                     </table>
-
-                    <div class="pagination">
-                        {{ $permissions->links() }}
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    {{ $permissions->links() }}
 @endsection
 
 

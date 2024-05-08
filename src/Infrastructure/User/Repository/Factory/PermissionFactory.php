@@ -18,7 +18,7 @@ final class PermissionFactory
             $perm->title,
             $perm->module,
             $perm->description,
-            GuardTypeEnum::tryFrom($perm->guard_name)
+            GuardTypeEnum::getGuardType($perm->guard_name)
         );
     }
 }

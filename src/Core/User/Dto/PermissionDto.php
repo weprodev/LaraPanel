@@ -13,7 +13,7 @@ final class PermissionDto
         string $title,
         string $module,
         ?string $description = null,
-        ?GuardTypeEnum $guardName = GuardTypeEnum::WEB
+        ?GuardTypeEnum $guardName = null
     ): PermissionDto {
 
         return new PermissionDto(
@@ -30,8 +30,9 @@ final class PermissionDto
         private readonly string $title,
         private readonly string $module,
         private readonly ?string $description = null,
-        private readonly ?GuardTypeEnum $guardName = GuardTypeEnum::WEB
+        private ?GuardTypeEnum $guardName = null
     ) {
+        $this->guardName = $guardName ?? GuardTypeEnum::WEB;
     }
 
     public function getName(): string

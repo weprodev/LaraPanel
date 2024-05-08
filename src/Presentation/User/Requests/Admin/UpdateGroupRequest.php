@@ -6,7 +6,7 @@ namespace WeProDev\LaraPanel\Presentation\User\Requests\Admin;
 
 use WeProDev\LaraPanel\Presentation\Panel\Requests\RequestValidation;
 
-final class UpdateGroup extends RequestValidation
+class UpdateGroupRequest extends RequestValidation
 {
     public function rules(): array
     {

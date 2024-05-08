@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent;
 
+use Illuminate\Support\Collection;
 use WeProDev\LaraPanel\Core\User\Domain\RoleDomain;
 use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
@@ -58,14 +59,14 @@ class RoleEloquentRepository implements RoleRepositoryInterface
     //     return $owner->removeRole($role);
     // }
 
-    public function getAllRolePermissions(array $attributes)
+    public function getAllRolePermissions(array $attributes): Collection
     {
         $role = Role::where($attributes)->firstOrFail();
 
         return $role->getAllPermissions();
     }
 
-    public function pluckAllRolePermissions(array $attributes)
+    public function pluckAllRolePermissions(array $attributes): array
     {
         $role = Role::where($attributes)->firstOrFail();
 
