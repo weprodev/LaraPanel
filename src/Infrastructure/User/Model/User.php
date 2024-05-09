@@ -37,7 +37,7 @@ class User extends Authenticatable
     public function groups(): MorphToMany
     {
         return $this->morphToMany(
-            GroupMorphMapsEnum::USER->value,
+            GroupMorphMapsEnum::GROUP->value,
             'groupable',
             $this->intermediateGroupTableName,
             'groupable_id',

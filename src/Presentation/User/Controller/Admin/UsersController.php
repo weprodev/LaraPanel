@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
 use WeProDev\LaraPanel\Core\Shared\Enum\LanguageEnum;
 use WeProDev\LaraPanel\Core\User\Dto\UserDto;
@@ -50,20 +51,23 @@ class UsersController
         ]);
     }
 
-    public function edit($ID)
+    public function edit(string $userUuid): View|RedirectResponse
     {
-        if ($user = $this->userRepository->find($ID)) {
-            $roles = $this->roleRepository->all();
-            // $departments = $this->departmentRepository->all(); // TODO
-            // $userHasRoles = $user->roles ? array_column(json_decode($user->roles, true), 'id') : [];
-            // $userHasDepartments = $user->departments ? array_column(json_decode($user->departments, true), 'id') : [];
+        if ($userDomain = $this->userRepository->findBy(['uuid' => $userUuid])) {
 
-            return view($this->baseViewPath.'edit', compact('roles'));
+            return view($this->baseViewPath.'.edit')->with([
+                'user' => $userDomain,
+                'roles' => $this->roleRepository->all(),
+                'userRoles' => $userDomain->getRoles()->pluck('id', 'id')->toArray(),
+                'statuses' => UserStatusEnum::toArray(),
+                'groups' => $this->groupRepository->all(),
+                'userGroups' => $userDomain->getGroups()->pluck('id', 'id')->toArray(),
+            ]);
         }
 
         return redirect()->back()->with('message', [
-            'type' => 'danger',
-            'text' => 'This user does not exist!',
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The user does not exist!'),
         ]);
     }
 
@@ -96,7 +100,7 @@ class UsersController
 
     public function update(string $userUuid, UpdateUserRequest $request)
     {
-        if ($user = $this->userRepository->findBy(['uuid' => $userUuid])) {
+        if ($userDomain = $this->userRepository->findBy(['uuid' => $userUuid])) {
             $userDto = UserDto::make(
                 $request->email,
                 $request->first_name,
@@ -106,76 +110,38 @@ class UsersController
                 LanguageEnum::EN, // TODO
                 $request->password,
             );
-            $this->userRepository->update($user, $userDto);
+            $this->userRepository->update($userDomain, $userDto);
 
-            $roles = $request->roles ?? [];
-
-            $departments = $request->departments ?? [];
-            if (count($departments) == 1 && $departments[0] == null) {
-                $departments = [];
-            }
-            //// IF WE WANT TO CHANGE PASSWORD
-            ////////////////////////////////////////////////////////////
-            if ($request->password) {
-                $this->userRepository->update($ID, [
-                    'password' => bcrypt($request->password),
-                ]);
-            }
-            ////////////////////////////////////////////////////////////
-
-            $this->userRepository->syncRoleToUser($user, $roles);
-            $this->departmentRepository->syncDepartments($user, $departments);
+            $this->userRepository->syncRolesToUser($userDomain, $request->roles ?? []);
+            $this->userRepository->syncGroupsToUser($userDomain, $request->groups ?? []);
 
             return redirect()->route('lp.admin.user.index')->with('message', [
-                'type' => 'success',
-                'text' => 'َUser updated successfully!',
+                'type' => AlertTypeEnum::SUCCESS->value,
+                'text' => __('The user :user has been successfully updated!', ['user' => $userDomain->getEmail()]),
             ]);
         }
 
         return redirect()->back()->with('message', [
-            'type' => 'danger',
-            'text' => 'This user does not exist!',
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The user does not exist!'),
         ]);
     }
 
-    public function delete($ID)
+    public function delete(string $userUuid)
     {
-        if ($user = $this->userRepository->find($ID)) {
-            //// soft delete
-            $this->userRepository->update($ID, [
-                'status' => 'deleted',
-            ]);
-            $user->delete();
+        if ($userDomain = $this->userRepository->findBy(['uuid' => $userUuid])) {
+            $userEmail = $userDomain->getEmail();
+            $this->userRepository->delete($userDomain->getUuid());
 
             return redirect()->route('lp.admin.user.index')->with('message', [
-                'type' => 'warning',
-                'text' => 'User Deleted successfully!',
+                'type' => AlertTypeEnum::WARNING->value,
+                'text' => __('The user :user has been successfully deleted!', ['user' => $userEmail]),
             ]);
         }
 
         return redirect()->back()->with('message', [
-            'type' => 'danger',
-            'text' => 'This user does not exist!',
-        ]);
-    }
-
-    public function restoreBackUser(int $ID)
-    {
-
-        if ($this->userRepository->restoreUser($ID)) {
-            $user = $this->userRepository->update($ID, [
-                'status' => 'accepted',
-            ]);
-
-            return redirect()->route('lp.admin.user.index')->with('message', [
-                'type' => 'success',
-                'text' => 'User restored successfully!',
-            ]);
-        }
-
-        return redirect()->back()->with('message', [
-            'type' => 'danger',
-            'text' => 'This user does not exist!',
+            'type' => AlertTypeEnum::DANGER->value,
+            'text' => __('The user does not exist!'),
         ]);
     }
 }

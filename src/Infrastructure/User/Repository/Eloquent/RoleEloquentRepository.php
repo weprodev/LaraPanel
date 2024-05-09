@@ -98,6 +98,6 @@ class RoleEloquentRepository implements RoleRepositoryInterface
 
     public function all(): EloquentCollection
     {
-        return Role::select('name', 'title', 'description')->get();
+        return Role::select('id', 'name', 'title', 'description')->get();
     }
 }

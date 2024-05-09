@@ -15,7 +15,7 @@ final class UserFactory
 {
     public static function fromEloquent(User $user): UserDomain
     {
-        return UserDomain::make(
+        $userDomain = UserDomain::make(
             $user->id,
             Uuid::fromString($user->uuid),
             $user->email,
@@ -27,5 +27,10 @@ final class UserFactory
             CarbonImmutable::parse($user->mobile_verified_at),
             LanguageEnum::tryFrom($user->language),
         );
+        $userDomain->setRoles($user->roles);
+        $userDomain->setPermissions($user->permissions);
+        $userDomain->setGroups($user->groups);
+
+        return $userDomain;
     }
 }

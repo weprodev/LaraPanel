@@ -751,7 +751,7 @@ parameters:
 			path: src/Presentation/User/Controller/Admin/UsersController.php
 
 		-
-			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:syncRoleToUser\\(\\)\\.$#"
+			message: "#^Call to an undefined method WeProDev\\\\LaraPanel\\\\Core\\\\User\\\\Repository\\\\RoleRepositoryInterface\\:\\:syncRolesToUser\\(\\)\\.$#"
 			count: 1
 			path: src/Presentation/User/Controller/Admin/UsersController.php
 

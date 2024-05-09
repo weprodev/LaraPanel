@@ -15,7 +15,7 @@ return new class extends Migration
         $tableName = config('larapanel.table.prefix') . config('larapanel.table.user.name');
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
-            $table->uuid();
+            $table->uuid()->unique();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();

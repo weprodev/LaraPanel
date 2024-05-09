@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Core\User\Domain;
 
 use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Collection;
 use Ramsey\Uuid\UuidInterface;
 use WeProDev\LaraPanel\Core\Shared\Enum\LanguageEnum;
 use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
@@ -38,6 +39,12 @@ final class UserDomain
         );
     }
 
+    private Collection $roles;
+
+    private Collection $permissions;
+
+    private Collection $groups;
+
     private function __construct(
         private readonly int $id,
         private readonly UuidInterface $uuid,
@@ -68,6 +75,11 @@ final class UserDomain
         return $this->email;
     }
 
+    public function getMobile(): string
+    {
+        return $this->mobile;
+    }
+
     public function getFirstName(): string
     {
         return $this->firstName;
@@ -96,5 +108,40 @@ final class UserDomain
     public function getLanguage(): LanguageEnum
     {
         return $this->language;
+    }
+
+    public function getFullName(): string
+    {
+        return $this->firstName.' '.$this->lastName;
+    }
+
+    public function setPermissions(Collection $permissions): void
+    {
+        $this->permissions = $permissions;
+    }
+
+    public function getPermissions(): Collection
+    {
+        return $this->permissions;
+    }
+
+    public function setRoles(Collection $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+    public function getRoles(): Collection
+    {
+        return $this->roles;
+    }
+
+    public function setGroups(Collection $groups): void
+    {
+        $this->groups = $groups;
+    }
+
+    public function getGroups(): Collection
+    {
+        return $this->groups;
     }
 }

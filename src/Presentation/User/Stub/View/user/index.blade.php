@@ -74,7 +74,7 @@
                                         @endforeach
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ route('lp.admin.user.edit', $item->id) }}"
+                                        <a href="{{ route('lp.admin.user.edit', $item->uuid) }}"
                                             class="btn btn-outline-dark btn-sm">
                                             <i class="mdi mdi-pencil-box-outline text-primary"></i>
                                             {{ __('Edit') }}</a>
