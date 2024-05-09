@@ -49,29 +49,31 @@
                             @foreach ($users as $item)
                                 <tr
                                     class="{{ $item->status == 'blocked' ? ' bg-warning ' : '' }} {{ $item->status == 'deleted' ? ' bg-danger ' : '' }}">
-                                    <td> {{ $item->id }} </td>
+                                    <td> {{ $loop->iteration }} </td>
                                     <td> {{ $item->first_name . ' ' . $item->last_name }} </td>
                                     <td> {{ $item->email }} </td>
                                     <td> {{ $item->mobile }} </td>
                                     <td> {{ $item->status }} </td>
                                     <td> {{ $item->created_at }} </td>
                                     <td>
-                                        @foreach ($item->roles as $value)
+                                        @forelse ($item->roles as $value)
                                             <span>{{ $value->name }}</span>
                                             @if (!$loop->last)
                                                 ,
                                             @endif
-                                        @endforeach
+                                        @empty
+                                            ---
+                                        @endforelse
                                     </td>
                                     <td>
-                                        @foreach ($item->groups as $gr)
-                                            @foreach ($gr->groups as $group)
-                                                <span>{{ $group->name }}</span>
-                                                @if (!$loop->last)
-                                                    ,
-                                                @endif
-                                            @endforeach
-                                        @endforeach
+                                        @forelse ($item->groups as $group)
+                                            <span>{{ $group->name }}</span>
+                                            @if (!$loop->last)
+                                                ,
+                                            @endif
+                                        @empty
+                                            ---
+                                        @endforelse
                                     </td>
                                     <td class="text-right">
                                         <a href="{{ route('lp.admin.user.edit', $item->uuid) }}"
@@ -79,7 +81,7 @@
                                             <i class="mdi mdi-pencil-box-outline text-primary"></i>
                                             {{ __('Edit') }}</a>
 
-                                        <form action="{{ route('lp.admin.user.delete', $item->id) }}" method="post"
+                                        <form action="{{ route('lp.admin.user.delete', $item->uuid) }}" method="post"
                                             class="inline-block btn btn-sm">
                                             @method('DELETE')
                                             @csrf

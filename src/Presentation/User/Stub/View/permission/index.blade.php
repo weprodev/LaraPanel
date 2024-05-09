@@ -45,7 +45,7 @@
                         <tbody>
                             @foreach ($permissions as $item)
                                 <tr>
-                                    <td> {{ $item->id }} </td>
+                                    <td> {{ $loop->iteration }} </td>
                                     <td> {{ $item->name }} </td>
                                     <td> {{ $item->title ?? '--' }} </td>
                                     <td> {{ $item->guard_name }} </td>

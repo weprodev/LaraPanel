@@ -44,7 +44,7 @@
                         <tbody>
                             @foreach ($groups as $item)
                                 <tr>
-                                    <td> {{ $item->id }} </td>
+                                    <td> {{ $loop->iteration }} </td>
                                     <td> {{ $item->title }} </td>
                                     <td> {{ $item->parent ? $item->parent->title : '----' }} </td>
                                     <td class="text-right">
