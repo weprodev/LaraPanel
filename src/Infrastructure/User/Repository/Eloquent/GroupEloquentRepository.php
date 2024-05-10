@@ -17,7 +17,9 @@ class GroupEloquentRepository implements GroupRepositoryInterface
 {
     public function paginate(int $perPage)
     {
-        return Group::query()->paginate($perPage);
+        return Group::query()
+            ->orderBy('created_at', 'DESC')
+            ->paginate($perPage);
     }
 
     public function firstOrCreate(GroupDto $groupDto): GroupDomain
@@ -93,6 +95,13 @@ class GroupEloquentRepository implements GroupRepositoryInterface
     public function findById(int $groupId): GroupDomain
     {
         $groupModel = Group::where('id', $groupId)->firstOrFail();
+
+        return GroupFactory::fromEloquent($groupModel);
+    }
+
+    public function findBy(array $attributes): GroupDomain
+    {
+        $groupModel = Group::where($attributes)->firstOrFail();
 
         return GroupFactory::fromEloquent($groupModel);
     }

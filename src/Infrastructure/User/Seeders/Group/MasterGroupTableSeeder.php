@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Group;
 
 use Illuminate\Database\Seeder;
+use WeProDev\LaraPanel\Core\User\Dto\GroupDto;
 use WeProDev\LaraPanel\Core\User\Repository\GroupRepositoryInterface;
 
 class MasterGroupTableSeeder extends Seeder
@@ -32,7 +33,7 @@ class MasterGroupTableSeeder extends Seeder
             if ($item['parent'] != null) {
                 $parent = $this->groupRepositoryInterface->findBy([
                     'name' => $item['name'],
-                ])->id;
+                ])->getId();
             }
 
             $findGroup = $this->groupRepositoryInterface->findBy([
@@ -40,29 +41,23 @@ class MasterGroupTableSeeder extends Seeder
                 'parent_id' => $parent,
             ]);
 
+            $groupDto = GroupDto::make(
+                $item['name'],
+                $item['title'] ?? $item['name'],
+                $parent,
+                $item['description'] ?? null
+            );
+
             if ($findGroup) {
                 $this->command->info('This group << '.$item['name'].' >> already existed! Updating data ...');
-
-                $this->groupRepositoryInterface->update($findGroup->id, [
-                    'name' => $item['name'],
-                    'title' => $item['title'] ?? $item['name'],
-                    'parent_id' => $parent,
-                    'description' => $item['description'] ?? null,
-                ]);
+                $this->groupRepositoryInterface->update($findGroup, $groupDto);
 
                 continue;
             }
 
-            $this->command->info(
-                'Creating the group <<'.$item['name'].'] >> ...'
-            );
+            $this->command->info('Creating the group <<'.$item['name'].'] >> ...');
 
-            $this->groupRepositoryInterface->store([
-                'name' => $item['name'],
-                'title' => $item['title'] ?? $item['name'],
-                'parent_id' => $parent,
-                'description' => $item['description'] ?? null,
-            ]);
+            $this->groupRepositoryInterface->create($groupDto);
         }
 
         $this->command->info("\nThe groups data has been successfully inserted!");

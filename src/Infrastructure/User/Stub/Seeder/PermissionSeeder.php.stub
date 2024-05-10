@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 use WeProDev\LaraPanel\Infrastructure\User\Seeders\Permission\PermissionTableSeeder;
 
 final class PermissionSeeder extends PermissionTableSeeder
@@ -12,7 +13,7 @@ final class PermissionSeeder extends PermissionTableSeeder
     //     [
     //         'name' => 'admin.manager',
     //         'title' => 'Admin Panel',
-    //         'guard_name' => 'web',
+    //         'guard_name' => GuardTypeEnum::WEB->value,
     //         'description' => 'This permission is for access to admin panel.',
     //         'module' => 'User',
     //         'roles' => ['Admin'],

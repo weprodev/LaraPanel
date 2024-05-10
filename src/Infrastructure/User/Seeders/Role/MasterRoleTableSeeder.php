@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Role;
 
 use Illuminate\Database\Seeder;
+use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
+use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
 
 class MasterRoleTableSeeder extends Seeder
@@ -28,10 +30,18 @@ class MasterRoleTableSeeder extends Seeder
         $this->command->info("=================\n");
 
         foreach ($this->getRoles() as $role) {
+
             $findRole = $this->roleRepository->findBy([
                 'name' => $role['name'],
                 'guard_name' => $role['guard_name'],
             ]);
+
+            $roleDto = RoleDto::make(
+                $role['name'],
+                $role['title'] ?? $role['name'],
+                $role['description'] ?? null,
+                GuardTypeEnum::getGuardType($role['guard_name'])
+            );
 
             if ($findRole) {
                 $this->command->info(
@@ -42,14 +52,7 @@ class MasterRoleTableSeeder extends Seeder
                         '] >> EXISTED! UPDATING DATA ...'
                 );
 
-                $this->roleRepository->update($findRole->id, [
-                    'name' => $role['name'],
-                    'title' => $role['title'],
-                    'guard_name' => $role['guard_name'],
-                    'description' => isset($role['description'])
-                        ? $role['description']
-                        : null,
-                ]);
+                $this->roleRepository->update($findRole, $roleDto);
 
                 continue;
             }
@@ -62,14 +65,7 @@ class MasterRoleTableSeeder extends Seeder
                     '] >> ...'
             );
 
-            $this->roleRepository->store([
-                'name' => $role['name'],
-                'title' => $role['title'],
-                'guard_name' => $role['guard_name'],
-                'description' => isset($role['description'])
-                    ? $role['description']
-                    : null,
-            ]);
+            $this->roleRepository->create($roleDto);
         }
 
         $this->command->info("\nThe roles data has been successfully updated!");

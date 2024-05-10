@@ -20,7 +20,7 @@ interface RoleRepositoryInterface
 
     public function getDefaultRole(): RoleDomain;
 
-    public function findBy(array $attributes): RoleDomain;
+    public function findBy(array $attributes): ?RoleDomain;
 
     public function delete(int $roleId): void;
 

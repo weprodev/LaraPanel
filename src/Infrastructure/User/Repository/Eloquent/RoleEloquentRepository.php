@@ -70,11 +70,13 @@ class RoleEloquentRepository implements RoleRepositoryInterface
         return $this->firstOrCreate($roleDto);
     }
 
-    public function findBy(array $attributes): RoleDomain
+    public function findBy(array $attributes): ?RoleDomain
     {
-        $roleModel = Role::where($attributes)->firstOrFail();
+        if ($roleModel = Role::where($attributes)->first()) {
+            return RoleFactory::fromEloquent($roleModel);
+        }
 
-        return RoleFactory::fromEloquent($roleModel);
+        return null;
     }
 
     public function getAllRolePermissions(array $attributes): Collection

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WeProDev\LaraPanel\Infrastructure\User\Model;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -29,9 +30,11 @@ class User extends Authenticatable
         $this->intermediateGroupTableName = config('larapanel.table.prefix').config('larapanel.table.model_has_group.name');
     }
 
-    public function setPasswordAttribute($password): void
+    protected function password(): Attribute
     {
-        $this->attributes['password'] = bcrypt($password);
+        return Attribute::make(
+            set: fn ($value) => bcrypt($value)
+        );
     }
 
     public function groups(): MorphToMany

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Infrastructure\User\Seeders\Permission;
 
 use Illuminate\Database\Seeder;
+use WeProDev\LaraPanel\Core\User\Dto\PermissionDto;
+use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
 
@@ -60,11 +62,11 @@ class MasterPermissionTableSeeder extends Seeder
                         'name' => array_keys($rolePermissions)[0],
                         'guard_name' => $guard,
                     ]);
-                    $permObject->syncRoles(
-                        $this->getRolesID(
-                            $rolePermissions[array_keys($rolePermissions)[0]],
-                            $guard
-                        )
+
+                    $this->syncRolesToPermission(
+                        $permObject->getName(),
+                        $rolePermissions[array_keys($rolePermissions)[0]],
+                        $guard
                     );
                 }
 
@@ -108,9 +110,8 @@ class MasterPermissionTableSeeder extends Seeder
                     $permObject = $this->permissionRepository->findBy([
                         'name' => $perm,
                     ]);
-                    $permObject->syncRoles(
-                        $this->getRolesID($roles, $this->guardName)
-                    );
+
+                    $this->syncRolesToPermission($permObject->getName(), $roles, $this->guardName);
                 }
 
                 $this->command->info("\n");
@@ -138,6 +139,14 @@ class MasterPermissionTableSeeder extends Seeder
             'guard_name' => $getGuard,
         ]);
 
+        $permissionDto = PermissionDto::make(
+            $permission['name'],
+            $permission['title'] ?? $permission['name'],
+            $permission['module'] ?? config('larapanel.permission.module.default'),
+            $permission['description'] ?? null,
+            GuardTypeEnum::getGuardType($guard ?? $permission['guard_name'])
+        );
+
         if (! is_null($getPermission)) {
             $this->command->info(
                 'THIS PERMISSION << '.
@@ -145,19 +154,7 @@ class MasterPermissionTableSeeder extends Seeder
                     ' >> EXISTED! UPDATING DATA ...'
             );
 
-            $this->permissionRepository->update($getPermission->id, [
-                'name' => $permission['name'],
-                'guard_name' => $guard ?? $permission['guard_name'],
-                'title' => isset($permission['title'])
-                    ? $permission['title']
-                    : null,
-                'module' => isset($permission['module'])
-                    ? $permission['module']
-                    : null,
-                'description' => isset($permission['description'])
-                    ? $permission['description']
-                    : null,
-            ]);
+            $this->permissionRepository->update($getPermission, $permissionDto);
 
             $rolePermissions[$permission['name']] =
                 array_values($permission['roles']) ?? null;
@@ -169,19 +166,15 @@ class MasterPermissionTableSeeder extends Seeder
             'CREATING THIS PERMISSION <<'.$permission['name'].' >> ...'
         );
 
-        $this->permissionRepository->store([
-            'name' => $permission['name'],
-            'guard_name' => $getGuard,
-            'title' => isset($permission['title'])
-                ? $permission['title']
-                : null,
-            'module' => isset($permission['module'])
-                ? $permission['module']
-                : null,
-            'description' => isset($permission['description'])
-                ? $permission['description']
-                : null,
-        ]);
+        $permissionDto = PermissionDto::make(
+            $permission['name'],
+            $permission['title'] ?? $permission['name'],
+            $permission['module'] ?? config('larapanel.permission.module.default'),
+            $permission['description'] ?? null,
+            GuardTypeEnum::getGuardType($guard ?? $permission['guard_name'])
+        );
+
+        $this->permissionRepository->create($permissionDto);
 
         $rolePermissions[$permission['name']] =
             array_values($permission['roles']) ?? null;
@@ -189,17 +182,20 @@ class MasterPermissionTableSeeder extends Seeder
         return $rolePermissions;
     }
 
-    private function getRolesID(array $roles, $guard)
+    private function syncRolesToPermission(string $permission, array $roles, string $guard): void
     {
-        $roleIDs = [];
         foreach ($roles as $role) {
             $findRole = $this->roleRepository->findBy([
                 'name' => $role,
                 'guard_name' => $guard,
             ]);
-            $roleIDs[] = $findRole ? $findRole->id : null;
-        }
 
-        return array_values($roleIDs);
+            if ($findRole) {
+                $this->permissionRepository->setPermissionToRole(
+                    $findRole->getId(),
+                    $permission
+                );
+            }
+        }
     }
 }
