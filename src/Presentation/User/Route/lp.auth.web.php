@@ -31,7 +31,7 @@ if (config('larapanel.auth.enable')) {
         ],
         function () {
             // lp.auth.user.sign.out
-            Route::get(config('larapanel.auth.url.signout'), 'SignInController@signOut')->name('sign.out');
+            Route::get(config('larapanel.auth.signout.url'), 'SignInController@signOut')->name('sign.out');
         }
     );
 }
