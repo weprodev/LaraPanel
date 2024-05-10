@@ -68,6 +68,12 @@ class UserEloquentRepository implements UserRepositoryInterface
             'language' => $userDto->getLanguage()->value,
         ]);
 
+        if (! is_null($userDto->getPassword())) {
+            $userModel->update([
+                'password' => $userDto->getPassword(),
+            ]);
+        }
+
         return UserFactory::fromEloquent($userModel);
     }
 
@@ -97,8 +103,6 @@ class UserEloquentRepository implements UserRepositoryInterface
         $userModel = User::where(['id' => $userDomain->getId()])->firstOrFail();
 
         $userModel->groups()->attach($groupsId);
-
-        // TODO $userModel->assignGroup($groupsId);
     }
 
     public function signInUser(UserDomain $userDomain): void
@@ -110,7 +114,11 @@ class UserEloquentRepository implements UserRepositoryInterface
 
     public function delete(UuidInterface $userUuid): void
     {
-        User::where('uuid', $userUuid->toString())->delete();
+        $userModel = User::where(['uuid' => $userUuid->toString()])->firstOrFail();
+        $userModel->roles()->detach();
+        $userModel->groups()->detach();
+
+        $userModel->delete();
     }
 
     public function syncRolesToUser(UserDomain $userDomain, array $roles = []): void

@@ -21,13 +21,15 @@ return [
     ],
 
     // larapanel.pagination
-    'pagination' => env('LP_DEFAULT_PAGINATION', 5),
+    'pagination' => env('LP_DEFAULT_PAGINATION', 15),
 
     // larapanel.theme
     'theme' => env('LP_DEFAULT_THEME', 'PurpleAdmin'),
 
-    // larapanel.language
-    'language' => env('LP_DEFAULT_LANG', LanguageEnum::EN->value),
+    'language' => [
+        // larapanel.language.default
+        'default' => env('LP_DEFAULT_LANG', LanguageEnum::EN->value),
+    ],
 
     /*
     |--------------------------------------------------------------------------

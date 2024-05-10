@@ -18,6 +18,6 @@ enum LanguageEnum: string
 
     public static function default(): LanguageEnum
     {
-        return LanguageEnum::tryFrom(config('larapanel.language')) ?? LanguageEnum::EN;
+        return LanguageEnum::tryFrom(config('larapanel.language.default')) ?? LanguageEnum::EN;
     }
 }

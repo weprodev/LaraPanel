@@ -59,7 +59,7 @@ class SignUpController
             $request->last_name,
             $request->mobile ?? null,
             UserStatusEnum::PENDING,
-            LanguageEnum::tryFrom(config('larapanel.language', LanguageEnum::default()->value)),
+            LanguageEnum::tryFrom(config('larapanel.language.default', LanguageEnum::default()->value)),
             $request->password
         );
         $user = $this->userRepository->firstOrCreate($usrDto);
