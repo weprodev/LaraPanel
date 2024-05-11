@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\LaraPanel\Auth;
+namespace App\Http\Controllers\LaraPanel\User\Auth;
 
 use WeProDev\LaraPanel\Presentation\User\Controller\Auth\SignInController as AuthSignInController;
 use App\Http\Requests\LaraPanel\Auth\SignInFormRequest;

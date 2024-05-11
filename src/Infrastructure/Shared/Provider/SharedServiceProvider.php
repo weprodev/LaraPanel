@@ -12,7 +12,7 @@ final class SharedServiceProvider extends ServiceProvider
 {
     public static string $LPanel_Path;
 
-    private string $publishGenericName = 'larapanel-install';
+    public static string $publishGenericName = 'larapanel-install';
 
     public function boot()
     {
@@ -24,8 +24,6 @@ final class SharedServiceProvider extends ServiceProvider
 
         // Configs
         $this->publishConfigs();
-        // View Files
-        $this->publishPurpleAdminViewFiles();
 
         // LOADING FROM
         $this->loadMigrationsFrom(base_path('database/migrations'));
@@ -58,17 +56,7 @@ final class SharedServiceProvider extends ServiceProvider
             __DIR__.'/../../../Config/laranav.php' => config_path('laranav.php'),
             // LaraPanel Config
             __DIR__.'/../../../Config/larapanel.php' => config_path('larapanel.php'),
-        ], [$this->publishGenericName, 'larapanel-config']);
-    }
-
-    private function publishPurpleAdminViewFiles(): void
-    {
-        $this->publishes([
-            // ASSETS, PUBLIC FILES
-            __DIR__.'/../../../Presentation/Panel/Stub/Public/PurpleAdmin' => public_path(self::$LPanel_Path.'/PurpleAdmin'),
-
-            __DIR__.'/../../../Presentation/Panel/View/PurpleAdmin' => resource_path(sprintf('views/%s/PurpleAdmin', self::$LPanel_Path)),
-        ], [$this->publishGenericName, 'larapanel-view-PurpleAdmin']);
+        ], [self::$publishGenericName, 'larapanel-config']);
     }
 
     private function setupPaginationView(): void

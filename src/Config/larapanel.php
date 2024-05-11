@@ -38,6 +38,9 @@ return [
     |
     */
     'auth' => [
+        // larapanel.auth.model
+        'model' => env('AUTH_MODEL', App\Models\LaraPanel\User::class),
+
         // larapanel.auth.enable
         'enable' => env('LP_AUTH_ENABLED', true),
 
@@ -91,11 +94,18 @@ return [
         // larapanel.namespace.directory
         'directory' => 'LaraPanel',
 
-        // larapanel.namespace.admin
-        'admin' => sprintf('App\Http\Controllers\%s\Admin', config('larapanel.namespace.directory', 'LaraPanel')),
+        'panel' => [
+            // larapanel.namespace.panel.dashboard
+            'dashboard' => 'App\Http\Controllers\LaraPanel\Panel',
+        ],
+
+        'user' => [
+            // larapanel.namespace.user.admin
+            'admin' => 'App\Http\Controllers\LaraPanel\User\Admin',
+        ],
 
         // larapanel.namespace.auth
-        'auth' => sprintf('App\Http\Controllers\%s\Auth', config('larapanel.namespace.directory', 'LaraPanel')),
+        'auth' => 'App\Http\Controllers\LaraPanel\User\Auth',
     ],
 
     /*

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\LaraPanel\Auth;
+namespace App\Http\Controllers\LaraPanel\User\Auth;
 
 use App\Http\Requests\LaraPanel\Auth\SignUpFormRequest;
 use WeProDev\LaraPanel\Presentation\User\Controller\Auth\SignUpController as AuthSignUpController;

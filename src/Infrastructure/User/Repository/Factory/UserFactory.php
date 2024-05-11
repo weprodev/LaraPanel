@@ -9,11 +9,10 @@ use Ramsey\Uuid\Uuid;
 use WeProDev\LaraPanel\Core\Shared\Enum\LanguageEnum;
 use WeProDev\LaraPanel\Core\User\Domain\UserDomain;
 use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
-use WeProDev\LaraPanel\Infrastructure\User\Model\User;
 
 final class UserFactory
 {
-    public static function fromEloquent(User $user): UserDomain
+    public static function fromEloquent($user): UserDomain
     {
         $userDomain = UserDomain::make(
             $user->id,

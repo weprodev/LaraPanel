@@ -6,16 +6,14 @@ namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Controller;
 use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
 use WeProDev\LaraPanel\Core\User\Dto\GroupDto;
 use WeProDev\LaraPanel\Core\User\Repository\GroupRepositoryInterface;
-use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
-use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Infrastructure\Shared\Provider\SharedServiceProvider;
 use WeProDev\LaraPanel\Presentation\User\Requests\Admin\StoreGroupRequest;
 use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateGroupRequest;
 
-class GroupsController extends Controller
+class GroupsController
 {
     protected string $baseViewPath;
 
@@ -24,8 +22,7 @@ class GroupsController extends Controller
     public function __construct()
     {
         $this->groupRepository = resolve(GroupRepositoryInterface::class);
-        $this->userRepository = resolve(UserRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.group.';
+        $this->baseViewPath = SharedServiceProvider::$LPanel_Path.'.User.group.';
     }
 
     public function index(): View

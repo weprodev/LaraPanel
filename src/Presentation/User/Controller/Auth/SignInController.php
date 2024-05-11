@@ -7,7 +7,7 @@ namespace WeProDev\LaraPanel\Presentation\User\Controller\Auth;
 use Auth;
 use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
 use WeProDev\LaraPanel\Core\User\Enum\UserNameTypeEnum;
-use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Infrastructure\Shared\Provider\SharedServiceProvider;
 use WeProDev\LaraPanel\Presentation\User\Requests\Auth\SignInFormRequest;
 
 class SignInController
@@ -19,7 +19,7 @@ class SignInController
         if (! config('larapanel.auth.signin.enable')) {
             abort(404);
         }
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.auth.';
+        $this->baseViewPath = SharedServiceProvider::$LPanel_Path.'.User.auth.';
     }
 
     public function signInForm()

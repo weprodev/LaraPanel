@@ -13,7 +13,7 @@ use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
 use WeProDev\LaraPanel\Core\User\Repository\GroupRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
-use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Infrastructure\Shared\Provider\SharedServiceProvider;
 use WeProDev\LaraPanel\Presentation\User\Requests\Admin\StoreUserRequest;
 use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateUserRequest;
 
@@ -32,7 +32,7 @@ class UsersController
         $this->userRepository = resolve(UserRepositoryInterface::class);
         $this->roleRepository = resolve(RoleRepositoryInterface::class);
         $this->groupRepository = resolve(GroupRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.user.';
+        $this->baseViewPath = SharedServiceProvider::$LPanel_Path.'.User.user.';
     }
 
     public function index(): View

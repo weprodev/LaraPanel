@@ -10,7 +10,7 @@ use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
 use WeProDev\LaraPanel\Core\User\Dto\PermissionDto;
 use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
-use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Infrastructure\Shared\Provider\SharedServiceProvider;
 use WeProDev\LaraPanel\Presentation\User\Requests\Admin\StorePermissionRequest;
 use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdatePermissionRequest;
 
@@ -27,7 +27,7 @@ class PermissionsController
     public function __construct()
     {
         $this->permissionRepository = resolve(PermissionRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.permission.';
+        $this->baseViewPath = SharedServiceProvider::$LPanel_Path.'.User.permission.';
         $this->guards = GuardTypeEnum::all();
         $this->modules = config('larapanel.permission.module.list', []);
     }

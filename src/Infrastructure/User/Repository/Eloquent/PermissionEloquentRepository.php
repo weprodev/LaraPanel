@@ -46,11 +46,14 @@ class PermissionEloquentRepository implements PermissionRepositoryInterface
         return PermissionFactory::fromEloquent($permModel);
     }
 
-    public function findBy(array $attributes): PermissionDomain
+    public function findBy(array $attributes): ?PermissionDomain
     {
-        $permModel = Permission::where($attributes)->firstOrFail();
+        if ($permModel = Permission::where($attributes)->first()) {
 
-        return PermissionFactory::fromEloquent($permModel);
+            return PermissionFactory::fromEloquent($permModel);
+        }
+
+        return null;
     }
 
     public function setPermissionToRole(int $roleId, $permission): void

@@ -12,7 +12,7 @@ use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
 use WeProDev\LaraPanel\Core\User\Repository\GroupRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
-use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Infrastructure\Shared\Provider\SharedServiceProvider;
 use WeProDev\LaraPanel\Presentation\User\Requests\Auth\SignUpFormRequest;
 
 class SignUpController
@@ -34,7 +34,7 @@ class SignUpController
         $this->userRepository = resolve(UserRepositoryInterface::class);
         $this->roleRepository = resolve(RoleRepositoryInterface::class);
         $this->groupRepository = resolve(GroupRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.auth.';
+        $this->baseViewPath = SharedServiceProvider::$LPanel_Path.'.User.auth.';
     }
 
     public function signupForm()
@@ -74,7 +74,7 @@ class SignUpController
 
         $this->userRepository->signInUser($user);
 
-        return redirect()->route(config('larapanel.auth.default.redirection'))
+        return redirect(config('larapanel.auth.default.redirection'))
             ->with('message', [
                 'type' => AlertTypeEnum::SUCCESS->value,
                 'text' => __('Your account has been created successfully!'),

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\LaraPanel\Admin;
+namespace App\Http\Controllers\LaraPanel\User\Admin;
 
 use WeProDev\LaraPanel\Presentation\User\Controller\Admin\UsersController as AdminUsersController;
 

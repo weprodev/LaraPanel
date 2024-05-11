@@ -11,7 +11,7 @@ use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
 use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
-use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
+use WeProDev\LaraPanel\Infrastructure\Shared\Provider\SharedServiceProvider;
 use WeProDev\LaraPanel\Presentation\User\Requests\Admin\StoreRoleRequest;
 use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateRoleRequest;
 
@@ -29,7 +29,7 @@ class RolesController
     {
         $this->permissionRepository = resolve(PermissionRepositoryInterface::class);
         $this->roleRepository = resolve(RoleRepositoryInterface::class);
-        $this->baseViewPath = UserServiceProvider::$LPanel_Path.'.User.role.';
+        $this->baseViewPath = SharedServiceProvider::$LPanel_Path.'.User.role.';
         $this->guards = GuardTypeEnum::all();
     }
 

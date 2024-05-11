@@ -15,7 +15,7 @@ interface PermissionRepositoryInterface
 
     public function update(PermissionDomain $permissionDomain, PermissionDto $permissionDto): PermissionDomain;
 
-    public function findBy(array $attributes): PermissionDomain;
+    public function findBy(array $attributes): ?PermissionDomain;
 
     public function setPermissionToRole(int $roleId, $permission): void;
 

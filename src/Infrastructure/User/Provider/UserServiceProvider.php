@@ -13,6 +13,7 @@ use WeProDev\LaraPanel\Core\User\Repository\PermissionRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\RoleRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Repository\UserRepositoryInterface;
 use WeProDev\LaraPanel\Core\User\Service\GroupServiceInterface;
+use WeProDev\LaraPanel\Infrastructure\Shared\Provider\SharedServiceProvider;
 use WeProDev\LaraPanel\Infrastructure\User\Facade\LPanelService;
 use WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent\GroupEloquentRepository;
 use WeProDev\LaraPanel\Infrastructure\User\Repository\Eloquent\PermissionEloquentRepository;
@@ -22,7 +23,7 @@ use WeProDev\LaraPanel\Infrastructure\User\Service\GroupService;
 
 final class UserServiceProvider extends ServiceProvider
 {
-    public static string $LPanel_Path;
+    private string $mainDir;
 
     private string $publishGenericName = 'larapanel-install';
 
@@ -32,8 +33,7 @@ final class UserServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        self::$LPanel_Path = config('larapanel.namespace.directory', 'LaraPanel');
-
+        $this->mainDir = SharedServiceProvider::$LPanel_Path;
         $this->registerTranslations();
         $this->registerViews();
         $this->loadLaraPanelDataOnViewPages();
@@ -50,7 +50,7 @@ final class UserServiceProvider extends ServiceProvider
 
         // USER MODULE VIEW FILES
         $this->publishes([
-            __DIR__.sprintf('/../../../Presentation/%s/Stub/View', $this->moduleName) => resource_path(sprintf('views/%s/%s', self::$LPanel_Path, $this->moduleName)),
+            __DIR__.sprintf('/../../../Presentation/%s/Stub/View', $this->moduleName) => resource_path(sprintf('views/%s/%s', $this->mainDir, $this->moduleName)),
         ], [$this->publishGenericName, 'larapanel-view-user']);
 
         // LANG
@@ -116,7 +116,7 @@ final class UserServiceProvider extends ServiceProvider
     public function registerViews()
     {
         $viewPath = resource_path('views/modules/'.$this->moduleNameLower);
-        $sourcePath = resource_path(sprintf('/views/%s/%s', self::$LPanel_Path, $this->moduleName));
+        $sourcePath = resource_path(sprintf('/views/%s/%s', $this->mainDir, $this->moduleName));
 
         $this->publishes(
             [
@@ -186,10 +186,10 @@ final class UserServiceProvider extends ServiceProvider
     private function publishAdminControllers(): void
     {
         $this->publishes([
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/PermissionsController.php.stub') => app_path(sprintf('Http/Controllers/%s/Admin/PermissionsController.php', self::$LPanel_Path)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/RolesController.php.stub') => app_path(sprintf('Http/Controllers/%s/Admin/RolesController.php', self::$LPanel_Path)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/GroupsController.php.stub') => app_path(sprintf('Http/Controllers/%s/Admin/GroupsController.php', self::$LPanel_Path)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/UsersController.php.stub') => app_path(sprintf('Http/Controllers/%s/Admin/UsersController.php', self::$LPanel_Path)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/PermissionsController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Admin/PermissionsController.php', $this->mainDir, $this->moduleName)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/RolesController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Admin/RolesController.php', $this->mainDir, $this->moduleName)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/GroupsController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Admin/GroupsController.php', $this->mainDir, $this->moduleName)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/UsersController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Admin/UsersController.php', $this->mainDir, $this->moduleName)),
 
             // Form Request
             // __DIR__ . sprintf('/../../../Presentation/User/Stub/Requests') => resource_path(sprintf('Http/Requests/%s', self::$LPanel_Path)),
@@ -204,22 +204,22 @@ final class UserServiceProvider extends ServiceProvider
     private function publishAuthControllers(): void
     {
         $this->publishes([
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Auth/SignInController.php.stub') => app_path(sprintf('Http/Controllers/%s/Auth/SignInController.php', self::$LPanel_Path)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Auth/SignUpController.php.stub') => app_path(sprintf('Http/Controllers/%s/Auth/SignUpController.php', self::$LPanel_Path)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Auth/SignInController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Auth/SignInController.php', $this->mainDir, $this->moduleName)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Auth/SignUpController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Auth/SignUpController.php', $this->mainDir, $this->moduleName)),
 
             // FormRequest Validation
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Auth/SignInFormRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Auth/SignInFormRequest.php', self::$LPanel_Path)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Auth/SignUpFormRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Auth/SignUpFormRequest.php', self::$LPanel_Path)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Auth/SignInFormRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Auth/SignInFormRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Auth/SignUpFormRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Auth/SignUpFormRequest.php', $this->mainDir)),
         ], [$this->publishGenericName, 'larapanel-auth-controller']);
     }
 
     private function publishModels(): void
     {
         $this->publishes([
-            __DIR__.'/../Stub/Models/Permission.php.stub' => app_path(sprintf('Models/%s/Permission.php', self::$LPanel_Path)),
-            __DIR__.'/../Stub/Models/Role.php.stub' => app_path(sprintf('Models/%s/Role.php', self::$LPanel_Path)),
-            __DIR__.'/../Stub/Models/Group.php.stub' => app_path(sprintf('Models/%s/Group.php', self::$LPanel_Path)),
-            __DIR__.'/../Stub/Models/User.php.stub' => app_path(sprintf('Models/%s/User.php', self::$LPanel_Path)),
+            __DIR__.'/../Stub/Models/Permission.php.stub' => app_path(sprintf('Models/%s/Permission.php', $this->mainDir)),
+            __DIR__.'/../Stub/Models/Role.php.stub' => app_path(sprintf('Models/%s/Role.php', $this->mainDir)),
+            __DIR__.'/../Stub/Models/Group.php.stub' => app_path(sprintf('Models/%s/Group.php', $this->mainDir)),
+            __DIR__.'/../Stub/Models/User.php.stub' => app_path(sprintf('Models/%s/User.php', $this->mainDir)),
         ], ['larapanel-install', 'larapanel-models']);
     }
 
