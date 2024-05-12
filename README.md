@@ -1,6 +1,6 @@
-![image](https://github.com/weprodev/LaraPanel/blob/master/src/Public/mekaeils-package/images/logo-user-management.jpg)
+![image](https://github.com/weprodev/LaraPanel/blob/master/src/Presentation/Panel/Stub/Public/logo.png)
 
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<a href="https://packagist.org/packages/weprodev/larapanel"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 
 # About LaraPanel
 
