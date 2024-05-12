@@ -27,6 +27,7 @@ php artisan vendor:publish --tag=larapanel-install
 - ☕ _Make a Donation:_ If you've found _LaraPanel_ useful and would like to contribute financially, consider making a donation. Your support helps cover hosting costs, development tools, and other expenses that keep the project running.
 
   > 💲 Support LaraPanel development by becoming a sponsor. 
+  <iframe src="https://github.com/sponsors/weprodev/button" title="Sponsor weprodev" height="32" width="114" style="border: 0; border-radius: 6px;"></iframe>
 
 - 💪 _Contribute Code:_ Are you a developer? We welcome contributions of all sizes! Whether it's fixing bugs, adding new features, or improving documentation, every contribution makes a difference.
 - 💭 _Provide Feedback:_ Have ideas for how we can improve LaraPanel? We'd love to hear from you! Your feedback helps us prioritize our efforts and make LaraPanel even better.
