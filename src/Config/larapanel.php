@@ -108,6 +108,17 @@ return [
         'auth' => 'App\Http\Controllers\LaraPanel\User\Auth',
     ],
 
+    'view' => [
+        // larapanel.view.components
+        'components' => 'LaraPanel.PurpleAdmin.components',
+
+        // larapanel.view.boot
+        'boot' => [
+            'btn-link' => App\View\LaraPanel\Components\BtnLinkComponent::class,
+            'btn-form-delete-list' => App\View\LaraPanel\Components\BtnFormDeleteListComponent::class,
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | DataBase Configurations

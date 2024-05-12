@@ -25,11 +25,10 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('lp.admin.user.create') }}"
-                        class="btn btn-outline-primary btn-icon-text float-right mb-2 btn-sm">
-                        <i class="mdi mdi-account-plus btn-icon-prepend"></i>
-                        {{ __('New user') }}
-                    </a>
+                    <x-btn-link href="{{ route('lp.admin.user.create') }}" label="{{ __('New user') }}"
+                        class="btn btn-outline-primary btn-icon-text float-right mb-2 btn-sm"
+                        icon="mdi mdi-account-plus btn-icon-prepend" permission="lp.admin.user.create"></x-btn-link>
+
                     <h4 class="card-title">{{ __('List of users') }}</h4>
                     <table class="table table-bordered">
                         <thead>
@@ -76,19 +75,15 @@
                                         @endforelse
                                     </td>
                                     <td class="text-right">
-                                        <a href="{{ route('lp.admin.user.edit', $item->uuid) }}"
-                                            class="btn btn-outline-dark btn-sm">
-                                            <i class="mdi mdi-pencil-box-outline text-primary"></i>
-                                            {{ __('Edit') }}</a>
+                                        <x-btn-link href="{{ route('lp.admin.user.edit', $item->uuid) }}"
+                                            label="{{ __('Edit') }}" class="btn btn-outline-dark btn-sm"
+                                            icon="mdi mdi-pencil-box-outline text-primary"
+                                            permission="lp.admin.user.edit" />
 
-                                        <form action="{{ route('lp.admin.user.delete', $item->uuid) }}" method="post"
-                                            class="inline-block btn btn-sm">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                <i class="mdi mdi-delete-forever"></i>
-                                                {{ __('Delete') }}</button>
-                                        </form>
+                                        <x-btn-form-delete-list action="{{ route('lp.admin.user.delete', $item->uuid) }}"
+                                            label="{{ __('Delete') }}" formClass="inline-block btn btn-sm"
+                                            btnClass="btn btn-outline-danger btn-sm" icon="mdi mdi-delete-forever"
+                                            permission="lp.admin.user.delete" />
                                     </td>
                                 </tr>
                             @endforeach

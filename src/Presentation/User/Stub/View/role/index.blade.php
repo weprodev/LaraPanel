@@ -25,11 +25,10 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('lp.admin.role.create') }}"
-                        class="btn btn-outline-primary btn-icon-text float-right btn-sm mb-2">
-                        <i class="mdi mdi-playlist-plus"></i>
-                        {{ __('New role') }}
-                    </a>
+                    <x-btn-link href="{{ route('lp.admin.role.create') }}" label="{{ __('New role') }}"
+                        class="btn btn-outline-primary btn-icon-text float-right btn-sm mb-2" icon="mdi mdi-playlist-plus"
+                        permission="lp.admin.role.create" />
+
                     <h4 class="card-title">{{ __('List of roles') }}</h4>
                     <table class="table table-bordered">
                         <thead>
@@ -51,19 +50,15 @@
                                     <td> {{ $item->guard_name }} </td>
                                     <td> {{ $item->description }} </td>
                                     <td class="text-right">
-                                        <a href="{{ route('lp.admin.role.edit', $item->id) }}"
-                                            class="btn btn-outline-dark btn-sm">
-                                            <i class="mdi mdi-pencil-box-outline text-primary"></i>
-                                            {{ __('Edit') }}</a>
+                                        <x-btn-link href="{{ route('lp.admin.role.edit', $item->id) }}"
+                                            label="{{ __('Edit') }}" class="btn btn-outline-dark btn-sm"
+                                            icon="mdi mdi-pencil-box-outline text-primary"
+                                            permission="lp.admin.role.edit" />
 
-                                        <form action="{{ route('lp.admin.role.delete', $item->id) }}" method="post"
-                                            class="inline-block btn btn-sm">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                <i class="mdi mdi-delete-forever"></i>
-                                                {{ __('Delete') }}</button>
-                                        </form>
+                                        <x-btn-form-delete-list action="{{ route('lp.admin.role.delete', $item->id) }}"
+                                            label="{{ __('Delete') }}" formClass="inline-block btn btn-sm"
+                                            btnClass="btn btn-outline-danger btn-sm" icon="mdi mdi-delete-forever"
+                                            permission="lp.admin.role.delete" />
                                     </td>
                                 </tr>
                             @endforeach

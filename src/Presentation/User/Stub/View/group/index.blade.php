@@ -25,13 +25,11 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('lp.admin.group.create') }}"
-                        class="btn btn-outline-primary btn-icon-text btn-sm float-right mb-2">
-                        <i class="mdi mdi-shape-rectangle-plus btn-icon-prepend"></i>
-                        {{ __('New Group') }}
-                    </a>
-                    <h4 class="card-title">{{ __('List of groups') }}</h4>
+                    <x-btn-link href="{{ route('lp.admin.group.create') }}" label="{{ __('New Group') }}"
+                        class="btn btn-outline-primary btn-icon-text btn-sm float-right mb-2"
+                        icon="mdi mdi-shape-rectangle-plus btn-icon-prepend" permission="lp.admin.group.create" />
 
+                    <h4 class="card-title">{{ __('List of groups') }}</h4>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -48,19 +46,15 @@
                                     <td> {{ $item->title }} </td>
                                     <td> {{ $item->parent ? $item->parent->title : '----' }} </td>
                                     <td class="text-right">
-                                        <a href="{{ route('lp.admin.group.edit', $item->id) }}"
-                                            class="btn btn-outline-dark btn-sm">
-                                            <i class="mdi mdi-pencil-box-outline text-primary"></i>
-                                            {{ __('Edit') }}</a>
+                                        <x-btn-link href="{{ route('lp.admin.group.edit', $item->id) }}"
+                                            label="{{ __('Edit') }}" class="btn btn-outline-dark btn-sm"
+                                            icon="mdi mdi-pencil-box-outline text-primary"
+                                            permission="lp.admin.group.edit" />
 
-                                        <form action="{{ route('lp.admin.group.delete', $item->id) }}" method="post"
-                                            class="inline-block btn btn-sm">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                <i class="mdi mdi-delete-forever"></i>
-                                                {{ __('Delete') }}</button>
-                                        </form>
+                                        <x-btn-form-delete-list action="{{ route('lp.admin.group.delete', $item->id) }}"
+                                            label="{{ __('Delete') }}" formClass="inline-block btn btn-sm"
+                                            btnClass="btn btn-outline-danger btn-sm" icon="mdi mdi-delete-forever"
+                                            permission="lp.admin.group.delete" />
                                     </td>
                                 </tr>
                             @endforeach
