@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
 use WeProDev\LaraPanel\Core\Shared\Enum\LanguageEnum;
@@ -19,6 +20,10 @@ use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateUserRequest;
 
 class UsersController
 {
+    private ?FormRequest $storeUserRequestClass = null;
+
+    private ?FormRequest $updateUserRequestClass = null;
+
     protected string $baseViewPath;
 
     private UserRepositoryInterface $userRepository;
@@ -71,8 +76,18 @@ class UsersController
         ]);
     }
 
-    public function store(StoreUserRequest $request)
+    protected function setStoreRequestClass(string $storeRequestClass): void
     {
+        if (is_subclass_of($storeRequestClass, FormRequest::class)) {
+            $this->storeUserRequestClass = app($storeRequestClass);
+        }
+    }
+
+    public function store(FormRequest $request): RedirectResponse
+    {
+        $this->storeUserRequestClass ??= app(StoreUserRequest::class);
+        $request->validate($this->storeUserRequestClass->rules());
+
         $userDto = UserDto::make(
             $request->email,
             $request->first_name,
@@ -98,8 +113,18 @@ class UsersController
         ]);
     }
 
-    public function update(string $userUuid, UpdateUserRequest $request)
+    protected function setUpdateRequestClass(string $updateRequestClass): void
     {
+        if (is_subclass_of($updateRequestClass, FormRequest::class)) {
+            $this->updateUserRequestClass = app($updateRequestClass);
+        }
+    }
+
+    public function update(string $userUuid, FormRequest $request): RedirectResponse
+    {
+        $this->updateUserRequestClass ??= app(UpdateUserRequest::class);
+        $request->validate($this->updateUserRequestClass->rules());
+
         if ($userDomain = $this->userRepository->findBy(['uuid' => $userUuid])) {
             $userDto = UserDto::make(
                 $request->email,
@@ -127,7 +152,7 @@ class UsersController
         ]);
     }
 
-    public function delete(string $userUuid)
+    public function delete(string $userUuid): RedirectResponse
     {
         if ($userDomain = $this->userRepository->findBy(['uuid' => $userUuid])) {
             $userEmail = $userDomain->getEmail();

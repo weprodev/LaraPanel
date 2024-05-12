@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Requests\LaraPanel\Requests\Admin;
+
+use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateGroupRequest as AdminUpdateGroupRequest;
+
+final class UpdateGroupRequest extends AdminUpdateGroupRequest
+{
+    // public function rules(): array
+    // {
+    //     return [
+    //     ];
+    // }
+}

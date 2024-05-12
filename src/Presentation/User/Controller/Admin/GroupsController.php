@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
 use WeProDev\LaraPanel\Core\User\Dto\GroupDto;
@@ -15,6 +16,10 @@ use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateGroupRequest;
 
 class GroupsController
 {
+    private ?FormRequest $storeGroupRequestClass = null;
+
+    private ?FormRequest $updateGroupRequestClass = null;
+
     protected string $baseViewPath;
 
     private GroupRepositoryInterface $groupRepository;
@@ -54,8 +59,18 @@ class GroupsController
         ]);
     }
 
-    public function store(StoreGroupRequest $request): RedirectResponse
+    protected function setStoreRequestClass(string $storeRequestClass): void
     {
+        if (is_subclass_of($storeRequestClass, FormRequest::class)) {
+            $this->storeGroupRequestClass = app($storeRequestClass);
+        }
+    }
+
+    public function store(FormRequest $request)
+    {
+        $this->storeGroupRequestClass ??= app(StoreGroupRequest::class);
+        $request->validate($this->storeGroupRequestClass->rules());
+
         $parent = (int) $request->parent_id ? $this->groupRepository->findById((int) $request->parent_id)->getId() : null;
 
         $groupDto = GroupDto::make(
@@ -72,8 +87,18 @@ class GroupsController
         ]);
     }
 
-    public function update(string $groupId, UpdateGroupRequest $request): RedirectResponse
+    protected function setUpdateRequestClass(string $updateRequestClass): void
     {
+        if (is_subclass_of($updateRequestClass, FormRequest::class)) {
+            $this->updateGroupRequestClass = app($updateRequestClass);
+        }
+    }
+
+    public function update(string $groupId, FormRequest $request): RedirectResponse
+    {
+        $this->updateGroupRequestClass ??= app(UpdateGroupRequest::class);
+        $request->validate($this->updateGroupRequestClass->rules());
+
         $groupId = (int) $groupId;
         if ($group = $this->groupRepository->findById($groupId)) {
 

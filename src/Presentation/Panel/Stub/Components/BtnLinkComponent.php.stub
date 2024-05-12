@@ -15,7 +15,7 @@ final class BtnLinkComponent extends BaseComponent
         public $class = null,
         public $permission = null
     ) {
-        parent::__construct("btn-link");
+        parent::__construct('btn-link');
     }
 }
 

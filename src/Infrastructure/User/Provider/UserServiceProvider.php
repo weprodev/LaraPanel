@@ -190,10 +190,19 @@ final class UserServiceProvider extends ServiceProvider
             __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/RolesController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Admin/RolesController.php', $this->mainDir, $this->moduleName)),
             __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/GroupsController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Admin/GroupsController.php', $this->mainDir, $this->moduleName)),
             __DIR__.sprintf('/../../../Presentation/User/Stub/Controller/Admin/UsersController.php.stub') => app_path(sprintf('Http/Controllers/%s/%s/Admin/UsersController.php', $this->mainDir, $this->moduleName)),
-
-            // Form Request
-            // __DIR__ . sprintf('/../../../Presentation/User/Stub/Requests') => resource_path(sprintf('Http/Requests/%s', self::$LPanel_Path)),
         ], [$this->publishGenericName, 'larapanel-admin-controller']);
+
+        $this->publishes([
+            // Form Request
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreGroupRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/StoreGroupRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StorePermissionRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/StorePermissionRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreRoleRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/StoreRoleRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreUserRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/StoreUserRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateGroupRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/UpdateGroupRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdatePermissionRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/UpdatePermissionRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateRoleRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/UpdateRoleRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateUserRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/UpdateUserRequest.php', $this->mainDir)),
+        ], ['larapanel-admin-request']);
     }
 
     /**

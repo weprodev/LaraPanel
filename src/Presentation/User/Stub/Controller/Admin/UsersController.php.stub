@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\LaraPanel\User\Admin;
 
+use App\Http\Requests\LaraPanel\Requests\Admin\StoreUserRequest;
+use App\Http\Requests\LaraPanel\Requests\Admin\UpdateUserRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\RedirectResponse;
+use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
+use WeProDev\LaraPanel\Core\User\Enum\UserStatusEnum;
 use WeProDev\LaraPanel\Presentation\User\Controller\Admin\UsersController as AdminUsersController;
 
 final class UsersController extends AdminUsersController
@@ -30,20 +37,71 @@ final class UsersController extends AdminUsersController
     //     parent::__construct();
     // }
 
-    // public function index(){
-    //     return view($this->baseViewPath . 'index');
+    // public function index(): View
+    // {
+    //     // write new logic here
+
+    //     return view($this->baseViewPath . 'index', compact('users'));
     // }
 
-    // public function create(){
-    //     return view($this->baseViewPath . 'create');
+    // public function create(): View
+    // {
+    //     // write new logic here
+
+    //     return view($this->baseViewPath . 'create')->with([
+    //         'statuses' => UserStatusEnum::toArray(),
+    //         'roles' => [],
+    //         'groups' => [],
+    //     ]);
     // }
 
-    // public function store(){
+    // public function edit(string $userUuid): View|RedirectResponse
+    // {
+    //     // write new logic here
+
+    //     return redirect()->back()->with('message', [
+    //         'type' => AlertTypeEnum::DANGER->value,
+    //         'text' => __('The user does not exist!'),
+    //     ]);
     // }
 
-    // public function update(){
+    // public function store(FormRequest $request): RedirectResponse
+    // {
+    //     // you can overwrite Form request
+    //     // $this->setStoreRequestClass(StoreUserRequest::class);
+    //     // parent::store($request);
+
+    //     // Or you can completely change the logic here
+    //     // write new logic here
+
+    //     return redirect()->route('lp.admin.user.index')->with('message', [
+    //         'type' => AlertTypeEnum::SUCCESS->value,
+    //         'text' => __('The user :user has been successfully created!', ['user' => $request->email]),
+    //     ]);
     // }
 
-    // public function delete(){
+    // public function update(string $userUuid, FormRequest $request): RedirectResponse
+    // {
+    //     // you can overwrite Form request
+    //     // $this->setUpdateRequestClass(UpdateUserRequest::class);
+    //     // parent::update($userUuid, $request);
+
+    //     // Or you can completely change the logic here
+    //     // write new logic here
+
+    //     return redirect()->back()->with('message', [
+    //         'type' => AlertTypeEnum::DANGER->value,
+    //         'text' => __('The user does not exist!'),
+    //     ]);
+    // }
+
+    // public function delete(string $userUuid): RedirectResponse
+    // {
+    //     // write new logic here
+
+    //     return redirect()->back()->with('message', [
+    //         'type' => AlertTypeEnum::DANGER->value,
+    //         'text' => __('The user does not exist!'),
+    //     ]);
     // }
 }

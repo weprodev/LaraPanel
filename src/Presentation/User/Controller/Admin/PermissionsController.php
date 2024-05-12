@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
 use WeProDev\LaraPanel\Core\User\Dto\PermissionDto;
@@ -16,6 +17,10 @@ use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdatePermissionRequest;
 
 class PermissionsController
 {
+    private ?FormRequest $storePermissionRequestClass = null;
+
+    private ?FormRequest $updatePermissionRequestClass = null;
+
     private array $guards = [];
 
     private array $modules = [];
@@ -60,17 +65,27 @@ class PermissionsController
             ]);
         }
 
-        return redirect()->route('admin.user_management.permission.index')->with('message', [
+        return redirect()->route('lp.admin.permission.index')->with('message', [
             'type' => AlertTypeEnum::DANGER->value,
             'text' => __('The permission does not exist!'),
         ]);
     }
 
-    public function store(StorePermissionRequest $request): RedirectResponse
+    protected function setStoreRequestClass(string $storeRequestClass): void
     {
+        if (is_subclass_of($storeRequestClass, FormRequest::class)) {
+            $this->storePermissionRequestClass = app($storeRequestClass);
+        }
+    }
+
+    public function store(FormRequest $request): RedirectResponse
+    {
+        $this->storePermissionRequestClass ??= app(StorePermissionRequest::class);
+        $request->validate($this->storePermissionRequestClass->rules());
+
         $permDto = PermissionDto::make(
             $request->name,
-            $request->title,
+            $request->title ?? $request->name,
             $request->module,
             $request->description,
             $request->guard_name ? GuardTypeEnum::getGuardType($request->guard_name ?? GuardTypeEnum::default()) : null,
@@ -83,12 +98,22 @@ class PermissionsController
         ]);
     }
 
-    public function update(int $permissionId, UpdatePermissionRequest $request): RedirectResponse
+    protected function setUpdateRequestClass(string $updateRequestClass): void
     {
+        if (is_subclass_of($updateRequestClass, FormRequest::class)) {
+            $this->updatePermissionRequestClass = app($updateRequestClass);
+        }
+    }
+
+    public function update(int $permissionId, FormRequest $request): RedirectResponse
+    {
+        $this->updatePermissionRequestClass ??= app(UpdatePermissionRequest::class);
+        $request->validate($this->updatePermissionRequestClass->rules());
+
         if ($permission = $this->permissionRepository->findBy(['id' => $permissionId])) {
             $permDto = PermissionDto::make(
                 $permission->getName(),
-                $request->title,
+                $request->title ?? $permission->getName(),
                 $request->module,
                 $request->description,
                 $request->guard_name ? GuardTypeEnum::getGuardType($request->guard_name ?? GuardTypeEnum::default()) : null,

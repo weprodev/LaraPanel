@@ -7,7 +7,7 @@ namespace WeProDev\LaraPanel\Presentation\User\Requests\Admin;
 use WeProDev\LaraPanel\Core\User\Enum\GuardTypeEnum;
 use WeProDev\LaraPanel\Presentation\Panel\Requests\RequestValidation;
 
-final class UpdateRoleRequest extends RequestValidation
+class UpdateRoleRequest extends RequestValidation
 {
     public function rules(): array
     {

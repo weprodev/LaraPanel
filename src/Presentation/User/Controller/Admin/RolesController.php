@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProDev\LaraPanel\Presentation\User\Controller\Admin;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\RedirectResponse;
 use WeProDev\LaraPanel\Core\Shared\Enum\AlertTypeEnum;
 use WeProDev\LaraPanel\Core\User\Dto\RoleDto;
@@ -17,6 +18,10 @@ use WeProDev\LaraPanel\Presentation\User\Requests\Admin\UpdateRoleRequest;
 
 class RolesController
 {
+    private ?FormRequest $storeRoleRequestClass = null;
+
+    private ?FormRequest $updateRoleRequestClass = null;
+
     protected string $baseViewPath;
 
     private array $guards = [];
@@ -67,8 +72,18 @@ class RolesController
         ]);
     }
 
-    public function store(StoreRoleRequest $request)
+    protected function setStoreRequestClass(string $storeRequestClass): void
     {
+        if (is_subclass_of($storeRequestClass, FormRequest::class)) {
+            $this->storeRoleRequestClass = app($storeRequestClass);
+        }
+    }
+
+    public function store(FormRequest $request): RedirectResponse
+    {
+        $this->storeRoleRequestClass ??= app(StoreRoleRequest::class);
+        $request->validate($this->storeRoleRequestClass->rules());
+
         $roleDto = RoleDto::make(
             $request->name,
             $request->title,
@@ -87,8 +102,18 @@ class RolesController
         ]);
     }
 
-    public function update(int $roleId, UpdateRoleRequest $request)
+    protected function setUpdateRequestClass(string $updateRequestClass): void
     {
+        if (is_subclass_of($updateRequestClass, FormRequest::class)) {
+            $this->updateRoleRequestClass = app($updateRequestClass);
+        }
+    }
+
+    public function update(int $roleId, FormRequest $request): RedirectResponse
+    {
+        $this->updateRoleRequestClass ??= app(UpdateRoleRequest::class);
+        $request->validate($this->updateRoleRequestClass->rules());
+
         if ($role = $this->roleRepository->findBy(['id' => $roleId])) {
             $roleDto = RoleDto::make(
                 $role->getName(),
@@ -113,7 +138,7 @@ class RolesController
         ]);
     }
 
-    public function delete(int $roleId)
+    public function delete(int $roleId): RedirectResponse
     {
         if ($role = $this->roleRepository->findBy(['id' => $roleId])) {
             $this->roleRepository->delete($roleId);
