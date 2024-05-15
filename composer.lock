@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e6249136ac6e8b4acaf2bec4cc8c13e",
+    "content-hash": "eb41dd9e4fc9498585d289c61479eb58",
     "packages": [
         {
             "name": "brick/math",
@@ -5646,6 +5646,69 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "weprodev/laranav",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/weprodev/LaraNav.git",
+                "reference": "6f092e9db83f43592bc4ec9a5c2a9b42b52c6147"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/weprodev/LaraNav/zipball/6f092e9db83f43592bc4ec9a5c2a9b42b52c6147",
+                "reference": "6f092e9db83f43592bc4ec9a5c2a9b42b52c6147",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.0",
+                "laravel/pint": "^1.14",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^11.0"
+            },
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "WeProDev\\LaraNav\\LaraNavProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "WeProDev\\LaraNav\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "WeProDev Team",
+                    "email": "info@weprodev.com"
+                }
+            ],
+            "description": "LaraNav will manage navigation app",
+            "homepage": "https://weprodev.com/docs/laranav",
+            "keywords": [
+                "Laravel Navigation",
+                "Laravel menubar",
+                "laranav",
+                "laraval",
+                "laravel menu",
+                "navigation",
+                "project"
+            ],
+            "support": {
+                "issues": "https://github.com/weprodev/LaraNav/issues",
+                "source": "https://github.com/weprodev/LaraNav/tree/v1.0.0"
+            },
+            "time": "2024-05-06T14:46:08+00:00"
         }
     ],
     "packages-dev": [
@@ -5952,16 +6015,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.67",
+            "version": "1.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "16ddbe776f10da6a95ebd25de7c1dbed397dc493"
+                "reference": "e524358f930e41a2b4cca1320e3b04fc26b39e0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/16ddbe776f10da6a95ebd25de7c1dbed397dc493",
-                "reference": "16ddbe776f10da6a95ebd25de7c1dbed397dc493",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e524358f930e41a2b4cca1320e3b04fc26b39e0b",
+                "reference": "e524358f930e41a2b4cca1320e3b04fc26b39e0b",
                 "shasum": ""
             },
             "require": {
@@ -6006,7 +6069,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-16T07:22:02+00:00"
+            "time": "2024-05-15T08:00:59+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
