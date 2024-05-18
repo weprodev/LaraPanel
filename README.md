@@ -12,6 +12,14 @@ LaraPanel is a revamped version of the original package designed for seamless us
 After receiving valuable feedback, we've introduced a new version and are committed to continually enhancing it with additional features and improvements.
 
 # How To Install
+
+1. You can install the full configuration of LaraPanel package from the LaraPanel Framework repository.
+follow this link to read [how to install LaraPanel Framework](https://github.com/weprodev/LaraPanel-Framework) 
+[recommended]
+
+<br>
+
+2. if you want to install the package on your application: 
 Follow the below steps to install it.
 ```
 composer require weprodev/larapanel
