@@ -14,13 +14,14 @@ After receiving valuable feedback, we've introduced a new version and are commit
 # How To Install
 
 1. You can install the full configuration of LaraPanel package from the LaraPanel Framework repository.
-follow this link to read [how to install LaraPanel Framework](https://github.com/weprodev/LaraPanel-Framework) 
-[recommended]
+   follow this link to read [how to install LaraPanel Framework](https://github.com/weprodev/LaraPanel-Framework)
+   [recommended]
 
 <br>
 
-2. if you want to install the package on your application: 
-Follow the below steps to install it.
+2. if you want to install the package on your application:
+   Follow the below steps to install it.
+
 ```
 composer require weprodev/larapanel
 
@@ -34,10 +35,10 @@ php artisan vendor:publish --tag=larapanel-install
 ### Here's how you can help
 
 - ↗️ _Spread the Word:_ Share LaraPanel with your friends, colleagues, and social media networks and add a star on GitHub. Every mention helps us reach more people and grow our community.
-> Share on [Linkedin]() / [X / Twitter](https://x.com/intent/tweet?text=Excited%20to%20share%20an%20awesome%20%23Laravel%20package%20I%20discovered%20with%20%23WeProDev%20team!%20🚀%20Check%20it%20out%20here:&url=https%3A%2F%2Fgithub.com/weprodev/LaraPanel%20%20%23developers)
+  > Share on [Linkedin]() / [X / Twitter](https://x.com/intent/tweet?text=Excited%20to%20share%20an%20awesome%20%23Laravel%20package%20I%20discovered%20with%20%40WeProDevCom%20team!%20🚀%20Check%20it%20out%20here:&url=https%3A%2F%2Fgithub.com/weprodev/LaraPanel%20%20%23developers)
 - ☕ ❤️ _Make a Donation:_ If you've found _LaraPanel_ useful and would like to contribute financially, consider making a donation. Your support helps cover hosting costs, development tools, and other expenses that keep the project running.
 
-  > 💲 Support LaraPanel development by becoming a sponsor. 
+  > 💲 Support LaraPanel development by becoming a sponsor.
 
   [![Sponsor weprodev](https://img.shields.io/badge/Sponsor-weprodev-blue.svg)](https://github.com/sponsors/weprodev)
 
