@@ -1,6 +1,9 @@
-![image](https://github.com/weprodev/LaraPanel/blob/master/src/Presentation/Panel/Stub/Public/logo.png)
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/weprodev/LaraPanel/master/src/Presentation/Panel/Stub/Public/logo.png" width="400" alt="LaraPanel Logo"></a></p>
 
-<a href="https://packagist.org/packages/weprodev/larapanel"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<p align="center">
+<a href="https://packagist.org/packages/weprodev/larapanel"><img src="https://img.shields.io/packagist/v/weprodev/larapanel" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/weprodev/larapanel"><img src="https://img.shields.io/packagist/l/weprodev/larapanel" alt="License"></a>
+</p>
 
 # About LaraPanel
 

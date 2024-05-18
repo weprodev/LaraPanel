@@ -99,11 +99,14 @@ class GroupEloquentRepository implements GroupRepositoryInterface
         return GroupFactory::fromEloquent($groupModel);
     }
 
-    public function findBy(array $attributes): GroupDomain
+    public function findBy(array $attributes): ?GroupDomain
     {
-        $groupModel = Group::where($attributes)->firstOrFail();
+        if ($groupModel = Group::where($attributes)->first()) {
 
-        return GroupFactory::fromEloquent($groupModel);
+            return GroupFactory::fromEloquent($groupModel);
+        }
+
+        return null;
     }
 
     public function delete(int $groupId): void

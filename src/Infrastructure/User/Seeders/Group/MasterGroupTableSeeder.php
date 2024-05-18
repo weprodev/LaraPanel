@@ -33,7 +33,7 @@ class MasterGroupTableSeeder extends Seeder
             if ($item['parent'] != null) {
                 $parent = $this->groupRepositoryInterface->findBy([
                     'name' => $item['name'],
-                ])->getId();
+                ])?->getId();
             }
 
             $findGroup = $this->groupRepositoryInterface->findBy([
