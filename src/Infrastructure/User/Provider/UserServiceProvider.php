@@ -55,7 +55,7 @@ final class UserServiceProvider extends ServiceProvider
 
         // LANG
         $this->publishes([
-            __DIR__.'/../../../Presentation/User/lang/' => resource_path('lang/'),
+            __DIR__.'/../../../Presentation/User/Lang/' => resource_path('lang/'),
         ], [$this->publishGenericName, 'larapanel-lang']);
 
         // SEEDERS
