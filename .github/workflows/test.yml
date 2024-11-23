@@ -1,4 +1,4 @@
-name: Test LaraPanel Pkg
+name: Test LaraPanel Pkg on Framework
 
 on:
   push:
@@ -9,12 +9,52 @@ on:
   #     - master
 
 jobs:
-  install-laravel:
-    strategy:
-      matrix:
-        php-version: [8.2, 8.3]
-        laravel-version: ["10.*", "11.*"]
-    uses: weprodev/LaraPanel/.github/workflows/install-laravel.yml@master
-    with:
-      php-version: ${{ matrix.php-version }}
-      laravel-version: ${{ matrix.laravel-version }}
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer, phpunit
+          coverage: none
+
+      - name: "Install Laravel Project"
+        run: composer create-project weprodev/larapanel-framework
+
+      - name: App directory
+        working-directory: larapanel-framework
+        run: ls -la
+
+      - name: Set SQLite File Permissions
+        working-directory: larapanel-framework
+        run: |
+          touch database/database.sqlite
+          chmod 777 database/database.sqlite
+
+      - name: Directory Permissions
+        working-directory: larapanel-framework
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Generate Application Key
+        working-directory: larapanel-framework
+        run: php artisan key:generate
+
+      - name: Install LaraPanel Package
+        working-directory: larapanel-framework
+        run: composer require weprodev/larapanel
+
+      - name: Serve Laravel Application
+        working-directory: larapanel-framework
+        env:
+          APP_ENV: testing
+          CACHE_DRIVER: array
+          SESSION_DRIVER: array
+          QUEUE_CONNECTION: sync
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ./database/database.sqlite
+        run: |
+          php artisan migrate --force
+          php artisan db:seed
+
