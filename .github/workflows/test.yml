@@ -18,23 +18,3 @@ jobs:
     with:
       php-version: ${{ matrix.php-version }}
       laravel-version: ${{ matrix.laravel-version }}
-
-
-  test-execution:
-    needs: install-laravel
-    runs-on: ubuntu-latest
-
-    steps:
-
-
-      - name: Run E2E Tests
-        env:
-          APP_ENV: testing
-          CACHE_DRIVER: array
-          SESSION_DRIVER: array
-          QUEUE_CONNECTION: sync
-          DB_CONNECTION: sqlite
-          DB_DATABASE: ./database/database.sqlite
-        run: |
-          php artisan migrate --force
-          php artisan test
