@@ -66,6 +66,7 @@ jobs:
 
       - name: Run Package Tests
         run: |
+          cd laravel-${{ inputs.laravel-version }}
           php artisan migrate --force
           php artisan test --env=testing
 
