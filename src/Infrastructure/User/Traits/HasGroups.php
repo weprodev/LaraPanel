@@ -14,9 +14,7 @@ trait HasGroups
     // {
     // }
 
-    public function assignGroup(...$groups)
-    {
-    }
+    public function assignGroup(...$groups) {}
 
     public function syncGroups(array $groupIds)
     {

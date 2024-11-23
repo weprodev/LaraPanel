@@ -19,8 +19,7 @@ class MasterPermissionTableSeeder extends Seeder
     public function __construct(
         private PermissionRepositoryInterface $permissionRepository,
         private RoleRepositoryInterface $roleRepository
-    ) {
-    }
+    ) {}
 
     protected function getPermissions()
     {

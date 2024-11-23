@@ -12,9 +12,7 @@ class MasterGroupTableSeeder extends Seeder
 {
     protected $groups = [];
 
-    public function __construct(private readonly GroupRepositoryInterface $groupRepositoryInterface)
-    {
-    }
+    public function __construct(private readonly GroupRepositoryInterface $groupRepositoryInterface) {}
 
     public function run(): void
     {

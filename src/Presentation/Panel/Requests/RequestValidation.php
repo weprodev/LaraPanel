@@ -28,7 +28,5 @@ abstract class RequestValidation extends FormRequest
         return true;
     }
 
-    protected function setUp(): void
-    {
-    }
+    protected function setUp(): void {}
 }

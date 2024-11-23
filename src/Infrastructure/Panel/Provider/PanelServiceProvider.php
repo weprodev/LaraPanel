@@ -36,9 +36,7 @@ final class PanelServiceProvider extends ServiceProvider
         });
     }
 
-    public function register()
-    {
-    }
+    public function register() {}
 
     private function publishPurpleAdminViewFiles(): void
     {

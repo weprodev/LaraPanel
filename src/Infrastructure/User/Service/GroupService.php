@@ -14,8 +14,7 @@ class GroupService implements GroupServiceInterface
     public function __construct(
         private GroupRepositoryInterface $groupRepository,
         private UserRepositoryInterface $userRepository
-    ) {
-    }
+    ) {}
 
     public function getUserGroups(UserDomain $userDomain): array
     {

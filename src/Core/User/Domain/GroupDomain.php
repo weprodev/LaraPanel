@@ -29,8 +29,7 @@ final class GroupDomain
         private readonly string $title,
         private readonly ?int $parentId = null,
         private readonly ?string $description = null
-    ) {
-    }
+    ) {}
 
     public function getId(): int
     {

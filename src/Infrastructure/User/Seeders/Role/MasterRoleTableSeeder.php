@@ -13,9 +13,7 @@ class MasterRoleTableSeeder extends Seeder
 {
     protected $roles = [];
 
-    public function __construct(private RoleRepositoryInterface $roleRepository)
-    {
-    }
+    public function __construct(private RoleRepositoryInterface $roleRepository) {}
 
     protected function getRoles()
     {
