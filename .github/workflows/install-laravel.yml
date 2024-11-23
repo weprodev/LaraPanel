@@ -25,12 +25,10 @@ jobs:
           coverage: none
 
       - name: "Install Laravel Project: ${{ inputs.laravel-version }}"
-        run: composer create-project --prefer-dist laravel/laravel laravel-app "${{ inputs.laravel-version }}"
+        run: composer create-project --prefer-dist laravel/laravel . "${{ inputs.laravel-version }}"
 
       - name: App directory
-        run: |
-          cd laravel-app
-          ls -la
+        run: ls -la
 
       - name: Set SQLite File Permissions
         run: |
