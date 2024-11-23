@@ -32,8 +32,8 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
-          composer require "laravel/framework:${{ inputs.laravel-version }}" --no-update
-          composer update -q --no-ansi --no-interaction --no-progress --prefer-dist
+          composer require "laravel/framework:${{ inputs.laravel-version }}"
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Set SQLite File Permissions
         run: chmod 777 database/database.sqlite
