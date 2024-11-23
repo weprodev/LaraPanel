@@ -27,6 +27,10 @@ jobs:
       - name: "Install Laravel Project: ${{ inputs.laravel-version }}"
         run: composer create-project --prefer-dist laravel/laravel laravel-${{ inputs.laravel-version }} "${{ inputs.laravel-version }}"
 
+      - name: Install LaraPanel Package
+        working-directory: laravel-${{ inputs.laravel-version }}
+        run: composer require weprodev/larapanel
+
       - name: App directory
         run: |
           cd laravel-${{ inputs.laravel-version }}
