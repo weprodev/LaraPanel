@@ -58,6 +58,7 @@ jobs:
           DB_DATABASE: ./database/database.sqlite
         run: |
           cd laravel-${{ inputs.laravel-version }}
+          php artisan migrate --force
           php artisan serve --host=0.0.0.0 --port=8000 &
 
       - name: Wait for Server to Start
@@ -67,6 +68,5 @@ jobs:
       - name: Run Package Tests
         run: |
           cd laravel-${{ inputs.laravel-version }}
-          php artisan migrate --force
           php artisan test --env=testing
 
