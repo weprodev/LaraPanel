@@ -48,7 +48,7 @@ jobs:
           cd laravel-${{ inputs.laravel-version }}
           php artisan key:generate
 
-      - name: Run Package Tests
+      - name: Serve Laravel Application
         env:
           APP_ENV: testing
           CACHE_DRIVER: array
@@ -58,5 +58,14 @@ jobs:
           DB_DATABASE: ./database/database.sqlite
         run: |
           cd laravel-${{ inputs.laravel-version }}
+          php artisan serve --host=0.0.0.0 --port=8000 &
+
+      - name: Wait for Server to Start
+        run: |
+          sleep 10  # Adjust the sleep time as needed to ensure the server is ready
+
+      - name: Run Package Tests
+        run: |
           php artisan migrate --force
           php artisan test --env=testing
+
