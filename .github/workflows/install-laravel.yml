@@ -17,9 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -27,30 +24,23 @@ jobs:
           tools: composer, phpunit
           coverage: none
 
-      - name: Copy .env file
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-
-      - name: Install Composer dependencies
+      - name: "Install Laravel Project: ${{ inputs.laravel-version }}"
         run: |
-          composer require "laravel/framework:${{ inputs.laravel-version }}" --with-all-dependencies
-          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          composer create-project --prefer-dist laravel/laravel laravel-app "${{ inputs.laravel-version }}"
+          cd laravel-app
 
       - name: Set SQLite File Permissions
         run: |
-          mkdir -p database
           touch database/database.sqlite
           chmod 777 database/database.sqlite
 
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
-      - name: list of the files
-        run: ls -la
-
-      - name: Generate key
+      - name: Generate Application Key
         run: php artisan key:generate
 
-      - name: Run package tests
+      - name: Run Package Tests
         env:
           APP_ENV: testing
           CACHE_DRIVER: array
