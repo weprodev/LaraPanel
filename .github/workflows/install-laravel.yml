@@ -27,32 +27,30 @@ jobs:
       - name: "Install Laravel Project: ${{ inputs.laravel-version }}"
         run: composer create-project --prefer-dist laravel/laravel laravel-${{ inputs.laravel-version }} "${{ inputs.laravel-version }}"
 
-      - name: Install LaraPanel Package
-        working-directory: laravel-${{ inputs.laravel-version }}
-        run: composer require weprodev/larapanel
-
       - name: App directory
-        run: |
-          cd laravel-${{ inputs.laravel-version }}
-          ls -la
+        working-directory: laravel-${{ inputs.laravel-version }}
+        run: ls -la
 
       - name: Set SQLite File Permissions
+        working-directory: laravel-${{ inputs.laravel-version }}
         run: |
-          cd laravel-${{ inputs.laravel-version }}
           touch database/database.sqlite
           chmod 777 database/database.sqlite
 
       - name: Directory Permissions
-        run: |
-          cd laravel-${{ inputs.laravel-version }}
-          chmod -R 777 storage bootstrap/cache
+        working-directory: laravel-${{ inputs.laravel-version }}
+        run: chmod -R 777 storage bootstrap/cache
 
       - name: Generate Application Key
-        run: |
-          cd laravel-${{ inputs.laravel-version }}
-          php artisan key:generate
+        working-directory: laravel-${{ inputs.laravel-version }}
+        run: php artisan key:generate
+
+      - name: Install LaraPanel Package
+        working-directory: laravel-${{ inputs.laravel-version }}
+        run: composer require weprodev/larapanel
 
       - name: Serve Laravel Application
+        working-directory: laravel-${{ inputs.laravel-version }}
         env:
           APP_ENV: testing
           CACHE_DRIVER: array
@@ -61,6 +59,6 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: ./database/database.sqlite
         run: |
-          cd laravel-${{ inputs.laravel-version }}
           php artisan migrate --force
+          php artisan db:seed
 
