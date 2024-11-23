@@ -11,9 +11,7 @@ use WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider;
 
 final class LaraPanelProvider extends ServiceProvider
 {
-    public function boot(): void
-    {
-    }
+    public function boot(): void {}
 
     public function register(): void
     {

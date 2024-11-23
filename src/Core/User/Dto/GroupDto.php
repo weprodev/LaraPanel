@@ -26,8 +26,7 @@ final class GroupDto
         private readonly string $title,
         private readonly ?int $parentId = null,
         private readonly ?string $description = null
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {

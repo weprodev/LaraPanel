@@ -48,9 +48,7 @@ final class SharedServiceProvider extends ServiceProvider
         });
     }
 
-    public function register()
-    {
-    }
+    public function register() {}
 
     private function publishConfigs(): void
     {
