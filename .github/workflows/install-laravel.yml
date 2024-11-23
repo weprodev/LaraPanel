@@ -25,21 +25,28 @@ jobs:
           coverage: none
 
       - name: "Install Laravel Project: ${{ inputs.laravel-version }}"
-        run: composer create-project --prefer-dist laravel/laravel . "${{ inputs.laravel-version }}"
+        run: composer create-project --prefer-dist laravel/laravel laravel-${{ inputs.laravel-version }} "${{ inputs.laravel-version }}"
 
       - name: App directory
-        run: ls -la
+        run: |
+          cd laravel-${{ inputs.laravel-version }}
+          ls -la
 
       - name: Set SQLite File Permissions
         run: |
+          cd laravel-${{ inputs.laravel-version }}
           touch database/database.sqlite
           chmod 777 database/database.sqlite
 
       - name: Directory Permissions
-        run: chmod -R 777 storage bootstrap/cache
+        run: |
+          cd laravel-${{ inputs.laravel-version }}
+          chmod -R 777 storage bootstrap/cache
 
       - name: Generate Application Key
-        run: php artisan key:generate
+        run: |
+          cd laravel-${{ inputs.laravel-version }}
+          php artisan key:generate
 
       - name: Run Package Tests
         env:
@@ -50,5 +57,6 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: ./database/database.sqlite
         run: |
+          cd laravel-${{ inputs.laravel-version }}
           php artisan migrate --force
           php artisan test --env=testing

@@ -22,10 +22,16 @@ jobs:
   test-execution:
     needs: install-laravel
 
+    strategy:
+      matrix:
+        laravel-version: ["10.*", "11.*"]
     runs-on: ubuntu-latest
+
     steps:
       - name: Install LaraPanel Package
-        run: composer require weprodev/larapanel
+        run: |
+          cd laravel-${{ matrix.laravel-version }}
+          composer require weprodev/larapanel
 
       - name: Run E2E Tests
         env:
@@ -36,5 +42,6 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: ./database/database.sqlite
         run: |
+          cd laravel-${{ matrix.laravel-version }}
           php artisan migrate --force
           php artisan test
