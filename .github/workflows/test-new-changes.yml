@@ -13,6 +13,9 @@ jobs:
       - name: Get codes
         uses: actions/checkout@v4
 
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -26,7 +29,13 @@ jobs:
       - name: Link Local Package
         working-directory: larapanel-framework
         run: |
-          composer config repositories.local '{"type": "path", "minimum-stability": "dev", "url": "../", "options": {"symlink": true}}'
+          # Modify composer.json to include minimum-stability and repositories
+          jq '. |= . + { "minimum-stability": "dev" }' composer.json > composer.json.tmp && mv composer.json.tmp composer.json
+          jq '.repositories |= . + [
+              { "type": "path", "url": "../LaraPanel", "canonical": false },
+          ]' composer.json > composer.json.tmp && mv composer.json.tmp composer.json
+
+          # Clear composer cache and require the local package
           composer clear-cache
           composer require weprodev/larapanel:@dev --no-cache --no-update
 
