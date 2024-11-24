@@ -1,12 +1,9 @@
-name: Test LaraPanel Pkg on Framework
+name: Test LaraPanel Pkg After Releasing New Version
 
 on:
   push:
-    branches:
-      - master
-  # pull_request:
-  #   branches:
-  #     - master
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -20,7 +17,7 @@ jobs:
           tools: composer, phpunit
           coverage: none
 
-      - name: "Install Laravel Project"
+      - name: Install Laravel Project
         run: composer create-project weprodev/larapanel-framework
 
       - name: App directory
@@ -57,4 +54,8 @@ jobs:
         run: |
           php artisan migrate --force
           php artisan db:seed
+
+      - name: Execute E2E testing
+        run: |
+          echo "here we should execute all features that we implemented!"
 
