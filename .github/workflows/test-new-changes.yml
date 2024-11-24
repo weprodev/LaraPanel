@@ -68,6 +68,7 @@ jobs:
           php artisan vendor:publish --tag=larapanel-view-PurpleAdmin --force
 
           echo "Publishing User module files"
+          php artisan vendor:publish --tag=larapanel-migrations --force
           php artisan vendor:publish --tag=larapanel-route-user --force
           php artisan vendor:publish --tag=larapanel-view-user --force
           php artisan vendor:publish --tag=larapanel-lang --force
