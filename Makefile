@@ -45,13 +45,6 @@ help:
 		$(MAKEFILE_LIST)
 
 
-## INSTALLING AND PREPARING LOCAL ENVIRONEMTN
-.PHONY: install
-install:
-	composer install
-	php ./../../artisan init:git
-	exit 0
-
 ## Clear Cache
 .PHONY: clear
 clear:
