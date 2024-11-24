@@ -71,7 +71,7 @@ jobs:
           php artisan vendor:publish --tag=larapanel-seeders --force
 
           echo "Executing migrations and seeder files"
-          php artisan migrate --force
+          php artisan migrate:fresh --force
           php artisan db:seed --force
 
       - name: Execute E2E testing
