@@ -23,8 +23,12 @@ jobs:
       - name: Link Local Package
         working-directory: larapanel-framework
         run: |
-          composer config repositories.local '{"type": "path", "url": "../"}'
-          composer require weprodev/larapanel --dev
+          composer config repositories.local '{"type": "path", "url": "../", "options": {"symlink": true}}'
+          composer require weprodev/larapanel:@dev
+
+      - name: Debug Composer Dependencies
+        working-directory: larapanel-framework
+        run: composer show weprodev/larapanel
 
       - name: Set SQLite File Permissions
         working-directory: larapanel-framework
