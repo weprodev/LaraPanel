@@ -50,16 +50,16 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: ./database/database.sqlite
         run: |
-          echo "Shared Service Provider"
+          echo "Publishing Shared Service file"
           php artisan vendor:publish --tag=larapanel-install --force
           php artisan vendor:publish --tag=larapanel-config --force
 
-          echo "Panel Provider"
+          echo "Publishing Panel Provider files"
           php artisan vendor:publish --tag=larapanel-panel-controller --force
           php artisan vendor:publish --tag=larapanel-panel-components --force
           php artisan vendor:publish --tag=larapanel-view-PurpleAdmin --force
 
-          echo "User Provider"
+          echo "Publishing User module files"
           php artisan vendor:publish --tag=larapanel-migrations --force
           php artisan vendor:publish --tag=larapanel-route-user --force
           php artisan vendor:publish --tag=larapanel-view-user --force
