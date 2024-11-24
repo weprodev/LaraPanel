@@ -13,9 +13,6 @@ jobs:
       - name: Get codes
         uses: actions/checkout@v4
 
-      - name: Install jq
-        run: sudo apt-get install -y jq
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -29,13 +26,7 @@ jobs:
       - name: Link Local Package
         working-directory: larapanel-framework
         run: |
-          # Modify composer.json to include minimum-stability and repositories
-          jq '. |= . + { "minimum-stability": "dev" }' composer.json > composer.json.tmp && mv composer.json.tmp composer.json
-          jq '.repositories |= . + [
-              { "type": "path", "url": "../LaraPanel", "canonical": false },
-          ]' composer.json > composer.json.tmp && mv composer.json.tmp composer.json
-
-          # Clear composer cache and require the local package
+          composer config repositories.local '{"type": "path", "minimum-stability": "dev", "url": "../", "options": {"symlink": true}}'
           composer clear-cache
           composer require weprodev/larapanel:@dev --no-cache --no-update
 
@@ -56,6 +47,18 @@ jobs:
       - name: Generate Application Key
         working-directory: larapanel-framework
         run: php artisan key:generate
+
+      - name: Delete all existing migration files
+        run: |
+          if ls database/migrations/2024_01*create_users_table* 1> /dev/null 2>&1; then
+            rm -rf database/migrations/2024_01*create_users_table*
+          fi
+          if ls database/migrations/2024_01*create_group_table* 1> /dev/null 2>&1; then
+            rm -rf database/migrations/2024_01*create_group_table*
+          fi
+          if ls database/migrations/2024_01*edit_permission_tables* 1> /dev/null 2>&1; then
+            rm -rf database/migrations/2024_01*edit_permission_tables*
+          fi
 
       - name: Migrate and Seed Database
         working-directory: larapanel-framework
