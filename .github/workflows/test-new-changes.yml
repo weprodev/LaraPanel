@@ -50,8 +50,29 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: ./database/database.sqlite
         run: |
+          echo "Shared Service Provider"
+          php artisan vendor:publish --tag=larapanel-install --force
+          php artisan vendor:publish --tag=larapanel-config --force
+
+          echo "Panel Provider"
+          php artisan vendor:publish --tag=larapanel-panel-controller --force
+          php artisan vendor:publish --tag=larapanel-panel-components --force
+          php artisan vendor:publish --tag=larapanel-view-PurpleAdmin --force
+
+          echo "User Provider"
+          php artisan vendor:publish --tag=larapanel-migrations --force
+          php artisan vendor:publish --tag=larapanel-route-user --force
+          php artisan vendor:publish --tag=larapanel-view-user --force
+          php artisan vendor:publish --tag=larapanel-lang --force
+          php artisan vendor:publish --tag=larapanel-admin-controller --force
+          php artisan vendor:publish --tag=larapanel-admin-request --force
+          php artisan vendor:publish --tag=larapanel-auth-controller --force
+          php artisan vendor:publish --tag=larapanel-models --force
+          php artisan vendor:publish --tag=larapanel-seeders --force
+
+          echo "Executing migrations and seeder files"
           php artisan migrate --force
-          php artisan db:seed
+          php artisan db:seed --force
 
       - name: Execute E2E testing
         working-directory: larapanel-framework
