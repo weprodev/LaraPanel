@@ -190,14 +190,14 @@ final class UserServiceProvider extends ServiceProvider
 
         $this->publishes([
             // Form Request
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreGroupRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/StoreGroupRequest.php', $this->mainDir)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StorePermissionRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/StorePermissionRequest.php', $this->mainDir)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreRoleRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/StoreRoleRequest.php', $this->mainDir)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreUserRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/StoreUserRequest.php', $this->mainDir)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateGroupRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/UpdateGroupRequest.php', $this->mainDir)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdatePermissionRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/UpdatePermissionRequest.php', $this->mainDir)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateRoleRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/UpdateRoleRequest.php', $this->mainDir)),
-            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateUserRequest.php.stub') => resource_path(sprintf('Http/Requests/%s/Admin/UpdateUserRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreGroupRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Admin/StoreGroupRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StorePermissionRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Admin/StorePermissionRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreRoleRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Admin/StoreRoleRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/StoreUserRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Admin/StoreUserRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateGroupRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Admin/UpdateGroupRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdatePermissionRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Admin/UpdatePermissionRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateRoleRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Admin/UpdateRoleRequest.php', $this->mainDir)),
+            __DIR__.sprintf('/../../../Presentation/User/Stub/Requests/Admin/UpdateUserRequest.php.stub') => app_path(sprintf('Http/Requests/%s/Admin/UpdateUserRequest.php', $this->mainDir)),
         ], ['larapanel-admin-request']);
     }
 
@@ -225,7 +225,7 @@ final class UserServiceProvider extends ServiceProvider
             __DIR__.'/../Stub/Models/Role.php.stub' => app_path(sprintf('Models/%s/Role.php', $this->mainDir)),
             __DIR__.'/../Stub/Models/Group.php.stub' => app_path(sprintf('Models/%s/Group.php', $this->mainDir)),
             __DIR__.'/../Stub/Models/User.php.stub' => app_path(sprintf('Models/%s/User.php', $this->mainDir)),
-        ], ['larapanel-install', 'larapanel-models']);
+        ], [$this->publishGenericName, 'larapanel-models']);
     }
 
     private function publishSeeders(): void
