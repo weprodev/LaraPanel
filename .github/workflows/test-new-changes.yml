@@ -49,6 +49,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Delete all existing migration files
+        working-directory: larapanel-framework
         run: |
           for pattern in "./database/migrations/2024_05_18_102749_create_users_table.php" \
                          "./database/migrations/2024_05_18_102759_create_groups_table.php" \
