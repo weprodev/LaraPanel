@@ -1,0 +1,58 @@
+name: Test LaraPanel Pkg for new changes
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer, phpunit
+          coverage: none
+
+      - name: Install LaraPanel Framework
+        run: composer create-project weprodev/larapanel-framework
+
+      - name: Link Local Package
+        working-directory: larapanel-framework
+        run: |
+          composer config repositories.local '{"type": "path", "url": "../"}'
+          composer require weprodev/larapanel --dev
+
+      - name: Set SQLite File Permissions
+        working-directory: larapanel-framework
+        run: |
+          touch database/database.sqlite
+          chmod 777 database/database.sqlite
+
+      - name: Directory Permissions
+        working-directory: larapanel-framework
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Generate Application Key
+        working-directory: larapanel-framework
+        run: php artisan key:generate
+
+      - name: Migrate and Seed Database
+        working-directory: larapanel-framework
+        env:
+          APP_ENV: testing
+          CACHE_DRIVER: array
+          SESSION_DRIVER: array
+          QUEUE_CONNECTION: sync
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ./database/database.sqlite
+        run: |
+          php artisan migrate --force
+          php artisan db:seed
+
+      - name: Execute E2E testing
+        working-directory: larapanel-framework
+        run: php artisan test
