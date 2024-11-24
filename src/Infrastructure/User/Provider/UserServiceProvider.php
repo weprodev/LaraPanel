@@ -173,8 +173,8 @@ final class UserServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__ . '/../Stub/Migrations/2024_01_01_111111_create_users_table.php.stub' => database_path('migrations/2024_01_01_111111_create_users_table.php'),
-            __DIR__ . '/../Stub/Migrations/2024_01_01_222222_create_groups_table.php.stub' => database_path('migrations/2024_01_01_111111_create_groups_table.php'),
-            __DIR__ . '/../Stub/Migrations/2024_01_01_333333_edit_permission_tables.php.stub' => database_path('migrations/2024_01_01_111111_edit_permission_tables.php'),
+            __DIR__ . '/../Stub/Migrations/2024_01_01_222222_create_groups_table.php.stub' => database_path('migrations/2024_01_01_222222_create_groups_table.php'),
+            __DIR__ . '/../Stub/Migrations/2024_01_01_333333_edit_permission_tables.php.stub' => database_path('migrations/2024_01_01_333333_edit_permission_tables.php'),
         ], [$this->publishGenericName, 'larapanel-migrations']);
     }
 
