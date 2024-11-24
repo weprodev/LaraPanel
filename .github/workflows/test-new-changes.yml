@@ -50,15 +50,16 @@ jobs:
 
       - name: Delete all existing migration files
         run: |
-          if ls database/migrations/2024_*create_users_table* 1> /dev/null 2>&1; then
-            rm -rf database/migrations/2024_*create_users_table*
-          fi
-          if ls database/migrations/2024_*create_group_table* 1> /dev/null 2>&1; then
-            rm -rf database/migrations/2024_*create_group_table*
-          fi
-          if ls database/migrations/2024_*edit_permission_tables* 1> /dev/null 2>&1; then
-            rm -rf database/migrations/2024_*edit_permission_tables*
-          fi
+          for pattern in "./database/migrations/2024_05_18_102749_create_users_table.php" \
+                         "./database/migrations/2024_05_18_102759_create_groups_table.php" \
+                         "./database/migrations/2024_05_18_102814_edit_permission_tables.php"; do
+            if ls $pattern 1> /dev/null 2>&1; then
+              echo "Deleting files matching: $pattern"
+              rm -rf $pattern
+            else
+              echo "No files found for pattern: $pattern"
+            fi
+          done
 
       - name: Migrate and Seed Database
         working-directory: larapanel-framework
