@@ -23,6 +23,19 @@ jobs:
       - name: Install LaraPanel Framework
         run: composer create-project weprodev/larapanel-framework
 
+      - name: Delete all existing migration files
+        working-directory: larapanel-framework
+        run: |
+          for pattern in "database/migrations/2024_*create_users_table.php" \
+                         "database/migrations/2024_*create_groups_table.php" \
+                         "database/migrations/2024_*edit_permission_tables.php"; do
+            matches=$(ls $pattern 2>/dev/null | wc -l)
+            if [ $matches -gt 1 ]; then
+              echo "Duplicate migration files found for pattern: $pattern. Keeping only the first."
+              ls $pattern | tail -n +2 | xargs rm -f
+            fi
+          done
+
       - name: Link Local Package
         working-directory: larapanel-framework
         run: |
@@ -48,21 +61,7 @@ jobs:
         working-directory: larapanel-framework
         run: php artisan key:generate
 
-      - name: Delete all existing migration files
-        working-directory: larapanel-framework
-        run: |
-          for pattern in "./database/migrations/2024_05_18_102749_create_users_table.php" \
-                         "./database/migrations/2024_05_18_102759_create_groups_table.php" \
-                         "./database/migrations/2024_05_18_102814_edit_permission_tables.php"; do
-            if ls $pattern 1> /dev/null 2>&1; then
-              echo "Deleting files matching: $pattern"
-              rm -rf $pattern
-            else
-              echo "No files found for pattern: $pattern"
-            fi
-          done
-
-      - name: Migrate and Seed Database
+      - name: Vendor publish provider
         working-directory: larapanel-framework
         env:
           APP_ENV: testing
@@ -73,26 +72,17 @@ jobs:
           DB_DATABASE: ./database/database.sqlite
         run: |
           echo "Publishing Shared Service file"
-          php artisan vendor:publish --tag=larapanel-install --force
-          php artisan vendor:publish --tag=larapanel-config --force
+          php artisan vendor:publish --provider=WeProDev\LaraPanel\Infrastructure\Shared\Provider\SharedServiceProvider --force
 
           echo "Publishing Panel Provider files"
-          php artisan vendor:publish --tag=larapanel-panel-controller --force
-          php artisan vendor:publish --tag=larapanel-panel-components --force
-          php artisan vendor:publish --tag=larapanel-view-PurpleAdmin --force
+          php artisan vendor:publish --provider=WeProDev\LaraPanel\Infrastructure\Panel\Provider\PanelServiceProvider --force
 
           echo "Publishing User module files"
-          php artisan vendor:publish --tag=larapanel-migrations --force
-          php artisan vendor:publish --tag=larapanel-route-user --force
-          php artisan vendor:publish --tag=larapanel-view-user --force
-          php artisan vendor:publish --tag=larapanel-lang --force
-          php artisan vendor:publish --tag=larapanel-admin-controller --force
-          php artisan vendor:publish --tag=larapanel-admin-request --force
-          php artisan vendor:publish --tag=larapanel-auth-controller --force
-          php artisan vendor:publish --tag=larapanel-models --force
-          php artisan vendor:publish --tag=larapanel-seeders --force
+          php artisan vendor:publish --provider=WeProDev\LaraPanel\Infrastructure\User\Provider\UserServiceProvider --force
 
-          echo "Executing migrations and seeder files"
+      - name: Executing migration and seeder files
+        working-directory: larapanel-framework
+        run: |
           php artisan migrate:fresh --force
           php artisan db:seed --force
 
