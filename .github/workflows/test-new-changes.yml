@@ -50,14 +50,14 @@ jobs:
 
       - name: Delete all existing migration files
         run: |
-          if ls database/migrations/2024_01*create_users_table* 1> /dev/null 2>&1; then
-            rm -rf database/migrations/2024_01*create_users_table*
+          if ls database/migrations/2024_*create_users_table* 1> /dev/null 2>&1; then
+            rm -rf database/migrations/2024_*create_users_table*
           fi
-          if ls database/migrations/2024_01*create_group_table* 1> /dev/null 2>&1; then
-            rm -rf database/migrations/2024_01*create_group_table*
+          if ls database/migrations/2024_*create_group_table* 1> /dev/null 2>&1; then
+            rm -rf database/migrations/2024_*create_group_table*
           fi
-          if ls database/migrations/2024_01*edit_permission_tables* 1> /dev/null 2>&1; then
-            rm -rf database/migrations/2024_01*edit_permission_tables*
+          if ls database/migrations/2024_*edit_permission_tables* 1> /dev/null 2>&1; then
+            rm -rf database/migrations/2024_*edit_permission_tables*
           fi
 
       - name: Migrate and Seed Database
