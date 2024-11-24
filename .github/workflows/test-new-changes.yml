@@ -24,7 +24,8 @@ jobs:
         working-directory: larapanel-framework
         run: |
           composer config repositories.local '{"type": "path", "url": "../", "options": {"symlink": true}}'
-          composer require weprodev/larapanel:@dev
+          composer clear-cache
+          composer require weprodev/larapanel:@dev --no-cache --no-update
 
       - name: Debug Composer Dependencies
         working-directory: larapanel-framework
